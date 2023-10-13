@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.title-font{
+    font-family:'Martel Sans', sans-serif;
+    font-weight: 700;
+}
+.normal-font{
+    font-family:'Martel Sans', sans-serif;
+    font-weight: 400;
+}
+
+.global-font{
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    font-family: 'Poppins', sans-serif;
+    /* font-family:'Martel Sans', sans-serif; */
+    /* font-family: Tahoma, sans-serif; */
+    /* font-weight: 300; */
+}
+
+
+@keyframes animate-color {
+    0% {
+        color: rgb(195, 195, 195);
+    }
+    100% {
+    color: #2bf802;
+    }
+}
