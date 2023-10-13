@@ -33,7 +33,7 @@
             <div class="border-2 border-black rounded-xl mx-auto p-5" style="width:10.795cm; height:13.97cm;">
                 <div class="flex">
                     <div>
-                        <h3 class="font-bold text-2xl">Orden#12</h3>
+                        <h3 class="font-bold text-2xl">Orden#12 </h3>
                         <h3 class="font-bold">Cotizador Nacional</h3>
                         <h3 class="font-bold ">12/12/2000</h3>
                     </div>
