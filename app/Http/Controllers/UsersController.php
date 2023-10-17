@@ -84,6 +84,7 @@ class UsersController extends Controller
     }
 
     public function register(Request $request) {
+        // dd('not');
         try
 
         {

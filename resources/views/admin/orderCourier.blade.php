@@ -8,11 +8,25 @@
                 <a class="bg-blue-950 p-2 text-white rounded-xl" href="/national-quoter-admin-generate-pdf/{{$quotation->idquotation}}" target="_blank" >Ver OSC</a>
             </div> --}}
             <div class="px-5cursor-pointer border-l-2 p-2">
-                <a  href="/national-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
-                    <button class="bg-blue-900 p-2 text-white rounded-xl text-sm">
-                        Orden De Servicio Al Cliente
-                    </button>
-                </a>
+                @if($order->type == "1")
+                    <a  href="/national-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
+                        <button class="bg-blue-900 p-2 text-white rounded-xl text-sm">
+                            Orden De Servicio Al Cliente
+                        </button>
+                    </a>
+                @elseif($order->type == "2")
+                    <a  href="/miami-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
+                        <button class="bg-blue-900 p-2 text-white rounded-xl text-sm">
+                            Orden De Servicio Al Cliente
+                        </button>
+                    </a>
+                @elseif($order->type == "3")
+                    <a  href="/china-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
+                        <button class="bg-blue-900 p-2 text-white rounded-xl text-sm">
+                            Orden De Servicio Al Cliente
+                        </button>
+                    </a>
+                @endif
             </div>
             {{-- Link --}}
             @if($quotation->service == 2)

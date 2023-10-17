@@ -27,7 +27,7 @@ class NationalQuoterController extends Controller
     public function quotation(Request $request){
         try{
             // Set currency Q or $, depends on checkbox
-            $request->currency ? $request->request->add(['currency' => '$']):$request->request->add(['currency' => 'Q']);
+            $request->request->add(['currency' => 'Q']);
             // New Quotation
             $quotation = globalNewQuotation($request);
             // Set idquotation from new quotation

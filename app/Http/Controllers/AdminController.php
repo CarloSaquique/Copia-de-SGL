@@ -77,8 +77,9 @@ class AdminController extends Controller
             }
 
             $orders = array_reverse($orders);
+            $today = Carbon::now();
 
-        return view('admin.indexCourier')->with(['orders'=>$orders]);
+        return view('admin.indexCourier')->with(['orders'=>$orders,'today'=>$today]);
         } catch (\Throwable $th) {
 
         }
@@ -86,77 +87,70 @@ class AdminController extends Controller
     }
 
     public function orderCourier($idorder){
-        try {
-            // Orden
-            $order = Order::findOrFail($idorder);
-            $order_type = $order->type;
-            $order->type == 1 ? $order->type ='Courier Nacional':false;
-            $order->type == 2 ? $order->type ='Courier Miami':false;
-            $order->type == 3 ? $order->type ='Courier China':false;
+        // Orden
+        $order = Order::findOrFail($idorder);
 
-            $tracking = DB::table('tracking')
-            ->where('order_idorder',$order->idorder)->first();
+        $tracking = DB::table('tracking')
+        ->where('order_idorder',$order->idorder)->first();
 
-            $tracking_states = TrackingStates::findOrFail($order_type)->getAttributes();
-            unset($tracking_states['idtracking_states']);
-            unset($tracking_states['service']);
+        $tracking_states = TrackingStates::findOrFail($order->type)->getAttributes();
+        unset($tracking_states['idtracking_states']);
+        unset($tracking_states['service']);
 
-            $order->tracking = $tracking;
-            $order->tracking_states = $tracking_states;
+        $order->tracking = $tracking;
+        $order->tracking_states = $tracking_states;
 
-            $order_type == 1 ? $last_status = 'status_5':false;
-            $order_type == 2 ? $last_status = 'status_7':false;
-            $order_type == 3 ? $last_status = 'status_7':false;
+        $order->type == 1 ? $last_status = 'status_5':false;
+        $order->type == 2 ? $last_status = 'status_7':false;
+        $order->type == 3 ? $last_status = 'status_7':false;
 
 
-            // Quotation
-            $quotation = DB::table('quotation')
-            ->where('order_idorder',$order->idorder)
-            ->get()[0];
+        // Quotation
+        $quotation = DB::table('quotation')
+        ->where('order_idorder',$order->idorder)
+        ->get()[0];
 
-            // Address
-            $addresses = DB::table('address')
-            ->where('quotation_idquotation',$quotation->idquotation)
-            ->get();
+        // Address
+        $addresses = DB::table('address')
+        ->where('quotation_idquotation',$quotation->idquotation)
+        ->get();
 
-            // dd($addresses);
-            foreach ($addresses as $key => $address) {
-                $address->type == 1? $order->sender = $address:false;
-                $address->type == 2? $order->destination = $address:false;
-            }
-
-            // Package
-            $packages = DB::table('package')
-            ->where('quotation_idquotation',$quotation->idquotation)
-            ->get();
-
-
-            foreach ($packages as $key => $package) {
-                if($package->type){
-                    $package_table = DB::table('package_table')
-                    ->where('idpackage_table',$package->type)
-                    ->get()[0];
-
-                    $package->size = $package_table->size_min.'-'.$package_table->size_max;
-                    $package->weight = $package_table->weight_min.'-'.$package_table->weight_max;
-                }
-            }
-
-            $payment = DB::table('payment')
-            ->where('quotation_idquotation',$quotation->idquotation)
-            ->get()[0];
-
-            $order->packages = $packages;
-
-            return view('admin.orderCourier')->with([
-                'order'=>$order,
-                'quotation'=>$quotation,
-                'payment'=>$payment,
-                'last_status'=>$last_status
-            ]);
-        } catch (\Throwable $th) {
-
+        // dd($addresses);
+        foreach ($addresses as $key => $address) {
+            $address->type == 1? $order->sender = $address:false;
+            $address->type == 2? $order->destination = $address:false;
         }
+
+        // Package
+        $packages = DB::table('package')
+        ->where('quotation_idquotation',$quotation->idquotation)
+        ->get();
+
+
+        foreach ($packages as $key => $package) {
+            if($package->type){
+                $package_table = DB::table('package_table')
+                ->where('idpackage_table',$package->type)
+                ->get()[0];
+
+                $package->size = $package_table->size_min.'-'.$package_table->size_max;
+                $package->weight = $package_table->weight_min.'-'.$package_table->weight_max;
+            }
+        }
+
+        $payment = DB::table('payment')
+        ->where('quotation_idquotation',$quotation->idquotation)
+        ->get()[0];
+
+        $order->packages = $packages;
+
+        return view('admin.orderCourier')->with([
+            'order'=>$order,
+            'quotation'=>$quotation,
+            'payment'=>$payment,
+            'last_status'=>$last_status
+        ]);
+
     }
 
     public function orderConfirm(Request $request){

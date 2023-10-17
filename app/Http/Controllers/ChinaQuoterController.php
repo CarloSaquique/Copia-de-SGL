@@ -137,7 +137,7 @@ class ChinaQuoterController extends Controller
 
         // osc Middleware
         if(
-            (Auth::user()->hasrole('superadmin')||
+            (Auth::user()->hasrole('super-admin')||
             Auth::user()->hasrole('admin') ||
             Auth::user()->hasrole('accounting'))||
             $order->users_id == Auth::user()->id &&

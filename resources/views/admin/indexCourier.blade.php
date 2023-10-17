@@ -46,7 +46,11 @@
                                     <h3>{{$order->created_at}}</h3>
                                 </div>
                                 <div class="ml-auto flex space-x-2 items-center">
-                                    <h3>Hace 9 días</h3>
+                                    @if($today->diff($order->created_at)->h == 0)
+                                        <h3>Hace menos de una hora</h3>
+                                    @else
+                                        <h3>Hace {{$today->diff($order->created_at)->h <= 24 ? $today->diff($order->created_at)->h.' horas':$today->diff($order->created_at)->d.' días'}}</h3>
+                                    @endif
                                     <a href="/admin-order-courier/{{$order->idorder}}" class="p-2 border-2" target="blank">
                                         Detalle
                                     </a>
@@ -66,7 +70,6 @@
                     @endforeach
                 @endif
             </div>
-
         </div>
 
     </section>

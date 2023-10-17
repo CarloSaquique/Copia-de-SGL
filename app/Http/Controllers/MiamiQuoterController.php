@@ -140,10 +140,9 @@ class MiamiQuoterController extends Controller
         $quotation = Quotation::findOrFail(Session::get('idquotation'));
 
         $order = Order::findOrFail($quotation->order_idorder);
-
         // osc Middleware
         if(
-            (Auth::user()->hasrole('superadmin') ||
+            (Auth::user()->hasrole('super-admin') ||
             Auth::user()->hasrole('admin') ||
             Auth::user()->hasrole('accounting') ||
             $order->users_id == Auth::user()->id)&&
@@ -151,10 +150,10 @@ class MiamiQuoterController extends Controller
         )
         {
             $package = Package::where('quotation_idquotation',$quotation->idquotation)->first();
+
             $osc = OSC::where('order_idorder',$quotation->order_idorder)
             ->first()
             ->getAttributes();
-
             $osc['weight'] = $package->weight;
             $osc['currency'] = $quotation->currency;
         }
