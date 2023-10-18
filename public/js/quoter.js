@@ -510,6 +510,18 @@ $("#home_mg_service_select").change(function(){
     $("#home_mg_link").parent().animate({height:"hide"}):
     $("#home_mg_link").parent().animate({height:"show"});
     input_service =  parseInt(this.value);
+
+    $("#home_mg_service_select").val() == 1 ?
+    $("#home_mg_commission").parent().animate({height:"hide"}):
+    $("#home_mg_commission").parent().animate({height:"show"});
+
+    $("#home_mg_service_select").val() == 1 ?
+    $("#home_mg_total_include").parent().animate({height:"hide"}):
+    $("#home_mg_total_include").parent().animate({height:"show"});
+
+    $("#home_mg_service_select").val() == 1 ?
+    $("#home_mg_total_pobox").parent().animate({height:"show"}):
+    $("#home_mg_total_pobox").parent().animate({height:"hide"});
     getQuotationMg();
 });
 
@@ -732,6 +744,18 @@ $("#home_cg_service_select").change(function(){
     $("#home_cg_link").parent().animate({height:"hide"}):
     $("#home_cg_link").parent().animate({height:"show"});
     input_service = parseInt(this.value);
+
+    $("#home_cg_service_select").val() == 1 ?
+    $("#home_cg_commission").parent().animate({height:"hide"}):
+    $("#home_cg_commission").parent().animate({height:"show"});
+
+    $("#home_cg_service_select").val() == 1 ?
+    $("#home_cg_total_include").parent().animate({height:"hide"}):
+    $("#home_cg_total_include").parent().animate({height:"show"});
+
+    $("#home_cg_service_select").val() == 1 ?
+    $("#home_cg_total_pobox").parent().animate({height:"show"}):
+    $("#home_cg_total_pobox").parent().animate({height:"hide"});
     getQuotationCg();
 });
 

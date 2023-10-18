@@ -8,7 +8,7 @@
             <form action="/track" method="POST" class="flex items-center text-center w-fit mx-auto p-2 rounded-lg mt-3">
                 @csrf
                 <span class="hidden ml-auto text-sm text-blue-950/90 font-bold md:text-base
-                    sm:block">Rastrea tu paquete:</span>
+                    sm:block">Rastrea tu servicio:</span>
                 <input name="tracking_number" class="text-sm mx-1 sm:mx-1 md:mx-5 text-gray-900 border
                 border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500
                 focus:border-blue-500 px-4 sm:w-96" type="text" placeholder="No. de Tracking">
@@ -649,13 +649,13 @@
                                 {{-- Pago en agencia --}}
                                 <div id="home_cn_payment_agency" class="w-11/12 hidden  p-5
                                     rounded-lg  bg-white mx-auto">
-                                    <img class="w-56 mx-auto" src="{{asset('images/baloo/baloo_pago_en_agencia.png')}}" alt="">
+                                    {{-- <img class="w-56 mx-auto" src="{{asset('images/baloo/baloo_pago_en_agencia.png')}}" alt=""> --}}
                                 </div>
 
                                 {{-- Pago Contra Entrega --}}
                                 <div id="home_cn_payment_cod" class="w-11/12 hidden p-5
                                     rounded-lg  bg-white mx-auto">
-                                    <img class="w-56 mx-auto" src="{{asset('images/payment/pago_contra_entrega.png')}}" alt="">
+                                    {{-- <img class="w-56 mx-auto" src="{{asset('images/payment/pago_contra_entrega.png')}}" alt=""> --}}
                                 </div>
                             </div>
 
@@ -745,32 +745,33 @@
                                 <div>
                                     <div class="text-center p-3">
                                         <span>Seleccione el Servicio:</span>
-                                        <select id="home_mg_service_select" name="service" class="py-1 px-2 rounded-lg h-10 border-gray-200
-                                            text-gray-600 text-sm">
-                                            <option class="font-bold" value="1" selected>P.O. BOX</option>
-                                            <option class="font-bold text-blue-500" value="2">Todo Incluido</option>
+                                        <select id="home_mg_service_select" name="service" class="py-1 px-2 rounded-2xl h-10 border-none bg-gray-200
+                                            text-gray-500 text-sm">
+                                            <option class="" value="1" selected>P.O. BOX</option>
+                                            <option class="" value="2">Todo Incluido</option>
                                         </select>
                                     </div>
                                     <div class="text-center p-1 hidden">
                                         <input id="home_mg_link" name="link" class="home_quotation_keyup h-10 rounded-lg border-gray-100 placeholder-blue-600/80" type="text" placeholder="Pasame Tu Link">
                                     </div>
+
                                     <div class="grid grid-cols-1 lg:grid-cols-2">
                                         <div class="text-center">
-                                            <h3 class="font-bold text-sm">Valor de mercadería en US$:</h3>
-                                            <input id="home_mg_price" name="price" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-lg h-10 border-gray-200" type="text" placeholder="Precio">
+                                            <h3 class="text-sm">Valor de mercadería en US$:</h3>
+                                            <input id="home_mg_price" name="price" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Precio">
                                         </div>
                                         <div class="text-center">
-                                            <h3 class="font-bold text-sm">Shipping en US$:</h3>
-                                            <input id="home_mg_shipping" name="shipping" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-lg h-10 border-gray-200" type="text" placeholder="Shipping">
+                                            <h3 class="text-sm">Shipping en US$:</h3>
+                                            <input id="home_mg_shipping" name="shipping" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Shipping">
                                         </div>
                                         <div class="text-center">
-                                            <h3 class="font-bold text-sm">Peso en libras: </h3>
-                                            <input id="home_mg_weight" name="weight" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-lg h-10 border-gray-200" type="text" placeholder="Peso">
+                                            <h3 class="text-sm">Peso en libras: </h3>
+                                            <input id="home_mg_weight" name="weight" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Peso">
                                         </div>
                                         <div class="text-center ">
-                                            <h3 class="font-bold text-sm">Descripción:</h3>
-                                            <select id="home_mg_description" name="description" class="home_quotation_change lg:w-11/12 xl:w-auto rounded-lg h-10 border-gray-200 w-full max-w-xs text-center text-sm text-gray-600">
-                                                <option value="-" selected="selected">Seleccione el tipo de descripción</option>
+                                            <h3 class="text-sm">Descripción:</h3>
+                                            <select id="home_mg_description" name="description" class="home_quotation_change max-w-[226px] lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200  text-center text-sm text-gray-500">
+                                                <option value="-" selected="selected">Selecciona Descripción</option>
                                                 <option value="15">Accesorio de Aseo Personal: 15%</option>
                                                 <option value="15">Accesorio de Cámara: 15%</option>
                                                 <option value="15">Accesorio de Carro: 15%</option>
@@ -863,23 +864,23 @@
                                 </div>
 
                                 <div class="p-2">
-                                    <label class="relative inline-flex items-center cursor-pointer border border-gray-300 rounded-lg">
+                                    <label class="relative inline-flex items-center cursor-pointer">
                                         <input id="home_mg_exchange_btn" name="currency" type="checkbox" class="sr-only peer" checked>
-                                        <div class="flex px-2 w-11 h-6  bg-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-transparent rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-gray-300 after:content-[''] after:absolute after:top-[0px] after:left-[1px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-5 after:transition-all  peer-checked:bg-white">
+                                        <div class="flex px-2 w-11 h-6  bg-yellow-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-transparent rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-gray-300 after:content-[''] after:absolute after:top-[0px] after:left-[1px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-5 after:transition-all  peer-checked:bg-green-500">
                                             <span class="mr-auto font-bold text-green-800">$</span>
-                                            <span class="ml-auto font-bold text-yellow-500">Q</span>
+                                            <span class="ml-auto font-bold text-yellow-600">Q</span>
                                         </div>
                                     </label>
                                     <h3>Flete SGL: <span id="home_mg_transport">0.00</span></h3>
                                     <h3>Desaduanaje SGL: <span id="home_mg_desaduanaje">0.00</span></h3>
-                                    <h3>Servicios SGL: <span id="home_mg_services">0.00</span></h3>
+                                    <h3 class="font-bold">Servicios SGL: <span id="home_mg_services">0.00</span></h3>
                                     <h3>DAI: <span id="home_mg_dai">0.00</span></h3>
                                     <h3>IVA: <span id="home_mg_iva">0.00</span></h3>
-                                    <h3>Impuestos: <span id="home_mg_taxes">0.00</span></h3>
+                                    <h3 class="font-bold">Impuestos: <span id="home_mg_taxes">0.00</span></h3>
                                     <h3 class="font-bold">Total P.O. BOX: Servicio SGL + Impuestos: <span id="home_mg_total_pobox">0.00</span></h3>
                                     <hr class="border-gray-300">
-                                    <h3 class="font-bold text-blue-900">Comisión: <span id="home_mg_commission">0.00</span></h3>
-                                    <h3 class="font-bold text-blue-500">Total Todo Incluido: Mercadería + <span class="text-blue-900">Comisión</span> + Servicio SGL + Impuestos: <span id="home_mg_total_include">0.00</span></h3>
+                                    <h3 class="font-bold hidden">Comisión: <span id="home_mg_commission">0.00</span></h3>
+                                    <h3 class="font-bold hidden">Total Todo Incluido: Mercadería + Comisión + Servicio SGL + Impuestos: <span id="home_mg_total_include">0.00</span></h3>
                                 </div>
                             </div>
 
@@ -1100,13 +1101,13 @@
                                 {{-- Pago en agencia --}}
                                 <div id="home_mg_payment_agency" class="w-11/12 hidden  p-5
                                     rounded-lg  bg-white mx-auto">
-                                    <img class="w-56 mx-auto" src="{{asset('images/baloo/baloo_pago_en_agencia.png')}}" alt="">
+                                    {{-- <img class="w-56 mx-auto" src="{{asset('images/baloo/baloo_pago_en_agencia.png')}}" alt=""> --}}
                                 </div>
 
                                 {{-- Pago Contra Entrega --}}
                                 <div id="home_mg_payment_cod" class="w-11/12 hidden p-5
                                     rounded-lg  bg-white mx-auto">
-                                    <img class="w-56 mx-auto" src="{{asset('images/payment/pago_contra_entrega.png')}}" alt="">
+                                    {{-- <img class="w-56 mx-auto" src="{{asset('images/payment/pago_contra_entrega.png')}}" alt=""> --}}
                                 </div>
                             </div>
 
@@ -1196,8 +1197,8 @@
                                 <div>
                                     <div class="text-center p-5">
                                         <span>Seleccione el Servicio: </span>
-                                        <select id="home_cg_service_select" name="service" class="py-1 px-2 rounded-lg h-10 border-gray-200
-                                        text-gray-600 text-sm">
+                                        <select id="home_cg_service_select" name="service" class="py-1 px-2 rounded-2xl h-10 border-none bg-gray-200
+                                        text-gray-500 text-sm">
                                             <option class="font-bold" value="1" selected>P.O. BOX</option>
                                             <option class="font-bold text-blue-500" value="2">Todo Incluido</option>
                                         </select>
@@ -1205,23 +1206,24 @@
                                     <div class="text-center p-1 hidden">
                                         <input id="home_cg_link" name="link" class="home_quotation_keyup rounded-lg h-10 border-gray-200 placeholder-blue-500" type="text" placeholder="Pasame Tu Link">
                                     </div>
+
                                     <div class="grid grid-cols-1 lg:grid-cols-2">
                                         <div class="text-center">
-                                            <h3 class="font-bold text-sm">Valor de mercadería en US$:</h3>
-                                            <input id="home_cg_price" name="price" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-lg h-10 border-gray-200" type="text" placeholder="Precio">
+                                            <h3 class="text-sm">Valor de mercadería en US$:</h3>
+                                            <input id="home_cg_price" name="price" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Precio">
                                         </div>
                                         <div class="text-center">
-                                            <h3 class="font-bold text-sm">Shipping en US$:</h3>
-                                            <input id="home_cg_shipping" name="shipping" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-lg h-10 border-gray-200" type="text" placeholder="Shipping">
+                                            <h3 class="text-sm">Shipping en US$:</h3>
+                                            <input id="home_cg_shipping" name="shipping" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Shipping">
                                         </div>
                                         <div class="text-center">
                                             <h3 class="font-bold text-sm">Peso en libras: </h3>
-                                            <input id="home_cg_weight" name="weight" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-lg h-10 border-gray-200" type="text" placeholder="Peso">
+                                            <input id="home_cg_weight" name="weight" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Peso">
                                         </div>
                                         <div class="text-center ">
                                             <h3 class="font-bold text-sm">Descripción:</h3>
-                                            <select id="home_cg_description" name="description" class="home_quotation_change lg:w-11/12 xl:w-auto rounded-lg h-10 border-gray-200 w-full max-w-xs text-center text-sm text-gray-600">
-                                                <option value="-" selected="selected">Seleccione el tipo de descripción</option>
+                                            <select id="home_cg_description" name="description" class="home_quotation_change max-w-[226px] lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200 text-center text-sm text-gray-500">
+                                                <option value="-" selected="selected">Seleccione Descripción</option>
                                                 <option value="15">Accesorio de Aseo Personal: 15%</option>
                                                 <option value="15">Accesorio de Cámara: 15%</option>
                                                 <option value="15">Accesorio de Carro: 15%</option>
@@ -1314,23 +1316,23 @@
                                 </div>
 
                                 <div class="p-2">
-                                    <label class="relative inline-flex items-center cursor-pointer border-2 border-gray-300 rounded-lg">
+                                    <label class="relative inline-flex items-center cursor-pointer">
                                         <input id="home_cg_exchange_btn" name="currency" type="checkbox" class="sr-only peer" checked>
-                                        <div class="flex px-2 w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-transparent rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-gray-300 after:content-[''] after:absolute after:top-[0px] after:left-[1px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-5 after:transition-all  peer-checked:bg-white">
+                                        <div class="flex px-2 w-11 h-6  bg-yellow-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-transparent rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-gray-300 after:content-[''] after:absolute after:top-[0px] after:left-[1px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-5 after:transition-all  peer-checked:bg-green-500">
                                             <span class="mr-auto font-bold text-green-800">$</span>
-                                            <span class="ml-auto font-bold text-yellow-500">Q</span>
+                                            <span class="ml-auto font-bold text-yellow-600">Q</span>
                                         </div>
                                     </label>
                                     <h3>Flete SGL: <span id="home_cg_transport">0.00</span></h3>
                                     <h3>Desaduanaje SGL: <span id="home_cg_desaduanaje">0.00</span></h3>
-                                    <h3>Servicios SGL: <span id="home_cg_services">0.00</span></h3>
+                                    <h3 class="font-bold">Servicios SGL: <span id="home_cg_services">0.00</span></h3>
                                     <h3>DAI: <span id="home_cg_dai">0.00</span></h3>
                                     <h3>IVA: <span id="home_cg_iva">0.00</span></h3>
-                                    <h3>Impuestos: <span id="home_cg_taxes">0.00</span></h3>
+                                    <h3 class="font-bold">Impuestos: <span id="home_cg_taxes">0.00</span></h3>
                                     <h3 class="font-bold">Total P.O. BOX: Servicio SGL + Impuestos: <span id="home_cg_total_pobox">0.00</span></h3>
                                     <hr class="border-gray-300">
-                                    <h3 class="font-bold text-blue-900">Comisión: <span id="home_cg_commission">0.00</span></h3>
-                                    <h3 class="font-bold text-blue-500">Total Todo Incluido: Mercadería + <span class="text-blue-900">Comisión</span> + Servicio SGL + Impuestos: <span id="home_cg_total_include">0.00</span></h3>
+                                    <h3 class="font-bold hidden">Comisión: <span id="home_cg_commission">0.00</span></h3>
+                                    <h3 class="font-bold hidden">Total Todo Incluido: Mercadería + Comisión + Servicio SGL + Impuestos: <span id="home_cg_total_include">0.00</span></h3>
                                 </div>
                             </div>
 
@@ -1531,13 +1533,13 @@
                                 {{-- Pago en agencia --}}
                                 <div id="home_cg_payment_agency" class="w-11/12 hidden
                                     rounded-lg  bg-white mx-auto">
-                                    <img class="w-56 mx-auto" src="{{asset('images/baloo/baloo_pago_en_agencia.png')}}" alt="">
+                                    {{-- <img class="w-56 mx-auto" src="{{asset('images/baloo/baloo_pago_en_agencia.png')}}" alt=""> --}}
                                 </div>
 
                                 {{-- Pago Contra Entrega --}}
                                 <div id="home_cg_payment_cod" class="w-11/12 hidden
                                     rounded-lg bg-white mx-auto">
-                                    <img class="w-56 mx-auto" src="{{asset('images/payment/pago_contra_entrega.png')}}" alt="">
+                                    {{-- <img class="w-56 mx-auto" src="{{asset('images/payment/pago_contra_entrega.png')}}" alt=""> --}}
                                 </div>
                             </div>
 

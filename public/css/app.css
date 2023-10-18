@@ -1022,6 +1022,9 @@ video {
 .w-8\/12 {
   width: 66.666667%;
 }
+.w-9 {
+  width: 2.25rem;
+}
 .w-96 {
   width: 24rem;
 }
