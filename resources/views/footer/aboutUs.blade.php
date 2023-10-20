@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    <h3 class="font-bold text-2xl ">Sucursales</h3>
+    <h3 class="font-bold text-2xl ">Puntos de Enlace</h3>
         {{-- Map --}}
         <div class="hidden relative lg:block my-10 w-10/12 mx-auto">
             <img id="about_us_img_map" class="w-full rounded-xl" src="{{asset('images/footer/mapa.png')}}" alt="">
