@@ -327,7 +327,7 @@
         </div>
 
         {{-- Movil --}}
-        <div class="space-y-5 w-fit mx-auto lg:hidden">
+        {{-- <div class="space-y-5 w-fit mx-auto lg:hidden">
             <div class="flex items-center space-x-1">
                 <img class="h-6" src="{{asset('images/flags/china.png')}}" alt="">
                 <span class="font-bold">China:</span>
@@ -390,7 +390,7 @@
                 <span class="font-bold">India:</span>
                 <span>india-customerservice@gruposgl.com</span>
             </div>
-        </div>
+        </div> --}}
 </section>
 @endsection
 
