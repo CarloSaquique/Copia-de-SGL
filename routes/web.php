@@ -117,6 +117,9 @@ Route::get('/refund-form', function() {return view('footer.refundForm');});
 Route::get('/refund-politics', function() {return view('footer.refundPolitics');});
 Route::get('/claim-form', function() {return view('footer.claimForm');});
 
+// MailForms
+Route::post('/refund-form', [App\Http\Controllers\MailController::class, 'refundForm']);
+
 Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting|storer|deliver|client'])->group(function () {
     //Promo
     // Route::post('/promo-check', [App\Http\Controllers\PromoController::class, 'check']);
