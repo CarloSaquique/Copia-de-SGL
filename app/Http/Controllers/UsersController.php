@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+
 use DB;
 use Session;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Locker;
 use App\Models\Payment;
 use App\Models\Address;
 use App\Models\Package;
 use App\Models\Quotation;
+use App\Models\Membership;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
@@ -21,8 +25,21 @@ class UsersController extends Controller
 {
     public function profile() {
         $user = Auth::user();
-
         return view('user.profile')->with(['user'=>$user]);
+    }
+
+    public function locker(){
+        $locker = Locker::where('users_id',Auth::user()->id)->first();
+        $country = DB::table('country_table')->where('idcountry_table',$locker->type)->get()[0];
+        $locker->number = explode("/", $country->iso_code)[1].$locker->number;
+        return view('user.locker')->with(['locker'=>$locker,'country'=>$country]);
+    }
+
+    public function membership(){
+        $membership = Membership::where('users_id',Auth::user()->id)->first();
+        $membership_table = DB::table('membership_table')->where('idmembership_table',$membership->type)->get()[0];
+
+        return view('user.membership')->with(['membership'=>$membership,'membership_table'=>$membership_table]);
     }
 
     public function orders(){
@@ -31,9 +48,10 @@ class UsersController extends Controller
 
         foreach ($orders as $key => $order) {
             $quotation = Quotation::where('order_idorder',$order->idorder)->first();
+            print_r($quotation->idquotation);
             $payment = Payment::where('quotation_idquotation',$quotation->idquotation)->first();
             $order->total = $payment->total;
-            $order->currency = $quotation->currency;
+            $order->currency = $payment->currency;
         }
 
         return view('user.orders')->with(['orders'=>$orders]);
@@ -84,20 +102,20 @@ class UsersController extends Controller
     }
 
     public function register(Request $request) {
-        // dd('not');
         try
-
         {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|alpha|max:15',
                 'last_name' => 'required|alpha|max:15',
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'country' => 'required|numeric|min:1|max:14',
                 'password' => ['required', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-,.]).{6,}$/', 'min:6', 'confirmed'],
 
             ],[
                 'name.required' => 'Debes colocar tu nombre',
                 'last_name.required' => 'Debes colocar tu apellido',
                 'email.required' => 'Debes colocar tu email',
+                'country.min' => 'Debes seleccionar tu país',
                 'password.required' => 'Debes colocar tu password',
             ]);
 
@@ -107,10 +125,30 @@ class UsersController extends Controller
             }else{
                 $user = new User($request->except('password'));
                 $user->password = bcrypt($request->get('password'));
-                $user->role = '2';
+                $user->role = 'client';
                 $user->status = '1';
-                $user->assignRole('admin');
+                $user->assignRole('client');
                 $user->saveOrFail();
+
+                $unique = $this->lockerNumber();
+
+                $locker = new Locker();
+                $locker->type = $request->country;
+                $locker->number = $unique;
+                $locker->status = 1;
+                $locker->users_id = $user->id;
+                $locker->saveOrFail();
+
+                // Fecha de expiración promocion
+                $datetime = Carbon::createFromFormat('Y-m-d H:i:s', '2023-01-31 23:59:59')->toDateTimeString();
+
+                // type = 1 promoción temporal
+                $membership = new Membership();
+                $membership->type = 1;
+                $membership->status = 1;
+                $membership->finish_at = $datetime;
+                $membership->users_id = $user->id;
+                $membership->saveOrFail();
 
                 event(new Registered($user));
                 Auth::login($user);
@@ -122,9 +160,16 @@ class UsersController extends Controller
           DB::rollback();
         }
 
-        // dd($request);
-        return Redirect::to('/');
+        return Redirect::to('/profile');
 
+    }
+
+    public function lockerNumber(){
+        do {
+            $random = random_int(100000000000000, 999999999999999);
+        } while (Locker::where('number','=',$random)->exists());
+
+        return $random;
     }
 
     public function addressAdd(Request $request) {

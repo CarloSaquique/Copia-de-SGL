@@ -14,6 +14,7 @@ class Payment extends Model
     protected $fillable = [
         'type',
         'total',
+        'currency',
         'bank_note',
         'status',
         'comments',

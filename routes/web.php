@@ -21,6 +21,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 Route::get('/test', [App\Http\Controllers\Controller::class, 'test']);
+Route::get('/test-db', [App\Http\Controllers\Controller::class, 'testDb']);
+Route::get('/test-mail', [App\Http\Controllers\Controller::class, 'testMail']);
 Route::get('/test-factura/{id}', [App\Http\Controllers\Controller::class, 'testFactura']);
 Route::post('/test-delete', [App\Http\Controllers\Controller::class, 'testDelete']);
 
@@ -135,6 +137,8 @@ Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting
 
 
     Route::get('/profile', [App\Http\Controllers\UsersController::class, 'profile']);
+    Route::get('/locker', [App\Http\Controllers\UsersController::class, 'locker']);
+    Route::get('/membership', [App\Http\Controllers\UsersController::class, 'membership']);
     Route::get('/user-orders', [App\Http\Controllers\UsersController::class, 'orders']);
     Route::get('/user-order/{id}', [App\Http\Controllers\UsersController::class, 'order']);
 

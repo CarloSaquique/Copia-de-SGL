@@ -15,14 +15,17 @@ $('#register_btn').click(function(){
         {'name':'name','validation':['alpha','blank']},
         {'name':'last_name','validation':['alpha','blank']},
         {'name':'email','validation':['@','blank']},
+        {'name':'country','validation':[]},
         {'name':'password','validation':['password','blank']},
         {'name':'password_confirmation','validation':['same:password','blank']},
     ]
 
     let form = '#'+$(this).closest("form").attr('id');
     let $validator = Validation(form,fields);
-
-    // console.log($validator.error_messages);
+    $(form).submit();
+    // if(!$validator.fail){
+    //     $(form).submit();
+    // }
 });
 
 $('#home_register_btn').click(function(){
@@ -41,6 +44,7 @@ function Validation(_form,_fields,_name_id){
 
     _name_id == null ? _name_id = '':false;
     // Fields Foerch Validation
+
     $.each(_fields, function(index,field){
         let field_value = $(_form + ' input[name=' + field.name + _name_id +']').val();
         $.each(field.validation, function(index,validation){
@@ -98,23 +102,42 @@ function Validation(_form,_fields,_name_id){
                         date2 >= date1  ? true:error_messages[field.name] = ('Ingresar una fecha valida');
                     }
                 }
+            }else if (!validation.indexOf('isFile')){
+                $(_form + ' input[name=' + field.name + _name_id +']')[0].files.length == 0? error_messages[field.name] = ('Debes cargar un archivo.'):false;
+            }else if (!validation.indexOf('isSelect')){
+                field_value = $('select[name='+field.name+']').val();
+                field_value == 0? error_messages[field.name] = {msg:'Debes Seleccionar una opción.',type:'select'}:false;
+                // field_value == 0? error_messages[field.name.type] = 'select':false;
             }
+
         });
     });
 
 
     //Clear Messages
     $.each(_fields, function(index,field){
-        $(_form + ' input[name=' + field.name + _name_id +']').hasClass('border-red-600')? $(_form + ' input[name=' + field.name + _name_id +']').removeClass('border-red-600'):false;
-        $(_form + ' input[name=' + field.name + _name_id +']').next().is("h3") ? $(_form + ' input[name=' + field.name + _name_id +']').next().remove():false;
+        if(field.validation == 'isSelect'){
+            $('select[name=' + field.name + _name_id +']').hasClass('border-red-600')? $('select[name=' + field.name + _name_id +']').removeClass('border-red-600'):false;
+            $('select[name=' + field.name + _name_id +']').next().is("h3") ? $('select[name=' + field.name + _name_id +']').next().remove():false;
+        }else{
+            $(_form + ' input[name=' + field.name + _name_id +']').hasClass('border-red-600')? $(_form + ' input[name=' + field.name + _name_id +']').removeClass('border-red-600'):false;
+            $(_form + ' input[name=' + field.name + _name_id +']').next().is("h3") ? $(_form + ' input[name=' + field.name + _name_id +']').next().remove():false;
+        }
+
     });
 
     //Show Messages
 
     $.each(Object.keys(error_messages), function(index,input_name){
-        $(_form + ' input[name=' + input_name + _name_id +']').hasClass('border-gray-300')? $(_form + ' input[name=' + input_name + _name_id +']').removeClass('border-gray-300'):false;
-        $(_form + ' input[name=' + input_name + _name_id +']').addClass('border-red-600');
-        $(_form + ' input[name=' + input_name + _name_id +']').after('<h3  class="text-xs text-red-500 p-1">'+error_messages[input_name]+'</h3>');
+        if(typeof error_messages[input_name] === 'object'){
+            $('select[name=' + input_name + _name_id +']').hasClass('border-gray-300')? $('select[name=' + input_name + _name_id +']').removeClass('border-gray-300'):false;
+            $('select[name=' + input_name + _name_id +']').addClass('border-red-600');
+            $('select[name=' + input_name + _name_id +']').after('<h3  class="text-xs text-red-500 p-1">'+error_messages[input_name].msg+'</h3>');
+        }else{
+            $(_form + ' input[name=' + input_name + _name_id +']').hasClass('border-gray-300')? $(_form + ' input[name=' + input_name + _name_id +']').removeClass('border-gray-300'):false;
+            $(_form + ' input[name=' + input_name + _name_id +']').addClass('border-red-600');
+            $(_form + ' input[name=' + input_name + _name_id +']').after('<h3  class="text-xs text-red-500 p-1">'+error_messages[input_name]+'</h3>');
+        }
     });
 
 
@@ -161,14 +184,15 @@ function LoadingAnimation(_this,_status,_text){
 // Upload button
 $('body').on('click','.upload', function(){
     const input_file  = $(this).nextAll('input').first().focus();
-    const button = $(this);
     input_file.click();
+    const button = $(this);
     $(input_file).change(function(){
         const filename = (this).files[0].name;
-        this.value = "";
+        // this.value = "";
         button.next('h3') ? button.next('h3').html(''):false;
         button.after('<h3 class="text-xs font-bold">'+filename+'</h3>');
     });
+
 });
 
 // Rate Us

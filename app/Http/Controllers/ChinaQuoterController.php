@@ -133,6 +133,8 @@ class ChinaQuoterController extends Controller
         $quotation = Quotation::findOrFail($idquotation):
         $quotation = Quotation::findOrFail(Session::get('idquotation'));
 
+        $payment = Payment::where('quotation_idquotation',$idquotation)->first();
+
         $order = Order::findOrFail($quotation->order_idorder);
 
         // osc Middleware
@@ -150,7 +152,7 @@ class ChinaQuoterController extends Controller
             ->getAttributes();
 
             $osc['weight'] = $package->weight;
-            $osc['currency'] = $quotation->currency;
+            $osc['currency'] = $payment->currency;
         }
 
         // dd($osc);

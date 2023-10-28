@@ -15,7 +15,6 @@ class Quotation extends Model
         'sender',
         'destination',
         'service',
-        'currency',
         'premier',
         'prepaid',
         'terms',

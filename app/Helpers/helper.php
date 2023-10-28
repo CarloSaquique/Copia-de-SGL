@@ -52,7 +52,6 @@ function globalNewQuotation($request){
                 'sender' => $request->get('sender',$old_quotation->sender),
                 'destination' => $request->get('destination',$old_quotation->destination),
                 'service' => $request->get('service',$old_quotation->service),
-                'currency' => $request->get("currency",$old_quotation->currency),
                 'premier' => $request->get('premier',$old_quotation->premier),
                 'prepaid' => $request->get('prepaid',$old_quotation->prepaid),
                 'terms' => $request->get('terms',$old_quotation->terms),
@@ -201,6 +200,7 @@ function globalNewPayment($request){
             ],[
                 'type' => $request->get('type',$old_payment->type),
                 'total' => $request->get('total',$old_payment->total),
+                'currency' => $request->get("currency",$old_payment->currency),
                 'bank_total' => $request->get('bank_total',$old_payment->bank_total),
                 'status' => $request->get('status',$old_payment->status),
                 'comments' => $request->get('comments',$old_payment->comments),

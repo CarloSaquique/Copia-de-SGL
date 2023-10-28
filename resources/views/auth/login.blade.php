@@ -4,7 +4,7 @@
     <section class="bg-gray-100  py-[5%] h-screen">
         <div class="mx-auto w-fit my-3">
             <a href="/">
-                <img class="mx-auto" src="{{asset('images/main/logo.png')}}" alt="">
+                <img class="mx-auto max-w-[56px]" src="{{asset('images/main/logo.png')}}" alt="">
             <a href=""></a>
         </div>
         <div class="mx-auto w-72 rounded-2xl shadow-2xl bg-white text-center">

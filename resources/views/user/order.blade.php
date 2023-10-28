@@ -12,7 +12,7 @@
             @endphp
             <h3 class="font-bold">Pedido {{$courier_name}} {{$order->order_number}}</h3>
             <h3 class="">{{$order->created_at}}</h3>
-            <h3 class="font-bold">Total a pagar: {{$quotation->currency}}{{ number_format((float)$payment->total, 2, '.', '')}}</h3>
+            <h3 class="font-bold">Total a pagar: {{$payment->currency}}{{ number_format((float)$payment->total, 2, '.', '')}}</h3>
         </div>
         <div class="ml-auto ">
             <h3 class="bg-blue-950 rounded-md text-white px-3 py-2">En proceso</h3>
@@ -74,7 +74,7 @@
     {{-- Package --}}
     {{-- {{$packages}} --}}
     <h3 class="font-bold text-xl">Paquetes</h3>
-    <div class=" space-x-1">
+    <div class="flex space-x-1">
             <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-5">
                 @if($order->type == 1)
                     <h3 class="font-bold">Courier Nacional</h3>
@@ -119,7 +119,18 @@
                 @endif
 
             </div>
-
+            <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-5">
+                @php
+                    $order->type == 1? $quoter ='national':false;
+                    $order->type == 2? $quoter ='miami':false;
+                    $order->type == 3? $quoter ='china':false;
+                @endphp
+                <a  href="/{{$quoter}}-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
+                    <button class="bg-blue-500 px-3 py-3 text-white rounded-lg text-base hover:bg-blue-400">
+                        Orden De Servicio Al Cliente
+                    </button>
+                </a>
+            </div>
     </div>
 @endsection
 

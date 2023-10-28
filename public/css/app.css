@@ -520,8 +520,14 @@ video {
 .bottom-5 {
   bottom: 1.25rem;
 }
+.bottom-7 {
+  bottom: 1.75rem;
+}
 .left-0 {
   left: 0px;
+}
+.left-28 {
+  left: 7rem;
 }
 .left-\[-11\%\] {
   left: -11%;
@@ -1038,6 +1044,9 @@ video {
 .max-w-\[226px\] {
   max-width: 226px;
 }
+.max-w-\[40px\] {
+  max-width: 40px;
+}
 .max-w-\[470px\] {
   max-width: 470px;
 }
@@ -1322,6 +1331,9 @@ video {
 .bg-\[rgb\(0\2c 100\2c 255\)\] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 100 255 / var(--tw-bg-opacity));
+}
+.bg-\[rgb\(0\2c 100\2c 255\)\]\/100 {
+  background-color: rgb(0 100 255 / 1);
 }
 .bg-\[rgb\(0\2c 200\2c 255\)\] {
   --tw-bg-opacity: 1;
@@ -1738,12 +1750,6 @@ video {
   --tw-placeholder-opacity: 1;
   color: rgb(59 130 246 / var(--tw-placeholder-opacity));
 }
-.placeholder-blue-600\/80::-moz-placeholder {
-  color: rgb(37 99 235 / 0.8);
-}
-.placeholder-blue-600\/80::placeholder {
-  color: rgb(37 99 235 / 0.8);
-}
 .opacity-70 {
   opacity: 0.7;
 }
@@ -1883,6 +1889,11 @@ video {
 .hover\:bg-blue-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-blue-500:hover {

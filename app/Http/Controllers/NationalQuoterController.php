@@ -25,25 +25,23 @@ class NationalQuoterController extends Controller
     }
 
     public function quotation(Request $request){
-        try{
-            // Set currency Q or $, depends on checkbox
-            $request->request->add(['currency' => 'Q']);
-            // New Quotation
-            $quotation = globalNewQuotation($request);
-            // Set idquotation from new quotation
-            $request->request->add(['quotation_idquotation' => $quotation->idquotation]);
-            // Set all the packages and returning last one
-            $packages = $this->newPackage($request);
-            // Set Total from packages
-            $total = $this->total($quotation->idquotation);
-            // Set new payment
-            $request->request->add(['total'=>$total]);
-            $payment = globalNewPayment($request);
-            // Set Session idquotation
-            Session::put('idquotation', $quotation->idquotation);
-        }catch(\Exception $e){
-            DB::rollback();
-        }
+
+        // Set currency Q or $, depends on checkbox
+        $request->request->add(['currency' => 'Q']);
+        // New Quotation
+        $quotation = globalNewQuotation($request);
+        // Set idquotation from new quotation
+        $request->request->add(['quotation_idquotation' => $quotation->idquotation]);
+        // Set all the packages and returning last one
+        $packages = $this->newPackage($request);
+        // Set Total from packages
+        $total = $this->total($quotation->idquotation);
+        // Set new payment
+        $request->request->add(['total'=>$total]);
+        $payment = globalNewPayment($request);
+        // Set Session idquotation
+        Session::put('idquotation', $quotation->idquotation);
+
         return \Response::json($request);
     }
 

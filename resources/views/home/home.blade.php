@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
     <section>
 
         <div data-modal-target="UpdatesModal"></div>
@@ -33,12 +31,13 @@
                         <div class="mt-5 space-y-1">
                             <h3 class="text-sm">- Página Web En Construcción</h3>
                         </div>
-                        <img class="absolute bottom-5 right-5" src="{{asset('images/main/logo.png')}}" alt="">
+                        <img class="absolute bottom-5 right-5 max-w-[56px]" src="{{asset('images/main/logo.png')}}" alt="">
                     </div>
 
                 </div>
             </div>
         </div>
+
         {{-- Rastrea tu producto --}}
         @if(!Session::has('tracking'))
         <div>
@@ -249,7 +248,9 @@
 
                         <div class="py-5 px-3 text-xs">
                             <h3 class="ml-auto text-blue-950">Aún no tienes cuenta?</h3>
-                            <button id="home_register_btn" class="text-blue-950 underline" >Registrarme</button>
+                            <a href="/register">
+                                <button id="#home_register_btn" class="text-blue-950 underline" >Registrarme</button>
+                            </a>
                         </div>
 
                     </div>
@@ -258,7 +259,7 @@
                 <div id="home_register" class="border-solid absolute hidden top-0 left-0 right-0 p-10  xl:left-auto">
                     <div class="mx-auto w-72 rounded-2xl bg-white text-center border-gray-500 border-2">
                         <p class="font-bold text-blue-950 text-2xl py-3">Registrar</p>
-                        <form id="form-reg" method='POST' action='/register' accept-charset='UTF-8'  autocomplete='off'>
+                        <form id="form-reg" method='POST' action='/#' accept-charset='UTF-8'  autocomplete='off'>
                             @csrf
                             <input class="w-10/12 mt-1 p-2 text-sm text-gray-900 border
                             border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-400
@@ -301,7 +302,6 @@
                                 <h3 class="ml-auto text-blue-950">Ya tienes Cuenta?</h3>
                                 <button id='home_login_btn' class="text-blue-950 underline" href="#">Iniciar Sesión</button>
                             </div>
-
                     </div>
                 </div>
             @endguest
@@ -788,8 +788,8 @@
                                             <option class="" value="2">Todo Incluido</option>
                                         </select>
                                     </div>
-                                    <div class="text-center p-1 hidden">
-                                        <input id="home_mg_link" name="link" class="home_quotation_keyup h-10 rounded-lg border-gray-100 placeholder-blue-600/80" type="text" placeholder="Pasame Tu Link">
+                                    <div class="text-center p-1 relative hidden ">
+                                        <input id="home_mg_link" name="link" class=" left-28 bottom-7 home_quotation_keyup h-10 rounded-2xl border-none bg-gray-200" type="text" placeholder="Pasame Tu Link">
                                     </div>
 
                                     <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -1569,7 +1569,7 @@
 
                                 {{-- Pago en agencia --}}
                                 <div id="home_cg_payment_agency" class="w-11/12 hidden
-                                    rounded-lg  bg-white mx-auto">
+                                    rounded-lg  bg-white mx-auto">fixed miami-china quoter style-total
                                     {{-- <img class="w-56 mx-auto" src="{{asset('images/baloo/baloo_pago_en_agencia.png')}}" alt=""> --}}
                                 </div>
 

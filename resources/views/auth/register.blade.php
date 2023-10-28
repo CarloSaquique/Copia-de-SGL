@@ -4,7 +4,7 @@
     <section class="py-[5%]  max-h-auto">
         <div class="mx-auto w-fit my-3">
             <a href="/">
-                <img class="mx-auto" src="{{asset('images/main/logo.png')}}" alt="">
+                <img class="mx-auto max-w-[56px]" src="{{asset('images/main/logo.png')}}" alt="">
             </a>
         </div>
         <div class="mx-auto w-72 rounded-2xl shadow-2xl bg-white text-center">
@@ -18,6 +18,26 @@
                 <input class="w-10/12 mt-5 p-2 text-sm text-gray-900 border
                 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-400
                 focus:border-blue-400" type="text" name="last_name" placeholder="Apellido"/>
+
+                <select class="w-10/12 mt-5 p-2 text-sm text-gray-900 border
+                border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-400
+                focus:border-blue-400" name="country">
+                    <option value="0">Seleccionar mi país</option>
+                    <option value="1">Guatemala</option>
+                    <option value="2">United States</option>
+                    <option value="3">Mexico</option>
+                    <option value="4">Honduras</option>
+                    <option value="5">El Salvador</option>
+                    <option value="6">Dominican Republic</option>
+                    <option value="7">Panama</option>
+                    <option value="8">Colombia</option>
+                    <option value="9">Chile</option>
+                    <option value="10">Brazil</option>
+                    <option value="11">Spain</option>
+                    <option value="12">Germany</option>
+                    <option value="13">India</option>
+                    <option value="14">China</option>
+                </select>
 
                 <input class="w-10/12 mt-5 p-2 text-sm text-gray-900 border
                 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-400

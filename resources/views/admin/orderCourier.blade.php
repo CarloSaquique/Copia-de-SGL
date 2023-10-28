@@ -68,7 +68,7 @@
                 <h3>{{$order->type}}</h3>
                 <h3 class="ml-auto">{{$order->created_at}}</h3>
             </div>
-            <h3 class="font-bold">{{$quotation->currency}}{{ number_format((float)$payment->total, 2, '.', '')}}</h3>
+            <h3 class="font-bold">{{$payment->currency}}{{ number_format((float)$payment->total, 2, '.', '')}}</h3>
 
             {{-- Direcciones --}}
             <div class="flex mt-5 border ">
@@ -116,7 +116,7 @@
                         </div>
                         <div class="flex space-x-2">
                             {{-- <h3 class="font-bold">Moneda:</h3> --}}
-                            <h3>({{$quotation->currency == 1? 'Q':'$';}})</h3>
+                            <h3>({{$payment->currency == 1? 'Q':'$';}})</h3>
                         </div>
                     @endif
                 </div>
@@ -177,9 +177,9 @@
                         @foreach ($order->packages as $key => $p)
                         <tr class="text-center">
                             <th>{{$key+1}}</th>
-                            <th>{{$quotation->currency == 1? 'Q':'$';}}{{$p->price}}</th>
+                            <th>{{$payment->currency == 1? 'Q':'$';}}{{$p->price}}</th>
                             <th>{{$p->weight}}lb</th>
-                            <th>{{$quotation->currency == 1? 'Q':'$';}}{{$p->shipping}}</th>
+                            <th>{{$payment->currency == 1? 'Q':'$';}}{{$p->shipping}}</th>
                         @endforeach
                         </tr>
                     @endif

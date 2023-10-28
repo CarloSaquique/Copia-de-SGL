@@ -135,9 +135,12 @@ class MiamiQuoterController extends Controller
 
     public function oscPdf($idquotation=null)
     {
+
         $idquotation?
         $quotation = Quotation::findOrFail($idquotation):
         $quotation = Quotation::findOrFail(Session::get('idquotation'));
+
+        $payment = Payment::where('quotation_idquotation',$idquotation)->first();
 
         $order = Order::findOrFail($quotation->order_idorder);
         // osc Middleware
@@ -155,7 +158,7 @@ class MiamiQuoterController extends Controller
             ->first()
             ->getAttributes();
             $osc['weight'] = $package->weight;
-            $osc['currency'] = $quotation->currency;
+            $osc['currency'] = $payment->currency;
         }
 
         // dd($osc);
