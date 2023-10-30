@@ -50,7 +50,7 @@ function Validation(_form,_fields,_name_id){
         $.each(field.validation, function(index,validation){
             // Regex Validations
             if(!validation.indexOf('blank')){
-                field_value == "" ? error_messages[field.name] = ('No puedes dejar el campo '+field.name+' vacio.'):false;
+                field_value == "" ? error_messages[field.name] = ('No puedes dejar este campo vacio.'):false;
             }else if (!validation.indexOf('alpha')){
                 !(/^[a-zA-Z\s]+$/).test(field_value) ? error_messages[field.name] = 'El campo '+field.name+' solo admite letras.':false;
             }else if (!validation.indexOf('number')){

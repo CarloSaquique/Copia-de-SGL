@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 class MailController extends Controller
 {
     public function refundForm(Request $request){
+        // dd($request);
         $data = $this->translateData($request);
 
         $files = $this->addFiles($request);
 
+        // dd($request);
         Mail::send('mail.RefundForm', $data, function($message)use($data, $files) {
             $message->to($data["email"])
                     ->subject($data["title"]);
@@ -63,8 +65,13 @@ class MailController extends Controller
         $request['refund_currency'] == 1 ? $request['refund_currency'] = 'QTZ':false;
         $request['refund_currency'] == 2 ? $request['refund_currency'] = 'USD':false;
 
+        // Discount
+        array_key_exists('discount',$request) ? $request['discount'] = 'Sí': $request['discount'] ='No';
+
+        $request['payment_type'] = $this->paymentTypeArray($request['payment_type']);
+
         $data["email"] = "kevinarmas7@gmail.com";
-        $data["title"] = "Solicitud de Reembolso";
+        $data["title"] = "Solicitud de Reintegro";
 
         foreach ($request as $key => $value) {
             if($key != '_token'){
@@ -73,7 +80,20 @@ class MailController extends Controller
         }
 
         return $data;
-        dd($data);
+    }
+
+    public function paymentTypeArray($request){
+        foreach ($request as $key => $value) {
+            $value == 0 ? $value = 'No Ingreso Dato':false;
+            $value == 1 ? $value = 'Tarjeta credito/debito':false;
+            $value == 2 ? $value = 'Efectivo':false;
+            $value == 3 ? $value = 'Transferencia Bancaria':false;
+            $value == 4 ? $value = 'Paypal':false;
+            $value == 5 ? $value = 'Puntos Bancarios':false;
+            $value == 6 ? $value = 'Tarjeta prepago de regalo':false;
+            $request[$key] = $value;
+        }
+        return $request;
     }
 
     public function addFiles($request){
@@ -83,7 +103,11 @@ class MailController extends Controller
             $temp_file = $request->file($key);
 
             $extension = $temp_file->extension();
-            $name = $key;
+            $key == 'invoice' ? $name = 'Factura_de_compra':false;
+            $key == 'package_slip' ? $name = 'Factura_cobro_sgl':false;
+            $key == 'sgl_invoice' ? $name = 'Packing_slip':false;
+            $key == 'legal_dpi' ? $name = 'DPI_propietario':false;
+
             $file->name = $name.'.'.$extension;
         }
         return $files;
