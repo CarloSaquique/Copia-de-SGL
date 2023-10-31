@@ -16,7 +16,8 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.css" rel="stylesheet" />
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css?v='.filemtime(public_path('css/app.css'))) }}"  rel="stylesheet">
+        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
         {{-- PWA --}}
