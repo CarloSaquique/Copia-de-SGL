@@ -12,7 +12,7 @@
     <div class="grid grid-cols-2 space-x-1">
         <div class="w-full p-2 border rounded-lg">
             <div class="flex w-fit mx-auto space-x-1">
-                {{-- <img class="max-w-[40px]" src="{{asset('images/flags/usa.jpg')}}" alt=""> --}}
+                {{-- <img class="max-w-[40px]" src="{{asset('images/flags/USA.jpg')}}" alt=""> --}}
                 <h3 class="font-bold">USA</h3>
             </div>
             <div class="p-10 space-y-5">
@@ -27,7 +27,7 @@
         </div>
         <div class="w-full p-2 border rounded-lg">
             <div class="flex w-fit mx-auto space-x-1">
-                {{-- <img class="max-w-[40px] " src="{{asset('images/flags/china.png')}}" alt=""> --}}
+                {{-- <img class="max-w-[40px] " src="{{asset('images/flags/China.png')}}" alt=""> --}}
                 <h3 class="font-bold">China</h3>
             </div>
             <div class="p-10 space-y-5">

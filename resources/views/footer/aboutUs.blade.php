@@ -78,7 +78,7 @@
                 <div id="about_us_map_info_china" class="hidden absolute top-[15%] right-[0%]
                     p-10 rounded-xl border-2 w-96 bg-white text-justify">
                     <div class="flex items-center mx-auto space-x-2">
-                        <img width="50" src="{{asset('images/flags/china.png')}}" alt="">
+                        <img width="50" src="{{asset('images/flags/China.png')}}" alt="">
                         <span>China</span>
                     </div>
                     <hr class="border-gray-300 my-3">
@@ -135,7 +135,7 @@
                 <div id="about_us_map_info_usa" class="hidden absolute top-[15%] left-[-11%]
                     p-10 rounded-xl border-2 w-96 bg-white text-justify">
                     <div class="flex items-center mx-auto space-x-2">
-                        <img width="50" src="{{asset('images/flags/usa.jpg')}}" alt="">
+                        <img width="50" src="{{asset('images/flags/USA.jpg')}}" alt="">
                         <span>USA</span>
                     </div>
                     <hr class="border-gray-300 my-3">
@@ -320,7 +320,7 @@
         <div class="p-2 space-y-5 w-fit mx-auto my-5 lg:hidden">
             <div class="space-x-1 items-center">
                 <div class="flex mr-auto space-x-1 ">
-                    <img class="h-6" src="{{asset('images/flags/china.png')}}" alt="">
+                    <img class="h-6" src="{{asset('images/flags/China.png')}}" alt="">
                     <span class="font-bold ">China:</span>
                 </div>
                 <span class="whitespace-nowrap text-2xs sm:text-base">china-customerservice@gruposgl.com</span>
@@ -385,7 +385,7 @@
 
             <div class="space-x-1 items-center">
                 <div class="flex mr-auto space-x-1 ">
-                    <img class="h-6" src="{{asset('images/flags/usa.jpg')}}" alt="">
+                    <img class="h-6" src="{{asset('images/flags/USA.jpg')}}" alt="">
                     <span class="font-bold ">USA:</span>
                 </div>
                 <span class="whitespace-nowrap text-2xs sm:text-base">usa-customerservice@gruposgl.com</span>
