@@ -116,11 +116,16 @@ Route::get('/work-with-us', function() {return view('footer.workWithUs.index');}
 Route::get('/work-with-us/category/{id}',  [App\Http\Controllers\HomeController::class, 'workWithUsCategory']);
 Route::get('/work-with-us/job/{id}',  [App\Http\Controllers\HomeController::class, 'workWithUsJob']);
 Route::get('/refund-form', function() {return view('footer.refundForm');});
+// Route::get('/claim-form', function() {return view('footer.claimForm');});
+Route::get('/deposit-form', function() {return view('footer.depositForm');});
 Route::get('/refund-politics', function() {return view('footer.refundPolitics');});
-Route::get('/claim-form', function() {return view('footer.claimForm');});
+Route::get('/deposit-politics', function() {return view('footer.depositPolitics');});
+
 
 // MailForms
 Route::post('/refund-form', [App\Http\Controllers\MailController::class, 'refundForm']);
+Route::post('/claim-form', [App\Http\Controllers\MailController::class, 'claimForm']);
+Route::post('/deposit-form', [App\Http\Controllers\MailController::class, 'depositForm']);
 
 Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting|storer|deliver|client'])->group(function () {
     //Promo
@@ -143,7 +148,7 @@ Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting
     Route::get('/user-order/{id}', [App\Http\Controllers\UsersController::class, 'order']);
 
     Route::post('/rate-us', [App\Http\Controllers\HomeController::class, 'rateUs']);
-
+    Route::get('/claim-form', function() {return view('footer.claimForm');});
 });
 
 

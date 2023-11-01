@@ -13,7 +13,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Nombre Completo de solicitante:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($full_name)? $full_name:false}}
                 </div>
@@ -24,7 +24,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Número de Identificación CUI:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($cui)? $cui:false}}
                 </div>
@@ -36,7 +36,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Empresa para la que labora:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($company)? $company:false}}
                 </div>
@@ -47,7 +47,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Puesto que desempeña:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($position)? $position:false}}
                 </div>
@@ -64,7 +64,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Numero de Pedido OSC:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($osc_number)? $osc_number:false}}
                 </div>
@@ -75,7 +75,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Describa El Tipo De Servicio:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($service_type)? $service_type:false}}
                 </div>
@@ -87,7 +87,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Describa el nombre de su asesor de ventas:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($consultant_name)? $consultant_name:false}}
                 </div>
@@ -104,14 +104,14 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Su Reclamo Se Debe A:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($claim_type)? $claim_type:false}}
                 </div>
             </div>
 
             <div class="flex items-center" style="display: flex; align-items: center; width: 100%;">
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Pago seguro de carga
                 </div>
@@ -128,7 +128,7 @@
                     No recibió reintegro de pagos
                     adicionales o depósitos en garantía
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($refund_received)? $refund_received:false}}
                 </div>
@@ -147,14 +147,14 @@
                     border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                         Fecha:
                     </div>
-                    <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                    <div class="font-bold border w-fit p-2" style="font-weight: normal;
                     border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                         {{$date}}
                     </div>
                 </div>
 
                 <div class="flex items-center" style="display: flex; align-items: center; width: 100%;">
-                    <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                    <div class="font-bold border w-fit p-2" style="font-weight: normal;
                     border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                         {{ $payment_type[$key]}}
                     </div>
@@ -170,7 +170,7 @@
 
         <div style="display: flex;">
             <div class="flex items-center" style="display: flex; align-items: center; width: 100%;">
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($claim_description)? $claim_description:false}}
                 </div>
@@ -188,7 +188,7 @@
                     Ingrese nombre de comprador
                     en Factura de SGL:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($buyer_name)? $buyer_name:false}}
                 </div>
@@ -199,7 +199,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Ingrese numero de Nit:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($nit)? $nit:false}}
                 </div>
@@ -211,7 +211,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Ingrese dirección fiscal:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($fiscal_address)? $fiscal_address:false}}
                 </div>
@@ -225,7 +225,7 @@
 
         <div style="display: flex;">
             <div class="flex items-center" style="display: flex; align-items: center; width: 100%;">
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($buyer_email)? $buyer_email:false}}
                 </div>
@@ -242,7 +242,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Medio de pago para su Reintegro
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($refund_type)? $refund_type:false}}
                 </div>
@@ -253,7 +253,7 @@
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     Tipo de moneda para reintegro:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($refund_currency)? $refund_currency:false}}
                 </div>
@@ -266,7 +266,7 @@
                     Seleccione la casilla para descuento
                     del 5% por gastos administrativos:
                 </div>
-                <div class="font-bold border w-fit p-2" style="font-weight: bold;
+                <div class="font-bold border w-fit p-2" style="font-weight: normal;
                 border:1px solid black; width: fit-content; padding: 8px; width: 100%; white-space: nowrap;">
                     {{isset($discount)? $discount:false}}
                 </div>

@@ -197,25 +197,30 @@ $('body').on('click','.upload', function(){
 
 // Rate Us
 $('.star').click(function(){
-    let star_id = $(this).parent().next('input').attr('id').split('_')[1];
-    let form = $(this).closest("form");
-    $("#home_rate_us_form :input").each(function(){
-        let inputs_id = this.id.split('_')[1];
+    let star_rating = $(this).parent().next('input').attr('id').split('_')[1];
+    let star_id = $(this).parent().next('input').attr('id').split('_')[0];
+    let form = $(this).closest("form")[0];
 
-        $('label[for="rate_'+inputs_id+'"]').children('svg').hasClass('text-yellow-500')?
-        $('label[for="rate_'+inputs_id+'"]').children('svg').addClass('text-gray-400'):
-        false;
+    $("#"+form.id+" :input").each(function(){
+        if(this.id.indexOf(star_id) == 0){
+            $('label[for="'+this.id+'"]').children('svg').hasClass('text-yellow-500')?
+            $('label[for="'+this.id+'"]').children('svg').addClass('text-gray-400'):
+            false;
 
-        $('label[for="rate_'+inputs_id+'"]').children('svg').hasClass('text-yellow-500')?
-        $('label[for="rate_'+inputs_id+'"]').children('svg').removeClass('text-yellow-500'):
-        false;
-
+            $('label[for="'+this.id+'"]').children('svg').hasClass('text-yellow-500')?
+            $('label[for="'+this.id+'"]').children('svg').removeClass('text-yellow-500'):
+            false;
+        }
     });
-    $("#home_rate_us_form :input").each(function(){
-        let inputs_id = this.id.split('_')[1];
-        inputs_id <= star_id?
-        $('label[for="rate_'+inputs_id+'"]').children('svg').hasClass('text-yellow-500')?true:
-        $('label[for="rate_'+inputs_id+'"]').children('svg').toggleClass('text-gray-400 text-yellow-500'):
-        false;
+
+
+    $("#"+form.id+" :input").each(function(){
+        if(this.id.indexOf(star_id) == 0){
+            let inputs_id = this.id.split('_')[1];
+            inputs_id <= star_rating?
+            $('label[for="'+this.id+'"]').children('svg').hasClass('text-yellow-500')?true:
+            $('label[for="'+this.id+'"]').children('svg').toggleClass('text-gray-400 text-yellow-500'):
+            false;
+        }
     });
 });

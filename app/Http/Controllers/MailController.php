@@ -3,17 +3,180 @@
 namespace App\Http\Controllers;
 
 use Mail;
+use Session;
+use \Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
+// quality-control@gruposgl.com
 
 class MailController extends Controller
 {
+    // Deposit Form
+    public function depositForm(Request $request){
+        $data = $this->depositFormTranslateData($request);
+
+        $date = Carbon::now()->toDateTimeString();
+        $number = random_int(100000,999999);
+        $data["title"] = "Solicitud de depósitos en garantía".'-'.$number.'-'.$date;
+        $data["email"] = ["kevinarmas7@gmail.com"];
+        $data["form_number"] = $number.'-'.$date;
+
+        $files = $this->depositFormAddFiles($request);
+
+        Mail::send('mail.DepositForm', $data, function($message)use($data, $files) {
+            $message->to($data["email"])
+                    ->subject($data["title"]);
+
+            foreach ($files as $key=>$file){
+                $message->attach($file, array(
+                    'as' => $file->name,
+                ));
+            }
+        });
+
+        Mail::send('mail.FormSuccess', $data, function($message)use($data) {
+            $message->to($data['client_email'])
+                    ->subject($data["title"]);
+        });
+
+        Session::flash('form_success', true);
+        return Redirect::to('/deposit-form');
+        dd('Mail Send Successfully !!');
+    }
+
+    public function depositFormTranslateData($request){
+        $request = $request->all();
+
+        // Claim Type
+        $request['currency'] == 1 ? $request['currency'] = 'Q':false;
+        $request['currency'] == 2 ? $request['currency'] = '$':false;
+
+        foreach ($request as $key => $value) {
+            if($key != '_token'){
+                $data[$key] = $value;
+            }
+        }
+
+        return $data;
+    }
+
+    public function depositFormAddFiles($request){
+        $files = $request->files;
+
+        foreach ($files as $key=>$file){
+            $temp_file = $request->file($key);
+
+            $extension = $temp_file->extension();
+            $key == 'bank_deposit' ? $name = 'Soporte de deposito bancario':false;
+            $key == 'request_letter' ? $name = 'Carta de solicitud de reintegro':false;
+
+            $file->name = $name.'.'.$extension;
+        }
+        return $files;
+    }
+
+    // Claim Form
+    public function claimForm(Request $request){
+        $data = $this->claimFormTranslateData($request);
+        $date = Carbon::now()->toDateTimeString();
+        $number = random_int(100000,999999);
+        $data["title"] = "Formulario Reclamo".'-'.$number.'-'.$date;
+        $data["email"] = "kevinarmas7@gmail.com";
+        $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
+        $data["client_email"] = Auth::user()->email;
+        // $data["form_number"] = $number.'-'.$date;
+
+        Mail::send('mail.ClaimForm', $data, function($message)use($data) {
+            $message->to($data["email"])
+                    ->subject($data["title"]);
+        });
+
+        // Mail::send('mail.FormSuccess', $data, function($message)use($data) {
+        //     $message->to(Auth::user()->email)
+        //             ->subject($data["title"]);
+        // });
+
+        Session::flash('form_success', true);
+        return Redirect::to('/claim-form');
+        dd('Mail Send Successfully !!');
+    }
+
+    public function claimFormTranslateData($request){
+        $request = $request->all();
+
+        // Claim Type
+        $request['claim_type'] == 1 ? $request['claim_type'] = 'Servicio al cliente':false;
+        $request['claim_type'] == 2 ? $request['claim_type'] = 'Facturación':false;
+        $request['claim_type'] == 3 ? $request['claim_type'] = 'Operaciones':false;
+        $request['claim_type'] == 4 ? $request['claim_type'] = 'Asesor comercial':false;
+        $request['claim_type'] == 5 ? $request['claim_type'] = 'Administrativo':false;
+        $request['claim_type'] == 6 ? $request['claim_type'] = 'Mensajero':false;
+        $request['claim_type'] == 7 ? $request['claim_type'] = 'Tramitador de puerto':false;
+        $request['claim_type'] == 8 ? $request['claim_type'] = 'Piloto de camión':false;
+        $request['claim_type'] == 9 ? $request['claim_type'] = 'General':false;
+
+        // Country
+        $request['country'] == 1 ? $request['country'] = 'Guatemala':false;
+        $request['country'] == 2 ? $request['country'] = 'El Salvador':false;
+        $request['country'] == 3 ? $request['country'] = 'Honduras':false;
+        $request['country'] == 4 ? $request['country'] = 'Costa Rica':false;
+        $request['country'] == 5 ? $request['country'] = 'Panama':false;
+        $request['country'] == 6 ? $request['country'] = 'Nicaragua':false;
+        $request['country'] == 7 ? $request['country'] = 'Belice':false;
+        $request['country'] == 8 ? $request['country'] = 'R.Dominicana':false;
+        $request['country'] == 9 ? $request['country'] = 'USA':false;
+        $request['country'] == 10 ? $request['country'] = 'Chile':false;
+        $request['country'] == 11 ? $request['country'] = 'Brasil':false;
+        $request['country'] == 12 ? $request['country'] = 'Colombia':false;
+        $request['country'] == 13 ? $request['country'] = 'Jamaica':false;
+
+        // Service Type
+        $request['service_type'] == 1 ? $request['service_type'] = 'LCL':false;
+        $request['service_type'] == 2 ? $request['service_type'] = 'FCL':false;
+        $request['service_type'] == 3 ? $request['service_type'] = 'Terrestre':false;
+        $request['service_type'] == 4 ? $request['service_type'] = 'Aduana':false;
+        $request['service_type'] == 5 ? $request['service_type'] = 'Aéreo':false;
+        $request['service_type'] == 6 ? $request['service_type'] = 'Courier':false;
+        $request['service_type'] == 7 ? $request['service_type'] = 'Paquetería Nacional':false;
+        $request['service_type'] == 8 ? $request['service_type'] = 'Tramites aduanales':false;
+
+        $request = $this->claimFormTranslateRating($request);
+        // Discount
+        // dd($request);
+
+        foreach ($request as $key => $value) {
+            if($key != '_token'){
+                $data[$key] = $value;
+            }
+        }
+
+        return $data;
+    }
+
+    public function claimFormTranslateRating($request){
+        foreach ($request as $key => $value) {
+            strpos($key, 'consultant') === 0 ? $request[explode("_", $key)[0]] = explode("_", $key)[1]:false;
+            strpos($key, 'price') === 0 ? $request[explode("_", $key)[0]] = explode("_", $key)[1]:false;
+            strpos($key, 'followUp') === 0 ? $request[explode("_", $key)[0]] = explode("_", $key)[1]:false;
+            strpos($key, 'tools') === 0 ? $request[explode("_", $key)[0]] = explode("_", $key)[1]:false;
+        }
+        return $request;
+    }
+
+    // Refund Form
     public function refundForm(Request $request){
-        // dd($request);
-        $data = $this->translateData($request);
+        $data = $this->refundFormTranslateData($request);
+        $date = Carbon::now()->toDateTimeString();
+        $number = random_int(100000,999999);
+        $data["title"] = "Formulario Reintegro".'-'.$number.'-'.$date;
+        $data["email"] = "kevinarmas7@gmail.com";
+        $data["form_number"] = $number.'-'.$date;
 
-        $files = $this->addFiles($request);
 
-        // dd($request);
+        $files = $this->refundFormAddFiles($request);
+
         Mail::send('mail.RefundForm', $data, function($message)use($data, $files) {
             $message->to($data["email"])
                     ->subject($data["title"]);
@@ -25,10 +188,19 @@ class MailController extends Controller
             }
         });
 
+
+        Mail::send('mail.FormSuccess', $data, function($message)use($data) {
+            $message->to($data['buyer_email'])
+                    ->subject($data["title"]);
+        });
+
+
+        Session::flash('form_success', true);
+        return Redirect::to('/refund-form');
         dd('Mail Send Successfully !!');
     }
 
-    public function translateData($request){
+    public function refundFormTranslateData($request){
         $request = $request->all();
 
         // Service Type
@@ -68,10 +240,7 @@ class MailController extends Controller
         // Discount
         array_key_exists('discount',$request) ? $request['discount'] = 'Sí': $request['discount'] ='No';
 
-        $request['payment_type'] = $this->paymentTypeArray($request['payment_type']);
-
-        $data["email"] = "kevinarmas7@gmail.com";
-        $data["title"] = "Solicitud de Reintegro";
+        $request['payment_type'] = $this->refundFormPaymentTypeArray($request['payment_type']);
 
         foreach ($request as $key => $value) {
             if($key != '_token'){
@@ -82,7 +251,7 @@ class MailController extends Controller
         return $data;
     }
 
-    public function paymentTypeArray($request){
+    public function refundFormPaymentTypeArray($request){
         foreach ($request as $key => $value) {
             $value == 0 ? $value = 'No Ingreso Dato':false;
             $value == 1 ? $value = 'Tarjeta credito/debito':false;
@@ -96,7 +265,7 @@ class MailController extends Controller
         return $request;
     }
 
-    public function addFiles($request){
+    public function refundFormAddFiles($request){
         $files = $request->files;
 
         foreach ($files as $key=>$file){
