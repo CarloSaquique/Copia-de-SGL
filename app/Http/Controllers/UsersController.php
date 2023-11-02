@@ -102,6 +102,7 @@ class UsersController extends Controller
     }
 
     public function register(Request $request) {
+        dd('not');
         try
         {
             $validator = Validator::make($request->all(), [
