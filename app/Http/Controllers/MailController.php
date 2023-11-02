@@ -9,42 +9,91 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
+use Mailtrap\Config;
+use Mailtrap\Helper\ResponseHelper;
+use Mailtrap\MailtrapClient;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
+use Mailtrap\EmailHeader\CategoryHeader;
+
+// use Mailtrap\Config;
+// use Mailtrap\EmailHeader\CategoryHeader;
+use Mailtrap\EmailHeader\CustomVariableHeader;
+// use Mailtrap\Helper\ResponseHelper;
+// use Mailtrap\MailtrapClient;
+// use Symfony\Component\Mime\Address;
+// use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Header\UnstructuredHeader;
+
 // quality-control@gruposgl.com
 
 class MailController extends Controller
 {
-    // Deposit Form
     public function depositForm(Request $request){
+        $apiKey = '5e260d63e70586c30a6bb2ff8d4250e7';
+        $mailtrap = new MailtrapClient(new Config($apiKey));
         $data = $this->depositFormTranslateData($request);
-
         $date = Carbon::now()->toDateTimeString();
         $number = random_int(100000,999999);
-        $data["title"] = "Solicitud de depósitos en garantía".'-'.$number.'-'.$date;
-        $data["email"] = ["kevinarmas7@gmail.com"];
         $data["form_number"] = $number.'-'.$date;
+        $html = view('mail.depositForm', $data)->render();
 
         $files = $this->depositFormAddFiles($request);
 
-        Mail::send('mail.DepositForm', $data, function($message)use($data, $files) {
-            $message->to($data["email"])
-                    ->subject($data["title"]);
+        $email = (new Email())
+        ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
+        ->to(new Address("kevinarmas7@gmail.com"))
+        ->subject('Formulario Deposito'.'-'.$number.'-'.$date)
+        ->html($html)
+        ;
 
-            foreach ($files as $key=>$file){
-                $message->attach($file, array(
-                    'as' => $file->name,
-                ));
-            }
-        });
+        foreach ($files as $key=>$file){
+            $email->attachFromPath($file,$file->name);
+        }
 
-        Mail::send('mail.FormSuccess', $data, function($message)use($data) {
-            $message->to($data['client_email'])
-                    ->subject($data["title"]);
-        });
+        $email->getHeaders()
+        ->add(new CategoryHeader('Integration Test'))
+        ;
+
+        $response = $mailtrap->sending()->emails()->send($email);
 
         Session::flash('form_success', true);
         return Redirect::to('/deposit-form');
         dd('Mail Send Successfully !!');
     }
+
+    // Deposit Form
+    // public function depositForm(Request $request){
+    //     $data = $this->depositFormTranslateData($request);
+
+    //     $date = Carbon::now()->toDateTimeString();
+    //     $number = random_int(100000,999999);
+    //     $data["title"] = "Solicitud de depósitos en garantía".'-'.$number.'-'.$date;
+    //     $data["email"] = ["kevinarmas7@gmail.com"];
+    //     $data["form_number"] = $number.'-'.$date;
+
+    //     $files = $this->depositFormAddFiles($request);
+
+    //     Mail::send('mail.DepositForm', $data, function($message)use($data, $files) {
+    //         $message->to($data["email"])
+    //                 ->subject($data["title"]);
+
+    //         foreach ($files as $key=>$file){
+    //             $message->attach($file, array(
+    //                 'as' => $file->name,
+    //             ));
+    //         }
+    //     });
+
+    //     Mail::send('mail.FormSuccess', $data, function($message)use($data) {
+    //         $message->to($data['client_email'])
+    //                 ->subject($data["title"]);
+    //     });
+
+    //     Session::flash('form_success', true);
+    //     return Redirect::to('/deposit-form');
+    //     dd('Mail Send Successfully !!');
+    // }
 
     public function depositFormTranslateData($request){
         $request = $request->all();
@@ -79,29 +128,55 @@ class MailController extends Controller
 
     // Claim Form
     public function claimForm(Request $request){
-        $data = $this->claimFormTranslateData($request);
+        $apiKey = '5e260d63e70586c30a6bb2ff8d4250e7';
+        $mailtrap = new MailtrapClient(new Config($apiKey));
+
         $date = Carbon::now()->toDateTimeString();
         $number = random_int(100000,999999);
-        $data["title"] = "Formulario Reclamo".'-'.$number.'-'.$date;
-        $data["email"] = "kevinarmas7@gmail.com";
+        $data = $this->claimFormTranslateData($request);
         $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
         $data["client_email"] = Auth::user()->email;
-        // $data["form_number"] = $number.'-'.$date;
+        $html = view('mail.claimForm', $data)->render();
+        $email = (new Email())
+            ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
+            ->to(new Address("kevinarmas7@gmail.com"))
+            ->subject('Formulario Reclamo'.'-'.$number.'-'.$date)
+            ->html($html)
+            // ->attachFromPath('README.md')
+        ;
 
-        Mail::send('mail.ClaimForm', $data, function($message)use($data) {
-            $message->to($data["email"])
-                    ->subject($data["title"]);
-        });
+        $email->getHeaders()
+            ->add(new CategoryHeader('Integration Test'))
+        ;
 
-        // Mail::send('mail.FormSuccess', $data, function($message)use($data) {
-        //     $message->to(Auth::user()->email)
-        //             ->subject($data["title"]);
-        // });
+        $response = $mailtrap->sending()->emails()->send($email);
 
         Session::flash('form_success', true);
         return Redirect::to('/claim-form');
         dd('Mail Send Successfully !!');
     }
+
+    // public function claimForm(Request $request){
+    //     $data = $this->claimFormTranslateData($request);
+    //     $date = Carbon::now()->toDateTimeString();
+    //     $number = random_int(100000,999999);
+    //     $data["title"] = "Formulario Reclamo".'-'.$number.'-'.$date;
+    //     $data["email"] = "kevinarmas7@gmail.com";
+    //     $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
+    //     $data["client_email"] = Auth::user()->email;
+    //     // $data["form_number"] = $number.'-'.$date;
+
+
+
+    //     Mail::send('mail.FormSuccess', $data, function($message)use($data) {
+    //         $message->to(Auth::user()->email)
+    //                 ->subject($data["title"]);
+    //     });
+
+    //     Session::flash('form_success', true);
+    //     return Redirect::to('/claim-form');
+    //     dd('Mail Send Successfully !!');
+    // }
 
     public function claimFormTranslateData($request){
         $request = $request->all();
@@ -167,38 +242,76 @@ class MailController extends Controller
 
     // Refund Form
     public function refundForm(Request $request){
+        $apiKey = '5e260d63e70586c30a6bb2ff8d4250e7';
+        $mailtrap = new MailtrapClient(new Config($apiKey));
         $data = $this->refundFormTranslateData($request);
         $date = Carbon::now()->toDateTimeString();
         $number = random_int(100000,999999);
-        $data["title"] = "Formulario Reintegro".'-'.$number.'-'.$date;
-        $data["email"] = "kevinarmas7@gmail.com";
+        $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
+        $data["client_email"] = Auth::user()->email;
         $data["form_number"] = $number.'-'.$date;
+        $html = view('mail.refundForm', $data)->render();
 
+        $files = $this->refundFormAddFiles($request)->all();
+        // $files['invoice']->filename = 'asd.png';
+        // dd($files['invoice']->getFileName());
 
-        $files = $this->refundFormAddFiles($request);
+        $email = (new Email())
+            ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
+            ->to(new Address("kevinarmas7@gmail.com"))
+            ->subject('Formulario Reintegro'.'-'.$number.'-'.$date)
+            ->html($html)
+            // ->attachFromPath($files['invoice'],'sas.png')
+        ;
 
-        Mail::send('mail.RefundForm', $data, function($message)use($data, $files) {
-            $message->to($data["email"])
-                    ->subject($data["title"]);
+        foreach ($files as $key=>$file){
+            $email->attachFromPath($file,$file->name);
+        }
 
-            foreach ($files as $key=>$file){
-                $message->attach($file, array(
-                    'as' => $file->name,
-                ));
-            }
-        });
+        $email->getHeaders()
+            ->add(new CategoryHeader('Integration Test'))
+        ;
 
-
-        Mail::send('mail.FormSuccess', $data, function($message)use($data) {
-            $message->to($data['buyer_email'])
-                    ->subject($data["title"]);
-        });
-
+        $response = $mailtrap->sending()->emails()->send($email);
 
         Session::flash('form_success', true);
         return Redirect::to('/refund-form');
         dd('Mail Send Successfully !!');
     }
+
+    // public function refundForm(Request $request){
+    //     $data = $this->refundFormTranslateData($request);
+    //     $date = Carbon::now()->toDateTimeString();
+    //     $number = random_int(100000,999999);
+    //     $data["title"] = "Formulario Reintegro".'-'.$number.'-'.$date;
+    //     $data["email"] = "kevinarmas7@gmail.com";
+    //     $data["form_number"] = $number.'-'.$date;
+
+
+    //     $files = $this->refundFormAddFiles($request);
+
+    //     Mail::send('mail.RefundForm', $data, function($message)use($data, $files) {
+    //         $message->to($data["email"])
+    //                 ->subject($data["title"]);
+
+    //         foreach ($files as $key=>$file){
+    //             $message->attach($file, array(
+    //                 'as' => $file->name,
+    //             ));
+    //         }
+    //     });
+
+
+    //     Mail::send('mail.FormSuccess', $data, function($message)use($data) {
+    //         $message->to($data['buyer_email'])
+    //                 ->subject($data["title"]);
+    //     });
+
+
+    //     Session::flash('form_success', true);
+    //     return Redirect::to('/refund-form');
+    //     dd('Mail Send Successfully !!');
+    // }
 
     public function refundFormTranslateData($request){
         $request = $request->all();

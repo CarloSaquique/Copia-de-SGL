@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'mailtrap' => [
+        'host' => env('MAILTRAP_HOST'),
+        'key' => env('MAILTRAP_API_KEY'),
+    ],
+
 ];
