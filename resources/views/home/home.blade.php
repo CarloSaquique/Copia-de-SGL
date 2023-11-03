@@ -908,14 +908,14 @@
                                     </div>
 
                                     <div class="mt-2 flex text-center w-fit mx-auto">
-                                        <div class="mx-2 font-bold">
+                                        {{-- <div class="mx-2 font-bold">
                                             <h3>Premier Club</h3>
                                             <input id="home_mg_premier" name="premier" class="home_quotation_change" type="checkbox">
                                         </div>
                                         <div class="mx-2 font-bold">
                                             <h3>Prepago</h3>
                                             <input id="home_mg_prepaid" name="prepaid" class="home_quotation_change" type="checkbox" name="">
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
@@ -952,8 +952,19 @@
                                     <button id="home_mg_btn_quotation_order" type="button" class="flex mx-auto mt-5 bg-blue-950 px-4 py-2
                                         rounded-xl text-white cursor-pointer opacity-70" disabled>Realizar Orden</button>
                                 @else
-                                    <a href="/login" class="block mx-auto w-fit mt-5 bg-blue-950 px-4 py-2
-                                    rounded-xl text-white cursor-pointer">Iniciar Sesión</a>
+                                <div class="my-10 mx-auto w-fit text-blue-700">
+                                    <div class="flex">
+                                        <img class="max-w-[40px]" src="{{asset('images/main/logo.png')}}" alt="">
+                                        <div class="text-lg px-10 bg-white font-bold">
+                                            <h3 class="text-left">We Are </h3>
+                                            <h3>The Blue Wave</h3>
+                                        </div>
+                                    </div>
+                                    <h3>Contáctanos</h3>
+                                    <h3 class="text-blue-800">customerservice@gruposgl.com</h3>
+                                </div>
+                                    {{-- <a href="/login" class="block mx-auto w-fit mt-5 bg-blue-950 px-4 py-2
+                                    rounded-xl text-white cursor-pointer">Iniciar Sesión</a> --}}
                                 @endauth
                             </div>
                         </div>
@@ -1404,8 +1415,19 @@
                                     <button id="home_cg_btn_quotation_order" type="button" class="flex mx-auto mt-5 bg-blue-950 px-4 py-2
                                         rounded-xl text-white cursor-pointer opacity-70" disabled>Realizar Orden</button>
                                 @else
-                                    <a href="/login" class="block mx-auto w-fit mt-5 bg-blue-950 px-4 py-2
-                                    rounded-xl text-white cursor-pointer">Iniciar Sesión</a>
+                                    <div class="my-10 mx-auto w-fit text-blue-700">
+                                        <div class="flex">
+                                            <img class="max-w-[40px]" src="{{asset('images/main/logo.png')}}" alt="">
+                                            <div class="text-lg px-10 bg-white font-bold">
+                                                <h3 class="text-left">We Are </h3>
+                                                <h3>The Blue Wave</h3>
+                                            </div>
+                                        </div>
+                                        <h3>Contáctanos</h3>
+                                        <h3 class="text-blue-800">customerservice@gruposgl.com</h3>
+                                    </div>
+                                    {{-- <a href="/login" class="block mx-auto w-fit mt-5 bg-blue-950 px-4 py-2
+                                    rounded-xl text-white cursor-pointer">Iniciar Sesión</a> --}}
                                 @endauth
                             </div>
                         </div>
