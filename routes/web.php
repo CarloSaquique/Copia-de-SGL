@@ -120,7 +120,7 @@ Route::get('/refund-form', function() {return view('footer.refundForm');});
 Route::get('/deposit-form', function() {return view('footer.depositForm');});
 Route::get('/refund-politics', function() {return view('footer.refundPolitics');});
 Route::get('/deposit-politics', function() {return view('footer.depositPolitics');});
-
+Route::get('/payment-instructive', function() {return view('footer.paymentInstructive');});
 
 // MailForms
 Route::post('/refund-form', [App\Http\Controllers\MailController::class, 'refundForm']);

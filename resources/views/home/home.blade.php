@@ -466,9 +466,13 @@
                     {{-- CN Set Packages  --}}
                     <form id="home_cn_form_quotation_order" action="/national-quoter-order" class="w-fit mx-auto text-center" method="POST">
                         @csrf
-                            <h3 id="home_cn_span_subtotal" class="">Subtotal: Q.0.00</h3>
-                            <h3 id="home_cn_span_iva" class="">IVA: Q.0.00</h3>
-                            <h3 id="home_cn_span_total" class="font-bold">Total: Q.0.00</h3>
+                        <div class="md:flex mx-auto w-fit">
+                            <div class="text-justify text-lg md:text-sm font-bold p-10 md:p-5 w-fit mx-auto ">
+                                <h3 id="home_cn_span_subtotal" class="">Subtotal: Q.0.00</h3>
+                                <h3 id="home_cn_span_iva" class="">IVA: Q.0.00</h3>
+                                <hr class="border border-blue-600">
+                                <h3 id="home_cn_span_total" class="font-bold">Total: Q.0.00</h3>
+                            </div>
                         @auth
                             <div class="items-center flex space-x-2 mx-auto w-fit mt-5">
                                 <input id="home_cn_chk_terms" type="checkbox" name="terms">
@@ -481,8 +485,23 @@
                             <button id="home_cn_btn_quotation_order" type="button" class="wait flex mx-auto mt-5 bg-blue-950 px-4 py-2
                                 rounded-xl text-white cursor-pointer opacity-70" disabled>Realizar Orden</button>
                         @else
-                            <a href="/login" id="home_cn_btn_quotation_order" class="block mx-auto mt-5 w-fit bg-blue-950 px-4 py-2
-                            rounded-xl text-white cursor-pointer">Iniciar Sesión</a>
+                            <div class="text-justify text-blue-700 font-bold md:p- w-fit ">
+                                <h3 class="text-3xl">Contáctanos</h3>
+                                <h3 class="text-sm md:text-base px-11 sm:px-5 lg:px-0">para solicitar tu servicio y con gusto uno de</h3>
+                                <h3 class="text-sm md:text-base px-11 sm:px-5 lg:px-0">nuestros asesores se comunicara contigo.</h3>
+                                <h3 class="text-blue-500 font-bold my-5">customerservice@gruposgl.com</h3>
+                                <div class="flex my-10">
+                                    <img class="max-w-[40px]" src="{{asset('images/main/logo.png')}}" alt="">
+                                    <div class="text-lg px-10 bg-white font-bold">
+                                        <h3 class="text-left">We Are </h3>
+                                        <h3>The Blue Wave</h3>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            {{-- <a href="/login" id="home_cn_btn_quotation_order" class="block mx-auto mt-5 w-fit bg-blue-950 px-4 py-2
+                            rounded-xl text-white cursor-pointer">Iniciar Sesión</a> --}}
                         @endauth
                     </form>
                 </div>
