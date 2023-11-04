@@ -42,7 +42,7 @@ class MailController extends Controller
 
         $email = (new Email())
         ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
-        ->to(new Address("kevinarmas7@gmail.com"))
+        ->to(new Address("quality-control@gruposgl.com"))
         ->subject('Solicitud de depósitos en garantía'.'-'.$number.'-'.$date)
         ->html($html)
         ;
@@ -150,7 +150,7 @@ class MailController extends Controller
         $html = view('mail.claimForm', $data)->render();
         $email = (new Email())
             ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
-            ->to(new Address("kevinarmas7@gmail.com"))
+            ->to(new Address("quality-control@gruposgl.com"))
             ->subject('Formulario Reclamo'.'-'.$number.'-'.$date)
             ->html($html)
         ;
@@ -279,7 +279,7 @@ class MailController extends Controller
 
         $email = (new Email())
             ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
-            ->to(new Address("kevinarmas7@gmail.com"))
+            ->to(new Address("quality-control@gruposgl.com"))
             ->subject('Formulario Reintegro'.'-'.$number.'-'.$date)
             ->html($html)
             // ->attachFromPath($files['invoice'],'sas.png')
