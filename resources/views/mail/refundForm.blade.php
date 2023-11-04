@@ -125,7 +125,7 @@
             <div class="flex items-center" style="display: flex; align-items: center; width: 100%;">
                 <div class="font-bold border w-fit p-2" style="font-weight: bold;
                 border:1px solid black; width:fit-content; padding: 8px; width: 100%; white-space: nowrap;">
-                    No recibió reintegro de pagos
+                    Recibió reintegro de pagos
                     adicionales o depósitos en garantía
                 </div>
                 <div class="font-bold border w-fit p-2" style="font-weight: normal;

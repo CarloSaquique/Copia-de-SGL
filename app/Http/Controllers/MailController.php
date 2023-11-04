@@ -146,7 +146,7 @@ class MailController extends Controller
         $data = $this->claimFormTranslateData($request);
         $data["form_number"] = $number.'-'.$date;
         // $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
-        $data["client_email"] = Auth::user()->email;
+        // $data["client_email"] = Auth::user()->email;
         $html = view('mail.claimForm', $data)->render();
         $email = (new Email())
             ->from(new Address('notification@gruposgl.com', 'GruposSGL'))

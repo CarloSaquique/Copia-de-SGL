@@ -139,7 +139,7 @@
                     </div>
                     <div class="space-y-5">
                         <div class="">
-                            <h3>No recibió reintegro de pagos <br> adicionales o depósitos en garantía</h3>
+                            <h3>Recibió reintegro de pagos <br> adicionales o depósitos en garantía</h3>
                             <select name="refund_received" class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
                                 <option value="1">Sí</option>
