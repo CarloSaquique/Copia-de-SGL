@@ -12,21 +12,21 @@
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*Nombre Completo de solicitante</h3>
-                            <input name="full_name" class="w-full rounded-lg" type="text" value="Nombre Completo">
+                            <input name="full_name" class="w-full rounded-lg" type="text">
                         </div>
                         <div>
                             <h3 class="text-sm">*Número de Identificación CUI</h3>
-                            <input name="cui" class="w-full rounded-lg" type="text" value="3506674320101">
+                            <input name="cui" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*Empresa para la que labora</h3>
-                            <input name="company" class="w-full rounded-lg" type="text" value="Nombre Empresa">
+                            <input name="company" class="w-full rounded-lg" type="text">
                         </div>
                         <div>
                             <h3 class="text-sm">*Puesto que desempeña</h3>
-                            <input name="position" class="w-full rounded-lg" type="text" value="Nombre Puesto">
+                            <input name="position" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                 </div>
@@ -36,14 +36,14 @@
                     <div class="space-y-5">
                         <div class="">
                             <h3 class="text-sm">Numero de Pedido OSC</h3>
-                            <input name="osc_number" class="w-full rounded-lg" type="text" value="4321">
+                            <input name="osc_number" class="w-full rounded-lg" type="text">
                         </div>
                         <div class="">
                             <h3 class="text-sm">Describa El Tipo De Servicio:</h3>
                             <select name="service_type" class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
                                 <option value="1">Aéreo</option>
-                                <option value="2" selected>Courier</option>
+                                <option value="2">Courier</option>
                                 <option value="3">FCL</option>
                                 <option value="4">LCL</option>
                                 <option value="5">Terrestre</option>
@@ -57,7 +57,7 @@
                     <div class="space-y-5">
                         <div class="">
                             <h3 class="text-sm">Escriba el nombre de su asesor de ventas</h3>
-                            <input name="consultant_name" class="w-full rounded-lg" type="text" value="Nombre Consultor">
+                            <input name="consultant_name" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                 </div>
@@ -117,13 +117,13 @@
                 <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
                     <div class="space-y-5">
                         <div class="">
-                            <h3>Su Reclamo Se Debe A:</h3>
+                            <h3>Su Reclamo <br>Se Debe A:</h3>
                             <select name="claim_type"  class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
                                 <option value="1">Pérdida parcial de mercancías</option>
                                 <option value="2">Pérdida total</option>
                                 <option value="3">Nunca recibí mi mercancía</option>
-                                <option value="4" selected>Se cobro mas de lo cotizado</option>
+                                <option value="4">Se cobro mas de lo cotizado</option>
                                 <option value="5">No recibí deposito en garantía</option>
                             </select>
                         </div>
@@ -132,7 +132,7 @@
                             <h3>Pago seguro de carga</h3>
                             <select name="secure_payment" class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
-                                <option value="1" selected>Sí</option>
+                                <option value="1">Sí</option>
                                 <option value="2">No</option>
                             </select>
                         </div>
@@ -143,7 +143,7 @@
                             <select name="refund_received" class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
                                 <option value="1">Sí</option>
-                                <option value="2" selected>No</option>
+                                <option value="2">No</option>
                             </select>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                                 <select name="payment_type[]" class="w-full rounded-lg p-2.5 text-sm">
                                     <option value="0">Seleccione Una Opción</option>
                                     <option value="1">tarjeta de credito/debito</option>
-                                    <option value="2" selected>efectivo</option>
+                                    <option value="2">efectivo</option>
                                     <option value="3">transferencia bancaria</option>
                                     <option value="4">paypal</option>
                                     <option value="5">puntos bancarios</option>
@@ -184,17 +184,17 @@
                     <div class="space-y-5">
                         <div class="">
                             <h3>Ingrese nombre de comprador <br> en Factura de SGL:</h3>
-                            <input name="buyer_name" class="w-full rounded-lg" type="text" value="Nombre Comprador">
+                            <input name="buyer_name" class="w-full rounded-lg" type="text">
                         </div>
                         <div class="">
                             <h3>Ingrese numero de Nit:</h3>
-                            <input name="nit" class="w-full rounded-lg" type="text" value="85322593">
+                            <input name="nit" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                     <div class="space-y-5">
                         <div class="">
                             <h3>Ingrese dirección fiscal:</h3>
-                            <input name="fiscal_address" class="w-full rounded-lg" type="text" value="10a avenida 12-23 zona 2 de Guatemala">
+                            <input name="fiscal_address" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                 </div>
@@ -219,7 +219,7 @@
 
                     <div class="">
                         <h3>Correo electrónico:</h3>
-                        <input name="buyer_email" class="w-full rounded-lg" type="text" value="email@email.com">
+                        <input name="buyer_email" class="w-full rounded-lg" type="text">
                     </div>
                 </div>
 
@@ -230,7 +230,7 @@
                             <h3>Seleccione el medio de pago para su Reintegro</h3>
                             <select name="refund_type" class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
-                                <option value="1" selected>Transferencia bancaria</option>
+                                <option value="1">Transferencia bancaria</option>
                                 <option value="2">Cheque</option>
                             </select>
                         </div>

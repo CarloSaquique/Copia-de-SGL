@@ -198,7 +198,8 @@ class MailController extends Controller
     //     dd('Mail Send Successfully !!');
     // }
 
-    public function claimFormTranslateData($request){
+    public function claimFormTranslateData($request)
+    {
         $request = $request->all();
 
         // Claim Type

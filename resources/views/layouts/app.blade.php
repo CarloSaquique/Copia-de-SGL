@@ -36,7 +36,7 @@
                                     {{-- <div class="text-xs text-black rounded-lg h-1/2">
                                         <span class=" ">SGL</span>
                                 </div> --}}
-                                <div class="text-xs  bg-blue-800 text-white rounded-md text-center h-fit p-1 mt-auto">
+                                <div class="text-xs  bg-blue-600 text-white rounded-md text-center h-fit p-1 mt-auto">
                                     <h3 class=" ">Beta</h3>
                                 </div>
                             </div>
@@ -162,23 +162,24 @@
                     <div class="grid whitespace-nowrap h-fit space-y-1">
                         <a href="/our-history">Nuestra Historia</a>
                         <a href="/about-us">Acerca de nosotros</a>
-                        {{-- <a href="/work-with-us">Bolsa de Empleo</a>
-                        <a href="https://gruposgl.com/blog/">Blog</a>
+                        {{-- <a href="/work-with-us">Bolsa de Empleo</a> --}}
+                        {{-- <a href="https://gruposgl.com/blog/">Blog</a> --}}
                         <a href="/refund-form">Formulario de reintegro</a>
                         <a href="/claim-form">Formulario de reclamo</a>
-                        <a href="/">Formulario solicitud de depositos en garantia</a> --}}
+                        <a href="/deposit-form">Formulario solicitud de depositos en garantia</a>
                     </div>
                     {{-- Second --}}
-                    {{-- <div class="grid whitespace-nowrap h-fit space-y-1">
-                        <a href="/">Instrucciones de pagos</a>
-                        <a href="/">Politicas de devoluciones y reintegros</a>
-                        <a href="/">Noticias</a>
-                        <a href="/">Preguntas frecuentes</a>
-                        <a href="/">Conocimiento de fraudes</a>
-                        <a href="/">Aviso legal</a>
-                        <a href="/">Condiciones de uso</a>
-                        <a href="/">Resolución de disputas</a>
-                    </div> --}}
+                    <div class="grid whitespace-nowrap h-fit space-y-1">
+                        {{-- <a href="/">Instrucciones de pagos</a> --}}
+                        <a href="/refund-politics">Politicas de devoluciones</a>
+                        <a href="/deposit-politics">Politicas de reintegros</a>
+                        {{-- <a href="/">Noticias</a> --}}
+                        {{-- <a href="/">Preguntas frecuentes</a> --}}
+                        {{-- <a href="/">Conocimiento de fraudes</a> --}}
+                        {{-- <a href="/">Aviso legal</a> --}}
+                        {{-- <a href="/">Condiciones de uso</a> --}}
+                        {{-- <a href="/">Resolución de disputas</a> --}}
+                    </div>
                     {{-- Third --}}
                     {{-- <div class="grid whitespace-nowrap h-fit space-y-1">
                         <h3 class="text-white font-bold text-sm">Nuestras Divisiones</h3>

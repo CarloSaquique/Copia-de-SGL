@@ -14,21 +14,21 @@
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*Nombre Completo de solicitante</h3>
-                            <input name="full_name" class="w-full rounded-lg" type="text" value="Nombre Completo">
+                            <input name="full_name" class="w-full rounded-lg" type="text">
                         </div>
                         <div>
                             <h3 class="text-sm">*Número de Identificación CUI(ID)</h3>
-                            <input name="cui" class="w-full rounded-lg" type="text" value="3506674320101">
+                            <input name="cui" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*Empresa::</h3>
-                            <input name="company" class="w-full rounded-lg" type="text" value="Nombre Empresa">
+                            <input name="company" class="w-full rounded-lg" type="text">
                         </div>
                         <div>
                             <h3 class="text-sm">*Puesto que desempeña</h3>
-                            <input name="position" class="w-full rounded-lg" type="text" value="Nombre Puesto">
+                            <input name="position" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                 </div>
@@ -37,27 +37,27 @@
                 <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
                     <div class="space-y-5">
                         <div class="">
-                            <h3 class="text-sm">Indique el numero de recibo de caja <br> extendido por SGL:</h3>
-                            <input name="receipt_number" class="w-full rounded-lg" type="text" value="100">
+                            <h3 class="text-sm">*Indique el numero de recibo de caja <br> extendido por SGL:</h3>
+                            <input name="receipt_number" class="w-full rounded-lg" type="text">
                         </div>
 
                         <div class="">
-                            <h3 class="text-sm">Fecha ingreso de solicitud::</h3>
+                            <h3 class="text-sm">*Fecha ingreso de solicitud::</h3>
                             <input name="request_date" class="w-full rounded-lg" type="date" >
                         </div>
                     </div>
                     <div class="space-y-5">
                         <div class="">
-                            <h3 class="text-sm">Monto depositado <br> en garantía:</h3>
-                            <input name="deposit_ammount" class="w-full rounded-lg" type="text" value="Nombre Consultor">
+                            <h3 class="text-sm">*Monto depositado <br> en garantía:</h3>
+                            <input name="deposit_ammount" class="w-full rounded-lg" type="text">
                         </div>
 
                         <div class="">
-                            <h3 class="text-sm">Moneda:</h3>
+                            <h3 class="text-sm">*Moneda:</h3>
                             <select name="currency" class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
                                 <option value="1">Q</option>
-                                <option value="2" selected>$</option>
+                                <option value="2">$</option>
                             </select>
                         </div>
                     </div>
@@ -69,16 +69,16 @@
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*MBL al que aplico esta garantía:</h3>
-                            <input name="mbl" class="w-full rounded-lg" type="text" value="Nombre Completo">
+                            <input name="mbl" class="w-full rounded-lg" type="text">
                         </div>
                         <div>
                             <h3 class="text-sm">*HBL extendido por SGL:</h3>
-                            <input name="hbl" class="w-full rounded-lg" type="text" value="3506674320101">
+                            <input name="hbl" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                     <div class="space-y-5">
                         <div class="">
-                            <h3 class="text-sm">Total de contenedores:</h3>
+                            <h3 class="text-sm">*Total de contenedores:</h3>
                             <select name="containers" class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
                                 <option value="1">1</option>
@@ -135,7 +135,7 @@
                         </div>
                         <div>
                             <h3 class="text-sm">*Indique el balance a solicitar en moneda depositada:</h3>
-                            <input name="request_balance" class="w-full rounded-lg" type="text" value="Nombre Puesto">
+                            <input name="request_balance" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                 {{-- Carga Archivos --}}
                 <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
                     <div class="">
-                        <h3>Cargue soporte de deposito bancario:</h3>
+                        <h3>*Cargue soporte de deposito bancario:</h3>
                         <div class="mx-auto items-center bg-white">
                             <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
                                 rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
@@ -166,7 +166,7 @@
                     </div>
 
                     <div class="">
-                        <h3>Cargue carta de solicitud de reintegro:</h3>
+                        <h3>*Cargue carta de solicitud de reintegro:</h3>
                         <div class="mx-auto items-center bg-white">
                             <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
                                 rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
@@ -186,7 +186,7 @@
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*Email</h3>
-                            <input name="client_email" class="w-full rounded-lg" type="text" value="kevinarmas7@gmail.com">
+                            <input name="client_email" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                 </div>

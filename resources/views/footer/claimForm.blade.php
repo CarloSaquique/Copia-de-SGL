@@ -18,10 +18,10 @@
             <h3 class="text-xl text-center mt-10 font-bold">Datos Generales</h3>
             <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
                 <div class="space-y-5">
-                    <h3 class="text-sm">Tipo de Reclamo:</h3>
+                    <h3 class="text-sm">*Tipo de Reclamo:</h3>
                     <select name="claim_type" class="w-full rounded-lg p-2.5 text-sm">
                         <option value="0">Seleccione Una Opción</option>
-                        <option value="1" selected>Servicio al cliente</option>
+                        <option value="1">Servicio al cliente</option>
                         <option value="2">Facturación</option>
                         <option value="3">Operaciones</option>
                         <option value="4">Asesor comercial</option>
@@ -34,10 +34,10 @@
                 </div>
 
                 <div class="space-y-5">
-                    <h3 class="text-sm">País:</h3>
+                    <h3 class="text-sm">*País:</h3>
                     <select name="country" class="w-full rounded-lg p-2.5 text-sm">
                         <option value="0">Seleccione Una Opción</option>
-                        <option value="1" selected>Guatemala</option>
+                        <option value="1">Guatemala</option>
                         <option value="2">El Salvador</option>
                         <option value="3">Honduras</option>
                         <option value="4">Costa Rica</option>
@@ -59,14 +59,14 @@
                 <div class="space-y-5">
                     <div>
                         <h3 class="text-sm">*Escriba el nombre y apellido del asesor que lo atendió</h3>
-                        <input name="name" class="w-full rounded-lg" type="text" value="Nombre">
+                        <input name="name" class="w-full rounded-lg" type="text">
                     </div>
 
 
-                    <h3 class="text-sm">Seleccione el tipo de servicio que ha adquirido:</h3>
+                    <h3 class="text-sm">*Seleccione el tipo de servicio que ha adquirido:</h3>
                     <select name="service_type" class="w-full rounded-lg p-2.5 text-sm">
                         <option value="0">Seleccione Una Opción</option>
-                        <option value="1" selected>LCL</option>
+                        <option value="1">LCL</option>
                         <option value="2">FCL</option>
                         <option value="3">Terrestre</option>
                         <option value="4">Aduana</option>
@@ -275,7 +275,7 @@
                 <div class="space-y-5">
                     <div>
                         <h3 class="text-sm">*Email</h3>
-                        <input name="client_email" class="w-full rounded-lg" type="text" value="kevinarmas7@gmail.com">
+                        <input name="client_email" class="w-full rounded-lg" type="text">
                     </div>
                 </div>
             </div>
