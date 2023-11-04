@@ -29,7 +29,19 @@
         <nav class="bg-blue-100 p-2">
             <div class="flex">
                 <a href="/">
-                    <img class="block h-14 md:h-12 xl:h-10 min-h-10 min-w-10" src="{{asset('images/main/logo.png')}}"/>
+                    <div class="flex">
+                        <div class="flex w-fit space-x-1 hover:bg-blue-200 rounded-lg cursor-pointer">
+                            <img class="block h-14 md:h-12 xl:h-10 min-h-10 min-w-10" src="{{asset('images/main/logo.png')}}"/>
+                                <div>
+                                    {{-- <div class="text-xs text-black rounded-lg h-1/2">
+                                        <span class=" ">SGL</span>
+                                </div> --}}
+                                <div class="text-xs  bg-blue-800 text-white rounded-md text-center h-fit p-1 mt-auto">
+                                    <h3 class=" ">Beta</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </a>
 
                 {{-- Tabs --}}

@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <h3 class="text-xl text-center mt-10 font-bold">Datos Personales</h3>
+            {{-- <h3 class="text-xl text-center mt-10 font-bold">Datos Personales</h3> --}}
             <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
                 <div class="space-y-5">
                     <div>
@@ -271,6 +271,15 @@
                 <textarea name="claim_description" cols="100" rows="5" maxlength="2500"></textarea>
             </div>
 
+            <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-end">
+                <div class="space-y-5">
+                    <div>
+                        <h3 class="text-sm">*Email</h3>
+                        <input name="client_email" class="w-full rounded-lg" type="text" value="kevinarmas7@gmail.com">
+                    </div>
+                </div>
+            </div>
+
             <div class="py-10 ml-auto w-fit">
                 <button id="claim_form_submit_btn" type="button" class="bg-[rgb(0,100,255)] text-white  ml-auto block px-3 py-2 rounded-xl text-lg">Enviar</button>
                 <h3 class="text-xs text-red-500 p-1"></h3>
@@ -299,6 +308,7 @@
             {'name':'claim_type','validation':['isSelect']},
             {'name':'country','validation':['isSelect']},
             {'name':'name','validation':['blank']},
+            {'name':'client_email','validation':['blank']},
             {'name':'service_type','validation':['isSelect']},
         ]
 

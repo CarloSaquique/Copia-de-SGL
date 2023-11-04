@@ -181,6 +181,7 @@
                     </div>
                 </div>
 
+                {{-- Email --}}
                 <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-end">
                     <div class="space-y-5">
                         <div>

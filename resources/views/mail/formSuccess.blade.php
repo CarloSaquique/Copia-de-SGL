@@ -7,4 +7,12 @@
             <div  style="font-weight:normal; margin-top: 100px; padding: 8px;">El equipo de Grupo SGL se pondrá en contacto contigo por medio de correo electrónico.</div>
             <div  style="font-weight:normal; margin-top: 10px; padding: 8px;">La satisfacción de nuestros clientes es lo más importante.</div>
         </div>
+        <div style="margin-top: 10px">
+            <div>
+                <a href="https://www.gruposgl.com/refund-politics">Políticas de Reembolso</a>
+            </div>
+            <div>
+                <a href="https://www.gruposgl.com/deposit-politics">Políticas de Reintegro</a>
+            </div>
+        </div>
 </section>

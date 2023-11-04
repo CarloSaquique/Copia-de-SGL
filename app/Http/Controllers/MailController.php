@@ -43,7 +43,7 @@ class MailController extends Controller
         $email = (new Email())
         ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
         ->to(new Address("kevinarmas7@gmail.com"))
-        ->subject('Formulario Deposito'.'-'.$number.'-'.$date)
+        ->subject('Solicitud de depósitos en garantía'.'-'.$number.'-'.$date)
         ->html($html)
         ;
 
@@ -56,6 +56,16 @@ class MailController extends Controller
         ;
 
         $response = $mailtrap->sending()->emails()->send($email);
+
+        $html_client = view('mail.formSuccess', $data)->render();
+        $email_client = (new Email())
+        ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
+        ->to(new Address($data['client_email']))
+        ->subject('Solicitud de depósitos en garantía'.'-'.$number.'-'.$date)
+        ->html($html_client)
+        ;
+
+        $response = $mailtrap->sending()->emails()->send($email_client);
 
         Session::flash('form_success', true);
         return Redirect::to('/deposit-form');
@@ -134,7 +144,8 @@ class MailController extends Controller
         $date = Carbon::now()->toDateTimeString();
         $number = random_int(100000,999999);
         $data = $this->claimFormTranslateData($request);
-        $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
+        $data["form_number"] = $number.'-'.$date;
+        // $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
         $data["client_email"] = Auth::user()->email;
         $html = view('mail.claimForm', $data)->render();
         $email = (new Email())
@@ -142,7 +153,6 @@ class MailController extends Controller
             ->to(new Address("kevinarmas7@gmail.com"))
             ->subject('Formulario Reclamo'.'-'.$number.'-'.$date)
             ->html($html)
-            // ->attachFromPath('README.md')
         ;
 
         $email->getHeaders()
@@ -150,6 +160,16 @@ class MailController extends Controller
         ;
 
         $response = $mailtrap->sending()->emails()->send($email);
+
+        $html_client = view('mail.formSuccess', $data)->render();
+        $email_client = (new Email())
+        ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
+        ->to(new Address($data['client_email']))
+        ->subject('Formulario Reclamo'.'-'.$number.'-'.$date)
+        ->html($html_client)
+        ;
+
+        $response = $mailtrap->sending()->emails()->send($email_client);
 
         Session::flash('form_success', true);
         return Redirect::to('/claim-form');
@@ -247,8 +267,8 @@ class MailController extends Controller
         $data = $this->refundFormTranslateData($request);
         $date = Carbon::now()->toDateTimeString();
         $number = random_int(100000,999999);
-        $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
-        $data["client_email"] = Auth::user()->email;
+        // $data["client_name"] = Auth::user()->name.' '.Auth::user()->last_name;
+        // $data["client_email"] = Auth::user()->email;
         $data["form_number"] = $number.'-'.$date;
         $html = view('mail.refundForm', $data)->render();
 
@@ -273,6 +293,16 @@ class MailController extends Controller
         ;
 
         $response = $mailtrap->sending()->emails()->send($email);
+
+        $html_client = view('mail.formSuccess', $data)->render();
+        $email_client = (new Email())
+        ->from(new Address('notification@gruposgl.com', 'GruposSGL'))
+        ->to(new Address($data['buyer_email']))
+        ->subject('Formulario Reintegro'.'-'.$number.'-'.$date)
+        ->html($html_client)
+        ;
+
+        $response = $mailtrap->sending()->emails()->send($email_client);
 
         Session::flash('form_success', true);
         return Redirect::to('/refund-form');

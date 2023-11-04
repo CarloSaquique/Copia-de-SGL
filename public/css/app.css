@@ -856,6 +856,9 @@ video {
 .mt-\[8\%\] {
   margin-top: 8%;
 }
+.mt-auto {
+  margin-top: auto;
+}
 .block {
   display: block;
 }
@@ -873,6 +876,9 @@ video {
 }
 .hidden {
   display: none;
+}
+.h-1\/2 {
+  height: 50%;
 }
 .h-10 {
   height: 2.5rem;
