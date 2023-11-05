@@ -1,27 +1,29 @@
+
+
 @extends('layouts.app')
 
 @section('content')
     @if(!Session::has('form_success'))
-        <section class="m-10 p-5 mx-auto w-2/3 bg-white rounded-xl shadow-lg">
-            <h3 class="text-4xl text-center mt-10 font-bold">Formulario de Reintegro</h3>
-            <form id="refund_form_form" action="/refund-form" method="POST" autocomplete="off" enctype="multipart/form-data" >
+        <section class="m-10 p-5 mx-auto w-11/12 bg-white rounded-xl shadow-lg md:w-6/12">
+            <h3 class="text-2xl text-center mt-10 font-bold md:text-4xl">Formulario solicitud de depósitos en garantía</h3>
+            <form id="deposit_form_form" action="/deposit-form" method="POST" autocomplete="off" enctype="multipart/form-data" >
                 @csrf
 
                 <h3 class="text-xl text-center mt-10 font-bold">Datos Personales</h3>
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg justify-evenly space-x-1 md:flex lg:p-10">
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*Nombre Completo de solicitante</h3>
                             <input name="full_name" class="w-full rounded-lg" type="text">
                         </div>
                         <div>
-                            <h3 class="text-sm">*Número de Identificación CUI</h3>
+                            <h3 class="text-sm">*Número de Identificación CUI(ID)</h3>
                             <input name="cui" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                     <div class="space-y-5">
                         <div>
-                            <h3 class="text-sm">*Empresa para la que labora</h3>
+                            <h3 class="text-sm">*Empresa::</h3>
                             <input name="company" class="w-full rounded-lg" type="text">
                         </div>
                         <div>
@@ -31,178 +33,127 @@
                     </div>
                 </div>
 
-                <h3 class="text-xl text-center mt-10 font-bold">Detalles del Servicio</h3>
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
+                <h3 class="text-xl text-center mt-10 font-bold">Detalles del Deposito</h3>
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg justify-evenly space-x-1 md:flex lg:p-10">
                     <div class="space-y-5">
                         <div class="">
-                            <h3 class="text-sm">Numero de Pedido OSC</h3>
-                            <input name="osc_number" class="w-full rounded-lg" type="text">
-                        </div>
-                        <div class="">
-                            <h3 class="text-sm">Describa El Tipo De Servicio:</h3>
-                            <select name="service_type" class="w-full rounded-lg p-2.5 text-sm">
-                                <option value="0">Seleccione Una Opción</option>
-                                <option value="1">Aéreo</option>
-                                <option value="2">Courier</option>
-                                <option value="3">FCL</option>
-                                <option value="4">LCL</option>
-                                <option value="5">Terrestre</option>
-                                <option value="6">Aduana</option>
-                                <option value="7">Seguro</option>
-                                <option value="8">Brokerage</option>
-                                <option value="9">Tienda en línea</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="space-y-5">
-                        <div class="">
-                            <h3 class="text-sm">Escriba el nombre de su asesor de ventas</h3>
-                            <input name="consultant_name" class="w-full rounded-lg" type="text">
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="text-xl text-center mt-10 font-bold">Carga de Archivos</h3>
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
-                    <div class="space-y-5">
-                        <div class="">
-                            <h3 class="">Cargue la factura de su compra</h3>
-                            <div class="mx-auto items-center bg-white">
-                                <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
-                                    rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
-                                    Subir Archivo
-                                    <svg class="w-6 h-6 mx-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="m14.707 4.793-4-4a1 1 0 0 0-1.416 0l-4 4a1 1 0 1 0 1.416 1.414L9 3.914V12.5a1 1 0 0 0 2 0V3.914l2.293 2.293a1 1 0 0 0 1.414-1.414Z"/>
-                                        <path d="M18 12h-5v.5a3 3 0 0 1-6 0V12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
-                                    </svg>
-                                </button>
-                                <input name="invoice" type="file" hidden>
-                            </div>
+                            <h3 class="text-sm">*Indique el numero de recibo de caja <br> extendido por SGL:</h3>
+                            <input name="receipt_number" class="w-full rounded-lg" type="text">
                         </div>
 
                         <div class="">
-                            <h3 class="">Cargue el packing slip</h3>
-                            <div class="mx-auto items-center bg-white">
-                                <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
-                                    rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
-                                    Subir Archivo
-                                    <svg class="w-6 h-6 mx-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="m14.707 4.793-4-4a1 1 0 0 0-1.416 0l-4 4a1 1 0 1 0 1.416 1.414L9 3.914V12.5a1 1 0 0 0 2 0V3.914l2.293 2.293a1 1 0 0 0 1.414-1.414Z"/>
-                                        <path d="M18 12h-5v.5a3 3 0 0 1-6 0V12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
-                                    </svg>
-                                </button>
-                                <input name="package_slip" type="file" hidden>
-                            </div>
+                            <h3 class="text-sm">*Fecha ingreso de solicitud::</h3>
+                            <input name="request_date" class="w-full rounded-lg" type="date">
                         </div>
                     </div>
                     <div class="space-y-5">
                         <div class="">
-                            <h3 class="">Cargue la factura de cobro por SGL</h3>
-                            <div class="mx-auto items-center bg-white">
-                                <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
-                                    rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
-                                    Subir Archivo
-                                    <svg class="w-6 h-6 mx-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="m14.707 4.793-4-4a1 1 0 0 0-1.416 0l-4 4a1 1 0 1 0 1.416 1.414L9 3.914V12.5a1 1 0 0 0 2 0V3.914l2.293 2.293a1 1 0 0 0 1.414-1.414Z"/>
-                                        <path d="M18 12h-5v.5a3 3 0 0 1-6 0V12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
-                                    </svg>
-                                </button>
-                                <input name="sgl_invoice" type="file" hidden>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Tipo de Reclamo --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
-                    <div class="space-y-5">
-                        <div class="">
-                            <h3>Su Reclamo <br>Se Debe A:</h3>
-                            <select name="claim_type"  class="w-full rounded-lg p-2.5 text-sm">
-                                <option value="0">Seleccione Una Opción</option>
-                                <option value="1">Pérdida parcial de mercancías</option>
-                                <option value="2">Pérdida total</option>
-                                <option value="3">Nunca recibí mi mercancía</option>
-                                <option value="4">Se cobro mas de lo cotizado</option>
-                                <option value="5">No recibí deposito en garantía</option>
-                            </select>
+                            <h3 class="text-sm">*Monto depositado <br> en garantía:</h3>
+                            <input name="deposit_ammount" class="w-full rounded-lg" type="text">
                         </div>
 
                         <div class="">
-                            <h3>Pago seguro de carga</h3>
-                            <select name="secure_payment" class="w-full rounded-lg p-2.5 text-sm">
+                            <h3 class="text-sm">*Moneda:</h3>
+                            <select name="currency" class="w-full rounded-lg p-2.5 text-sm">
                                 <option value="0">Seleccione Una Opción</option>
-                                <option value="1">Sí</option>
-                                <option value="2">No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="space-y-5">
-                        <div class="">
-                            <h3>Recibió reintegro de pagos <br> adicionales o depósitos en garantía</h3>
-                            <select name="refund_received" class="w-full rounded-lg p-2.5 text-sm">
-                                <option value="0">Seleccione Una Opción</option>
-                                <option value="1">Sí</option>
-                                <option value="2">No</option>
+                                <option value="1">Q</option>
+                                <option value="2">$</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                {{-- Compras TodoIncluido --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
+                {{-- Contenedores --}}
+                <h3 class="text-xl text-center mt-10 font-bold"></h3>
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg justify-evenly space-x-1 md:flex lg:p-10">
+                    <div class="space-y-5">
+                        <div>
+                            <h3 class="text-sm">*MBL al que aplico esta garantía:</h3>
+                            <input name="mbl" class="w-full rounded-lg" type="text">
+                        </div>
+                        <div>
+                            <h3 class="text-sm">*HBL extendido <br> por SGL:</h3>
+                            <input name="hbl" class="w-full rounded-lg" type="text">
+                        </div>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="">
+                            <h3 class="text-sm">*Total de contenedores:</h3>
+                            <select name="containers" class="w-full rounded-lg p-2.5 text-sm">
+                                <option value="0">Seleccione Una Opción</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3 class="text-sm">*Indique el balance <br>a solicitar en moneda depositada:</h3>
+                            <input name="request_balance" class="w-full rounded-lg" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Descripcion --}}
+                <div class="w-full mx-auto px-5 py-10 border-b-2 rounded-lg flex justify-evenly text-sm">
                     <div class="">
-                        <h3>Para compras dentro del servicio TODO INCLUIDO seleccione las fechas de compra y pago de servicio, método de pago utilizado </h3>
-                        <div id="refund_form_all_include_div" class="">
-                            <div class="flex p-1 space-x-1">
-                                <input name="purchase_date[]" class="rounded-lg p-2.5" type="date">
-                                <select name="payment_type[]" class="w-full rounded-lg p-2.5 text-sm">
-                                    <option value="0">Seleccione Una Opción</option>
-                                    <option value="1">tarjeta de credito/debito</option>
-                                    <option value="2">efectivo</option>
-                                    <option value="3">transferencia bancaria</option>
-                                    <option value="4">paypal</option>
-                                    <option value="5">puntos bancarios</option>
-                                    <option value="6">tarjetas prepago de regalo</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button id="refund_form_all_include_btn" type="button" class="px-4 py-2 rounded-xl bg-blue-950 text-white ml-auto block">+</button>
+                        <h3>Descripción:</h3>
+                        <textarea class="w-full" name="deposit_description"
+                            cols="100" rows="5" maxlength="2500">
+                        </textarea>
                     </div>
                 </div>
 
-                {{-- Reclamo Descripcion --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
+                {{-- Carga Archivos --}}
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg justify-evenly space-x-1 md:flex lg:p-10">
                     <div class="">
-                        <h3>Describa su reclamo:</h3>
-                        <textarea name="claim_description" cols="100" rows="5" maxlength="500"></textarea>
-                    </div>
-                </div>
-
-                {{-- Datos Fiscales --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
-                    <div class="space-y-5">
-                        <div class="">
-                            <h3>Ingrese nombre de comprador <br> en Factura de SGL:</h3>
-                            <input name="buyer_name" class="w-full rounded-lg" type="text">
-                        </div>
-                        <div class="">
-                            <h3>Ingrese numero de Nit:</h3>
-                            <input name="nit" class="w-full rounded-lg" type="text">
-                        </div>
-                    </div>
-                    <div class="space-y-5">
-                        <div class="">
-                            <h3>Ingrese dirección fiscal:</h3>
-                            <input name="fiscal_address" class="w-full rounded-lg" type="text">
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Carga Archivos Fiscales --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
-                    <div class="">
-                        <h3>Cargue Dpi de propietario o/y <br> Representante Legal:</h3>
+                        <h3 class="text-sm">*Cargue soporte de deposito bancario:</h3>
                         <div class="mx-auto items-center bg-white">
                             <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
                                 rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
@@ -212,129 +163,97 @@
                                     <path d="M18 12h-5v.5a3 3 0 0 1-6 0V12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
                                 </svg>
                             </button>
-                            <input name="legal_dpi" type="file" hidden>
+                            <input name="bank_deposit" type="file" hidden>
                         </div>
-
                     </div>
 
                     <div class="">
-                        <h3>Correo electrónico:</h3>
-                        <input name="buyer_email" class="w-full rounded-lg" type="text">
+                        <h3 class="text-sm">*Cargue carta de solicitud de reintegro:</h3>
+                        <div class="mx-auto items-center bg-white">
+                            <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
+                                rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
+                                Subir Archivo
+                                <svg class="w-6 h-6 mx-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="m14.707 4.793-4-4a1 1 0 0 0-1.416 0l-4 4a1 1 0 1 0 1.416 1.414L9 3.914V12.5a1 1 0 0 0 2 0V3.914l2.293 2.293a1 1 0 0 0 1.414-1.414Z"/>
+                                    <path d="M18 12h-5v.5a3 3 0 0 1-6 0V12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+                                </svg>
+                            </button>
+                            <input name="request_letter" type="file" hidden>
+                        </div>
                     </div>
                 </div>
 
-                {{-- Reintegro --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
+                {{-- Email --}}
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg space-x-1 md:flex lg:p-10">
                     <div class="space-y-5">
-                        <div class="">
-                            <h3>Seleccione el medio de pago para su Reintegro</h3>
-                            <select name="refund_type" class="w-full rounded-lg p-2.5 text-sm">
-                                <option value="0">Seleccione Una Opción</option>
-                                <option value="1">Transferencia bancaria</option>
-                                <option value="2">Cheque</option>
-                            </select>
-                        </div>
-
-                        <div class="">
-                            <h3>Seleccione el tipo de moneda para reintegro:</h3>
-                            <select id="select_test" name="refund_currency" class="w-full rounded-lg p-2.5 text-sm">
-                                <option value="0">Seleccione Una Opción</option>
-                                <option value="1">QTZ</option>
-                                <option value="2">USD</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="space-y-5">
-                        <div class="text-center">
-                            <input name="discount" type="checkbox">
-                            <h3 class="">Seleccione la casilla para descuento <br>del 5% por gastos administrativos:</h3>
+                        <div>
+                            <h3 class="text-sm">*Email</h3>
+                            <input name="client_email" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                 </div>
 
                 <div class="py-10 ml-auto w-fit">
-                    <input id="refund_form_terms_chk" type="checkbox">
-                    <a class="underline" href="/refund-politics" target="_blank">Políticas de Reembolso</a>
+                    <input id="deposit_form_terms_chk" type="checkbox">
+                    <a class="underline text-xs md:text-sm" href="/deposit-politics" target="_blank">Políticas de Reintegro</a>
                     <br>
-                    <button id="refund_form_submit_btn" disabled type="button" class="bg-[rgb(0,100,255)]/100 text-white opacity-50 ml-auto block px-3 py-2 rounded-xl text-lg">Enviar</button>
+                    <button id="deposit_form_submit_btn" type="button" disabled class="bg-[rgb(0,100,255)]/100 opacity-50 text-white ml-auto block px-3 py-2 rounded-xl text-lg">Enviar</button>
+                    <h3 class="text-xs text-red-500 p-1"></h3>
                 </div>
+
             </form>
         </section>
     @else
-        <section class="my-10 p-10 mx-auto w-4/12 bg-white rounded-lg shadow-lg text-center">
+        <section class="my-10 p-10 mx-auto w-11/12 sm:w-7/12 md:w-6/12 lg:w-4/12  text-center">
             <img class="mx-auto max-w-[40px]" src="{{asset('images/main/logo.png')}}" alt="">
             <h3 class="font-bold text-xl">Tu formulario ha sido enviado exitosamente.</h3>
             <br><br>
-            <div class="px-10">
+            <div class="md:px-10">
                 <h3>El equipo de Grupo SGL se pondrá en contacto contigo por medio de correo electrónico.</h3>
                 <br>
-                <h3 class="bg-blue-800 text-white px-3 py-2 rounded-lg">La satisfacción de nuestros clientes es lo más importante.</h3>
+                <h3 class="bg-[rgb(0,200,255)] text-sm text-white px-3 py-2 rounded-lg">La satisfacción de nuestros clientes es lo más importante.</h3>
             </div>
         </section>
     @endif
 @endsection
 @push('child-scripts')
 <script>
-    $('#refund_form_submit_btn').click(function(){
+    $('#deposit_form_submit_btn').click(function(){
         let fields = [
             {'name':'full_name','validation':['blank']},
             {'name':'cui','validation':['blank']},
             {'name':'company','validation':['blank']},
             {'name':'position','validation':['blank']},
-            {'name':'osc_number','validation':['blank']},
-            {'name':'service_type','validation':['isSelect']},
-            {'name':'consultant_name','validation':['blank']},
-            {'name':'invoice','validation':['isFile']},
-            {'name':'package_slip','validation':['isFile']},
-            {'name':'sgl_invoice','validation':['isFile']},
-            {'name':'claim_type','validation':['isSelect']},
-            {'name':'secure_payment','validation':['isSelect']},
+            {'name':'receipt_number','validation':['blank']},
+            {'name':'request_date','validation':['blank']},
+            {'name':'currency','validation':['isSelect']},
+            {'name':'deposit_ammount','validation':['blank']},
+            {'name':'mbl','validation':['blank']},
+            {'name':'hbl','validation':['blank']},
+            {'name':'containers','validation':['isSelect']},
+            {'name':'request_balance','validation':['blank']},
             {'name':'refund_received','validation':['isSelect']},
-            // {'name':'','validation':['blank']},
-            {'name':'claim_description','validation':['blank']},
-            {'name':'buyer_name','validation':['blank']},
-            {'name':'nit','validation':['blank']},
-            {'name':'fiscal_address','validation':['blank']},
-            {'name':'legal_dpi','validation':['isFile']},
-            {'name':'buyer_email','validation':['blank']},
-            {'name':'refund_type','validation':['isSelect']},
-            {'name':'refund_currency','validation':['isSelect']},
+            {'name':'bank_deposit','validation':['isFile']},
+            {'name':'request_letter','validation':['isFile']},
+            {'name':'client_email','validation':['blank']},
         ]
 
 
         let form = '#'+$(this).closest("form").attr('id');
         let validator = Validation(form,fields);
 
+        $('#deposit_form_submit_btn').next().html('');
         if(!validator.fail){
             $(form).submit();
+        }else{
+            $('#deposit_form_submit_btn').next().html('Revisa los campos en rojo');
         }
     });
 
-    let n=1;
-    $('#refund_form_all_include_btn').click(function(){
-        n+=1;
-        let html =
-                '<div class="flex p-1 space-x-1">'+
-                    '<input name="purchase_date[]" class="rounded-lg p-2.5" type="date">'+
-                    '<select name="payment_type[]" class="w-full rounded-lg p-2.5 text-sm">'+
-                        '<option value="0">Seleccione Una Opción</option>'+
-                        '<option value="1">tarjeta de credito/debito</option>'+
-                        '<option value="2" selected>efectivo</option>'+
-                        '<option value="3">transferencia bancaria</option>'+
-                        '<option value="4">paypal</option>'+
-                        '<option value="5">puntos bancarios</option>'+
-                        '<option value="6">tarjetas prepago de regalo</option>'+
-                    '</select>'+
-                '</div>';
-        $('#refund_form_all_include_div').append(html);
-    });
 
-
-
-    $('#refund_form_terms_chk').change(function(){
-        console.log($('#refund_form_all_include_btn').prop('disabled'));
-        this.checked ? $('#refund_form_submit_btn').prop('disabled',false):$('#refund_form_submit_btn').prop('disabled',true);
-        this.checked ? $('#refund_form_submit_btn').removeClass('opacity-50'):$('#refund_form_submit_btn').addClass('opacity-50');
+    $('#deposit_form_terms_chk').change(function(){
+        this.checked ? $('#deposit_form_submit_btn').prop('disabled',false):$('#deposit_form_submit_btn').prop('disabled',true);
+        this.checked ? $('#deposit_form_submit_btn').removeClass('opacity-50'):$('#deposit_form_submit_btn').addClass('opacity-50');
     });
 
 </script>

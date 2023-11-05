@@ -4,13 +4,13 @@
 
 @section('content')
     @if(!Session::has('form_success'))
-        <section class="m-10 p-5 mx-auto w-2/3 bg-white rounded-xl shadow-lg">
-            <h3 class="text-3xl text-center mt-10 font-bold">Formulario solicitud de depósitos en garantía</h3>
+        <section class="m-10 p-5 mx-auto w-11/12 bg-white rounded-xl shadow-lg md:w-6/12">
+            <h3 class="text-2xl text-center mt-10 font-bold md:text-4xl">Formulario solicitud de depósitos en garantía</h3>
             <form id="deposit_form_form" action="/deposit-form" method="POST" autocomplete="off" enctype="multipart/form-data" >
                 @csrf
 
                 <h3 class="text-xl text-center mt-10 font-bold">Datos Personales</h3>
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg justify-evenly space-x-1 md:flex lg:p-10">
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*Nombre Completo de solicitante</h3>
@@ -34,7 +34,7 @@
                 </div>
 
                 <h3 class="text-xl text-center mt-10 font-bold">Detalles del Deposito</h3>
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg justify-evenly space-x-1 md:flex lg:p-10">
                     <div class="space-y-5">
                         <div class="">
                             <h3 class="text-sm">*Indique el numero de recibo de caja <br> extendido por SGL:</h3>
@@ -43,7 +43,7 @@
 
                         <div class="">
                             <h3 class="text-sm">*Fecha ingreso de solicitud::</h3>
-                            <input name="request_date" class="w-full rounded-lg" type="date" >
+                            <input name="request_date" class="w-full rounded-lg" type="date">
                         </div>
                     </div>
                     <div class="space-y-5">
@@ -65,14 +65,14 @@
 
                 {{-- Contenedores --}}
                 <h3 class="text-xl text-center mt-10 font-bold"></h3>
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly">
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg justify-evenly space-x-1 md:flex lg:p-10">
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*MBL al que aplico esta garantía:</h3>
                             <input name="mbl" class="w-full rounded-lg" type="text">
                         </div>
                         <div>
-                            <h3 class="text-sm">*HBL extendido por SGL:</h3>
+                            <h3 class="text-sm">*HBL extendido <br> por SGL:</h3>
                             <input name="hbl" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
@@ -134,24 +134,26 @@
                             </select>
                         </div>
                         <div>
-                            <h3 class="text-sm">*Indique el balance a solicitar en moneda depositada:</h3>
+                            <h3 class="text-sm">*Indique el balance <br>a solicitar en moneda depositada:</h3>
                             <input name="request_balance" class="w-full rounded-lg" type="text">
                         </div>
                     </div>
                 </div>
 
                 {{-- Descripcion --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
+                <div class="w-full mx-auto px-5 py-10 border-b-2 rounded-lg flex justify-evenly text-sm">
                     <div class="">
                         <h3>Descripción:</h3>
-                        <textarea name="deposit_description" cols="100" rows="5" maxlength="2500"></textarea>
+                        <textarea class="w-full" name="deposit_description"
+                            cols="100" rows="5" maxlength="2500">
+                        </textarea>
                     </div>
                 </div>
 
                 {{-- Carga Archivos --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-evenly text-sm">
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg justify-evenly space-x-1 md:flex lg:p-10">
                     <div class="">
-                        <h3>*Cargue soporte de deposito bancario:</h3>
+                        <h3 class="text-sm">*Cargue soporte de deposito bancario:</h3>
                         <div class="mx-auto items-center bg-white">
                             <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
                                 rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
@@ -166,7 +168,7 @@
                     </div>
 
                     <div class="">
-                        <h3>*Cargue carta de solicitud de reintegro:</h3>
+                        <h3 class="text-sm">*Cargue carta de solicitud de reintegro:</h3>
                         <div class="mx-auto items-center bg-white">
                             <button type="button" class="upload bg-[rgb(0,100,255)] text-white flex
                                 rounded-md px-3 py-2 hover:bg-[rgb(0,200,255)] border border-gray-400">
@@ -182,7 +184,7 @@
                 </div>
 
                 {{-- Email --}}
-                <div class="w-full mx-auto p-10 border-b-2 rounded-lg flex justify-end">
+                <div class="w-full mx-auto py-10 border-b-2 rounded-lg space-x-1 md:flex lg:p-10">
                     <div class="space-y-5">
                         <div>
                             <h3 class="text-sm">*Email</h3>
@@ -193,7 +195,7 @@
 
                 <div class="py-10 ml-auto w-fit">
                     <input id="deposit_form_terms_chk" type="checkbox">
-                    <a class="underline" href="/deposit-politics" target="_blank">Políticas de Reintegro</a>
+                    <a class="underline text-xs md:text-sm" href="/deposit-politics" target="_blank">Políticas de Reintegro</a>
                     <br>
                     <button id="deposit_form_submit_btn" type="button" disabled class="bg-[rgb(0,100,255)]/100 opacity-50 text-white ml-auto block px-3 py-2 rounded-xl text-lg">Enviar</button>
                     <h3 class="text-xs text-red-500 p-1"></h3>
@@ -202,14 +204,14 @@
             </form>
         </section>
     @else
-        <section class="my-10 p-10 mx-auto w-4/12 bg-white rounded-lg shadow-lg text-center">
+        <section class="my-10 p-10 mx-auto w-11/12 sm:w-7/12 md:w-6/12 lg:w-4/12  text-center">
             <img class="mx-auto max-w-[40px]" src="{{asset('images/main/logo.png')}}" alt="">
             <h3 class="font-bold text-xl">Tu formulario ha sido enviado exitosamente.</h3>
             <br><br>
-            <div class="px-10">
+            <div class="md:px-10">
                 <h3>El equipo de Grupo SGL se pondrá en contacto contigo por medio de correo electrónico.</h3>
                 <br>
-                <h3 class="bg-blue-800 text-white px-3 py-2 rounded-lg">La satisfacción de nuestros clientes es lo más importante.</h3>
+                <h3 class="bg-[rgb(0,200,255)] text-sm text-white px-3 py-2 rounded-lg">La satisfacción de nuestros clientes es lo más importante.</h3>
             </div>
         </section>
     @endif
