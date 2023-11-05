@@ -36,8 +36,8 @@
                                     {{-- <div class="text-xs text-black rounded-lg h-1/2">
                                         <span class=" ">SGL</span>
                                 </div> --}}
-                                <div class="text-xs  bg-blue-600 text-white rounded-md text-center h-fit p-1 mt-auto">
-                                    <h3 class=" ">Beta</h3>
+                                <div class="text-xs font-bold  text-blue-800 rounded-md text-center h-fit p- mt-auto">
+                                    <h3>Beta</h3>
                                 </div>
                             </div>
                         </div>
