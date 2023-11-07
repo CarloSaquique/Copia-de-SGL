@@ -170,7 +170,7 @@
                     </div>
                     {{-- Second --}}
                     <div class="grid whitespace-nowrap h-fit space-y-1">
-                        {{-- <a href="/">Instrucciones de pagos</a> --}}
+                        <a href="/payment-instructive">Instrucciones de pagos</a>
                         <a href="/refund-politics">Politicas de devoluciones</a>
                         <a href="/deposit-politics">Politicas de reintegros</a>
                         {{-- <a href="/">Noticias</a> --}}

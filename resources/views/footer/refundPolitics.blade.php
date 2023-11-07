@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section>
+    <section class="bg-white">
         <h3 class="font-bold ml-10 text-3xl py-5 text-center">Politicas de devolución</h3>
 
         <div class="p-14">
