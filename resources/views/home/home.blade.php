@@ -467,12 +467,13 @@
                     <form id="home_cn_form_quotation_order" action="/national-quoter-order" class="w-fit mx-auto text-center" method="POST">
                         @csrf
                         <div class="md:flex mx-auto w-fit">
-                            <div class="text-justify text-lg md:text-sm font-bold p-10 md:p-5 w-fit mx-auto ">
+                            <div class="text-justify text-lg md:text-base font-bold p-10 md:p-5 w-fit mx-auto ">
                                 <h3 id="home_cn_span_subtotal" class="">Subtotal: Q.0.00</h3>
                                 <h3 id="home_cn_span_iva" class="">IVA: Q.0.00</h3>
                                 <hr class="border border-blue-600">
                                 <h3 id="home_cn_span_total" class="font-bold">Total: Q.0.00</h3>
                             </div>
+                        </div>
                         @auth
                             <div class="items-center flex space-x-2 mx-auto w-fit mt-5">
                                 <input id="home_cn_chk_terms" type="checkbox" name="terms">
@@ -499,7 +500,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
                             {{-- <a href="/login" id="home_cn_btn_quotation_order" class="block mx-auto mt-5 w-fit bg-blue-950 px-4 py-2
                             rounded-xl text-white cursor-pointer">Iniciar Sesión</a> --}}
                         @endauth
@@ -762,7 +763,7 @@
             </div>
 
             {{-- Miami --}}
-            <div id="home_mg_base_div" class="home_quoters_base ">
+            <div id="home_mg_base_div" class="home_quoters_base">
                 {{-- Location  Packages -> Quotation -> Order--}}
                 <div id="home_mg_location_package_div" class="home_quoters_base hidden">
                     {{-- Location --}}
@@ -807,7 +808,7 @@
                                             <option class="" value="2">Todo Incluido</option>
                                         </select>
                                     </div>
-                                    <div class="text-center p-1 relative hidden ">
+                                    <div class="text-center p-1 relative hidden">
                                         <input id="home_mg_link" name="link" class=" left-28 bottom-7 home_quotation_keyup h-10 rounded-2xl border-none bg-gray-200" type="text" placeholder="Pasame Tu Link">
                                     </div>
 

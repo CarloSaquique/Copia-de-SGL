@@ -72,6 +72,13 @@ Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting
 Route::post('/track', [App\Http\Controllers\TrackingController::class, 'track']);
 Route::post('/tracking-update', [App\Http\Controllers\TrackingController::class, 'update']);
 
+// Billing
+Route::get('/upload-invoice', [App\Http\Controllers\BillingController::class, 'index']);
+Route::get('/upload-invoice/{id}', [App\Http\Controllers\BillingController::class, 'uploadFromOrder']);
+Route::post('/upload-invoice', [App\Http\Controllers\BillingController::class, 'upload']);
+Route::get('/show-invoice/{id}', [App\Http\Controllers\BillingController::class, 'loadInvoice']);
+Route::post('/delete-invoice', [App\Http\Controllers\BillingController::class, 'deleteInvoice']);
+
 //Cotizadores
 // Nacional
 Route::get('/national-quoter-index', [App\Http\Controllers\NationalQuoterController::class, 'index']);

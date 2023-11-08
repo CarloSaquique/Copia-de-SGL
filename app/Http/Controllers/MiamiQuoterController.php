@@ -78,7 +78,7 @@ class MiamiQuoterController extends Controller
 
         $request = $this->newOsc($quotation,$request);
         $osc = globalNewOsc($request);
-        return \Response::json(['total'=>$total,'service'=>$quotation->service,'currency'=>$quotation->currency]);
+        return \Response::json(['total'=>$total,'service'=>$quotation->service,'currency'=>$payment->currency]);
     }
 
     public function newAddress($request,$_suffix){
@@ -140,7 +140,7 @@ class MiamiQuoterController extends Controller
         $quotation = Quotation::findOrFail($idquotation):
         $quotation = Quotation::findOrFail(Session::get('idquotation'));
 
-        $payment = Payment::where('quotation_idquotation',$idquotation)->first();
+        $payment = Payment::where('quotation_idquotation',$quotation->idquotation)->first();
 
         $order = Order::findOrFail($quotation->order_idorder);
         // osc Middleware

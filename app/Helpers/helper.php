@@ -2,6 +2,7 @@
 
 use App\Models\OSC;
 use App\Models\Order;
+use App\Models\Invoice;
 use App\Models\Payment;
 use App\Models\Address;
 use App\Models\Package;
@@ -240,6 +241,43 @@ function globalNewOsc($request){
                 'order_idorder' => $request->get('order_idorder',$old_osc->order_idorder),
             ]);
             return $osc;
+        }
+    }catch(\Exception $e){
+        DB::rollback();
+    }
+}
+
+function globalNewInvoice($request){
+    try {
+        $validator = Validator::make($request->all(), [
+            'value' => 'numeric',
+            'tracking' => 'required',
+            'keyword' => 'required',
+            'new' => 'numeric|min:1|max:2',
+            'insurance' => 'numeric|min:1|max:2',
+            'divided' => 'numeric|min:1|max:2',
+        ]);
+
+
+        if(!$validator->fails()) {
+            $request->idinvoice?
+            $old_invoice = Invoice::findOrFail($request->idinvoice):
+            $old_invoice = new Invoice();
+
+            $invoice = Invoice::updateOrCreate([
+                'idinvoice' => $request->get('idinvoice'),
+            ],[
+                'value' => $request->get('value',$old_invoice->value),
+                'tracking' => $request->get('tracking',$old_invoice->tracking),
+                'keyword' => $request->get('keyword',$old_invoice->keyword),
+                'new' => $request->get('new',$old_invoice->new),
+                'insurance' => $request->get('insurance',$old_invoice->insurance),
+                'divided' => $request->get('divided',$old_invoice->divided),
+                'file' => $request->get('file',$old_invoice->file),
+                'package_idpackage' => $request->get('package_idpackage',$old_invoice->package_idpackage),
+                'order_idorder' => $request->get('order_idorder',$old_invoice->order_idorder),
+            ]);
+            return $invoice;
         }
     }catch(\Exception $e){
         DB::rollback();

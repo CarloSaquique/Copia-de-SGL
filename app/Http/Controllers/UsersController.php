@@ -12,6 +12,7 @@ use App\Models\Locker;
 use App\Models\Payment;
 use App\Models\Address;
 use App\Models\Package;
+use App\Models\Invoice;
 use App\Models\Quotation;
 use App\Models\Membership;
 use Illuminate\Http\Request;
@@ -83,22 +84,27 @@ class UsersController extends Controller
             }
         }
 
-
         $address = DB::table('address')
         ->where('quotation_idquotation',$quotation->idquotation)
         ->get();
 
-        $payment = DB::table('payment')
-        ->where('quotation_idquotation',$quotation->idquotation)
-        ->get()[0];
+        $payment = Payment::where('quotation_idquotation',$quotation->idquotation)->first();
 
-        return view('user.order')->with([
-            'order'=>$order,
-            'quotation'=>$quotation,
-            'packages'=>$packages,
-            'address'=>$address,
-            'payment'=>$payment,
-        ]);
+        $invoice = Invoice::where('order_idorder',$order->idorder)->first();
+
+        $user_id = Auth::user()->id;
+        if($order->users_id = $user_id){
+            return view('user.order')->with([
+                'order'=>$order,
+                'quotation'=>$quotation,
+                'packages'=>$packages,
+                'address'=>$address,
+                'payment'=>$payment,
+                'invoice'=>$invoice,
+            ]);
+        }else{
+            return Redirect::to('/');
+        }
     }
 
     public function register(Request $request) {
