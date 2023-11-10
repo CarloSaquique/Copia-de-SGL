@@ -4,7 +4,7 @@
 @section('content')
     @if(!Session::has('form_success'))
         <section class="m-10 p-5 mx-auto w-11/12 bg-white rounded-xl shadow-lg md:w-6/12">
-            <h3 class="text-4xl text-center mt-10 font-bold">Formulario de Reclamo</h3>
+            <h3 class="text-4xl text-center mt-10 font-bold">Califica Nuestro Servicio</h3>
             <form id="claim_form_form" action="/claim-form" method="POST" autocomplete="off" enctype="multipart/form-data" >
                 @csrf
 
@@ -261,7 +261,7 @@
 
                 <div class="w-full mx-auto px-5 py-10 border-b-2 rounded-lg flex justify-evenly text-sm">
                     <div class="">
-                        <h3 class="text-sm">Le gustaria ingresar un reclamo personalizado</h3>
+                        <h3 class="text-sm">Buzón de sugerencias</h3>
                         <textarea class="w-full" name="claim_description" cols="100"
                             rows="5" maxlength="2500">
                         </textarea>

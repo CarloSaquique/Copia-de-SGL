@@ -9,7 +9,7 @@
 
             <h3 class="py-1 text-center mx-auto border text-sm font-bold
                 bg-blue-100 rounded-md w-fit px-2 text-blue-700  xl:ml-5 xl:text-base">
-                NOMBRE DE CUENTA: INTERNATIONAL DEVELOPING LOGISTICS, S.A.</h3>
+                NOMBRE DE CUENTA: Grupo SGL</h3>
         </div>
         <div class="px-5 py-2 xl:px-52 xl:py-5">
             <h3 class="my-10  md: py-2 text-center
