@@ -11,6 +11,9 @@ php artisan route:cache
 echo "Optimize..."
 php artisan optimize
 
+echo "Link Created..."
+php artisan storage:link
+
 # echo "Starting Schedule..."
 # php artisan schedule:work
 
