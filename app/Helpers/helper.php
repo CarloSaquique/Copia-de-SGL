@@ -97,7 +97,6 @@ function globalNewPackage($request){
             ],[
                 'type' => $request->get('type',$old_package->type),
                 'link' => $request->get('link',$old_package->link),
-                'bill' => $request->get('bill',$old_package->bill),
                 'fragile' => $request->get("fragile",$old_package->fragile),
                 'dangerous' => $request->get('dangerous',$old_package->dangerous),
                 'perishable' => $request->get('perishable',$old_package->perishable),

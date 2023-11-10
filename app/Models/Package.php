@@ -14,7 +14,6 @@ class Package extends Model
     protected $fillable = [
         'type',
         'link',
-        'bill',
         'weight',
         'size',
         'fragile',
