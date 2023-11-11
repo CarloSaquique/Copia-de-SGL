@@ -132,7 +132,7 @@ class UsersController extends Controller
             }else{
                 $user = new User($request->except('password'));
                 $user->password = bcrypt($request->get('password'));
-                $user->role = 'client';
+                $user->role = 'SGL';
                 $user->status = '1';
                 $user->assignRole('client');
                 $user->saveOrFail();
