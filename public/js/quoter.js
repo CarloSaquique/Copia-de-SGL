@@ -470,15 +470,59 @@ $('#home_cn_payment_type').change(function(){
     this.value == 4 ? $('#home_cn_payment_cod').show():$('#home_cn_payment_cod').hide();
 });
 
-$('#home_cn_btn_osc').click(function(){
-    // $('#home_cn_form_osc').submit();
-    $('#home_cn_form_osc').ajaxSubmit({
-        success: function(res, status, xhr, form) {
-            $('#home_cn_order_success').text('Orden procesada con exito')
-            QuoterDivVisibility('cn',[0,5]);
+$('.invoice_cf').change(function(){
+    let fields = [
+        {'name':'bill_name'},
+        {'name':'bill_address'},
+        {'name':'bill_nit'},
+    ];
+
+    let form = '#'+$(this).closest("form").attr('id');
+    let input_CF = this;
+
+    $.each(fields, function(index,field){
+        if(input_CF.checked){
+            $(form + ' input[name='+field.name+']').val('');
+            $(form + ' input[name='+field.name+']').addClass('opacity-50');
+            $(form + ' input[name='+field.name+']').attr('disabled',true);
+        }else{
+            $(form + ' input[name='+field.name+']').removeClass('opacity-50');
+            $(form + ' input[name='+field.name+']').attr('disabled',false);
         }
     });
+});
 
+$('#home_cn_btn_osc').click(function(){
+    let fields = [
+        {'name':'bill_name','validation':['alpha','blank']},
+        {'name':'bill_address','validation':['blank']},
+        {'name':'bill_nit','validation':['blank']},
+        {'name':'payment_cn','validation':['isSelect']},
+    ]
+
+    let form = '#'+$(this).closest("form").attr('id');
+
+    $(form + ' input[name=bill_cf]:checked').length ?
+    fields = [
+        {'name':'bill_name','validation':['']},
+        {'name':'bill_address','validation':['']},
+        {'name':'bill_nit','validation':['']},
+        {'name':'payment_cn','validation':['isSelect']},
+    ]:
+    false;
+
+    let validator = Validation(form,fields);
+    console.log(validator);
+    if(!validator.fail){
+        LoadingAnimation(this,'loading');
+        // $('#home_cn_form_osc').submit();
+        // $('#home_cn_form_osc').ajaxSubmit({
+        //     success: function(res, status, xhr, form) {
+        //         $('#home_cn_order_success').text('Orden procesada con exito')
+        //         QuoterDivVisibility('cn',[0,5]);
+        //     }
+        // });
+    }
 });
 
 
@@ -552,7 +596,7 @@ function getQuotationMg(){
         input_premier ?  premier = (0.5 * input_weight)*input_premier:premier = 0;
         input_prepaid ?  prepaid = (0.5 * input_weight)*input_prepaid:prepaid = 0;
 
-        let transport = (input_weight *3.7);
+        let transport = (input_weight *2.7);
         let desaduanaje = (4.25);
         let insurance = ((input_price + transport) * 0.022);
         let services = (transport + desaduanaje);
@@ -727,13 +771,36 @@ $('#home_mg_payment_type').change(function(){
 });
 
 $('#home_mg_btn_osc').click(function(){
-    // $('#home_mg_form_osc').submit();
-    $('#home_mg_form_osc').ajaxSubmit({
-        success: function(res, status, xhr, form) {
-            $('#home_mg_order_success').text('Orden procesada con exito')
-            QuoterDivVisibility('mg',[0,5]);
-        }
-    });
+    let fields = [
+        {'name':'bill_name','validation':['alpha','blank']},
+        {'name':'bill_address','validation':['blank']},
+        {'name':'bill_nit','validation':['blank']},
+        {'name':'payment_mg','validation':['isSelect']},
+    ]
+
+    let form = '#'+$(this).closest("form").attr('id');
+
+    $(form + ' input[name=bill_cf]:checked').length ?
+    fields = [
+        {'name':'bill_name','validation':['']},
+        {'name':'bill_address','validation':['']},
+        {'name':'bill_nit','validation':['']},
+        {'name':'payment_mg','validation':['isSelect']},
+    ]:
+    false;
+
+    let validator = Validation(form,fields);
+    console.log(validator);
+    if(!validator.fail){
+        LoadingAnimation(this,'loading');
+        // $('#home_mg_form_osc').submit();
+        // $('#home_mg_form_osc').ajaxSubmit({
+        //     success: function(res, status, xhr, form) {
+        //         $('#home_mg_order_success').text('Orden procesada con exito')
+        //         QuoterDivVisibility('mg',[0,5]);
+        //     }
+        // });
+    }
 });
 
 
@@ -918,13 +985,36 @@ $('#home_cg_payment_type').change(function(){
 });
 
 $('#home_cg_btn_osc').click(function(){
-    // $('#home_cg_form_osc').submit();
-    $('#home_cg_form_osc').ajaxSubmit({
-        success: function(res, status, xhr, form) {
-            $('#home_cg_order_success').text('Orden procesada con exito')
-            QuoterDivVisibility('cg',[0,5]);
-        }
-    });
+    let fields = [
+        {'name':'bill_name','validation':['alpha','blank']},
+        {'name':'bill_address','validation':['blank']},
+        {'name':'bill_nit','validation':['blank']},
+        {'name':'payment_cg','validation':['isSelect']},
+    ]
+
+    let form = '#'+$(this).closest("form").attr('id');
+
+    $(form + ' input[name=bill_cf]:checked').length ?
+    fields = [
+        {'name':'bill_name','validation':['']},
+        {'name':'bill_address','validation':['']},
+        {'name':'bill_nit','validation':['']},
+        {'name':'payment_cg','validation':['isSelect']},
+    ]:
+    false;
+
+    let validator = Validation(form,fields);
+
+    if(!validator.fail){
+        LoadingAnimation(this,'loading');
+        // $('#home_cg_form_osc').submit();
+        $('#home_cg_form_osc').ajaxSubmit({
+            success: function(res, status, xhr, form) {
+                $('#home_cg_order_success').text('Orden procesada con exito')
+                QuoterDivVisibility('cg',[0,5]);
+            }
+        });
+    }
 });
 
 

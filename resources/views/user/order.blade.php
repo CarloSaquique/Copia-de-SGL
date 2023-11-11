@@ -21,100 +21,140 @@
     </div>
 
     {{-- Direcciones --}}
-    <h3 class="font-bold text-xl">Direcciones</h3>
     <div class="flex space-x-1">
         @foreach ($address as $a)
-            <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-5">
+            <div class="border-gray-300 border-2 rounded-xl w-1/2 p-2 space-x-5">
                 @if($a->type == 1)
                     <h3 class="font-bold">Dirección Recolección</h3>
                 @else
                     <h3 class="font-bold">Dirección Entrega</h3>
                 @endif
                 <div>
+                    <h3>Fecha de Recolección</h3>
+                    <h3>{{$a->date}}</h3>
                     <h3 class="font-bold">{{$a->name}}</h3>
                     <h3>{{$a->municipio}} {{$a->departamento}}{{$a->address}}</h3>
                     <h3 class="font-bold">{{$a->phone}}</h3>
                     <h3>{{$a->email}}</h3>
-                    <input type="date">
+                    @if($a->type == 2)
+                        <input type="date">
+                    @endif
                 </div>
             </div>
         @endforeach
 
-        {{-- Invoice --}}
-        <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-5">
-            @if($quotation->service==1)
-                @if($invoice==null)
-                    <h3 class="font-bold text-xl text-center">Carga tu Factura</h3>
-                    <p class="text-sm text-center">
-                        has click en el boton de abajo para cargar tu factura,
-                        recuerda seguir las instrucciones brindadas en el enlace
-                    </p>
-                    <a href="/upload-invoice/{{$order->idorder}}">
-                        <button id="upload_invoice_btn" type="button" class="flex mx-auto mt-5 bg-blue-800 px-4 py-2
-                            rounded-md text-white cursor-pointer" >Enviar Factura
-                        </button>
-                    </a>
-                @else
-                    <h3 class="font-bold text-xl text-center">Factura Recibida</h3>
-                    <p class="text-sm text-center">
-                        Si deseas reenviar la factura enviada
-                        has click en el boton de abajo
-                    </p>
 
-                    <div class="flex justify-evenly">
-                        <form id="user_order_show_invoice_form" action="/show-invoice/{{$order->idorder}}" method="GET">
-                            @csrf
-                            <button id="user_order_show_invoice_btn" type="button" class="flex mx-auto mt-5 bg-blue-800 px-4 py-2
-                                rounded-md text-white cursor-pointer" >Ver Factura
-                            </button>
-                        </form>
-
+        @if($order->type && $quotation->service == 1)
+            {{-- Invoice --}}
+            <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-5">
+                @if($quotation->service==1)
+                    @if($invoice==null)
+                        <h3 class="font-bold text-xl text-center">Carga tu Factura</h3>
+                        <p class="text-sm text-center">
+                            has click en el boton de abajo para cargar tu factura,
+                            recuerda seguir las instrucciones brindadas en el enlace
+                        </p>
                         <a href="/upload-invoice/{{$order->idorder}}">
                             <button id="upload_invoice_btn" type="button" class="flex mx-auto mt-5 bg-blue-800 px-4 py-2
-                                rounded-md text-white cursor-pointer" >Reenviar Factura
+                                rounded-md text-white cursor-pointer" >Enviar Factura
                             </button>
                         </a>
+                    @else
+                        <h3 class="font-bold text-xl text-center">Factura Recibida</h3>
+                        <p class="text-sm text-center">
+                            Si deseas reenviar la factura enviada
+                            has click en el boton de abajo
+                        </p>
 
-                        <form id="user_order_delete_invoice_form" action="/delete-invoice" method="POST">
-                            @csrf
-                            <input type="text" value="{{$order->idorder}}" name="idorder" hidden>
-                        </form>
-                    </div>
+                        <div class="flex justify-evenly">
+                            <form id="user_order_show_invoice_form" action="/show-invoice/{{$order->idorder}}" method="GET">
+                                @csrf
+                                <button id="user_order_show_invoice_btn" type="button" class="flex mx-auto mt-5 bg-blue-800 px-4 py-2
+                                    rounded-md text-white cursor-pointer" >Ver Factura
+                                </button>
+                            </form>
+
+                            <a href="/upload-invoice/{{$order->idorder}}">
+                                <button id="upload_invoice_btn" type="button" class="flex mx-auto mt-5 bg-blue-800 px-4 py-2
+                                    rounded-md text-white cursor-pointer" >Reenviar Factura
+                                </button>
+                            </a>
+
+                            <form id="user_order_delete_invoice_form" action="/delete-invoice" method="POST">
+                                @csrf
+                                <input type="text" value="{{$order->idorder}}" name="idorder" hidden>
+                            </form>
+                        </div>
+                    @endif
                 @endif
-            @endif
-        </div>
+            </div>
+        @endif
     </div>
 
     {{-- Package --}}
     {{-- {{$packages}} --}}
-    <h3 class="font-bold text-xl">Datos Paquete(s)</h3>
+    <h3 class="font-bold text-lg">Datos Paquete(s)</h3>
     <div class="flex space-x-1">
             <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-">
                 @if($order->type == 1)
                     <h3 class="font-bold">Courier Nacional</h3>
 
                     @foreach ($packages as $p)
-                    <div class="flex space-x-5">
-
+                    <div class="flex justify-evenly text-sm text-center">
+                        <div>
+                        <h3 class="w-fit rounded-md px-1
+                        py-1 font-bold text-blue-900">
+                        No. </h3>
                         <h3>Paquete #1</h3>
-                        <h3>{{$p->size}}cm</h3>
-                        <h3>{{$p->weight}}lb</h3>
-                        <h3>
-                            {{ $p->fragile == 0 ? '-' : 'X' }}
-                        </h3>
-                        <h3>
-                            {{ $p->dangerous == 0 ? '-' : 'X' }}
-                        </h3>
-                        <h3>
-                            {{ $p->perishable == 0 ? '-' : 'X' }}
-                        </h3>
+                        </div>
+
+                        <div>
+                            <h3 class="w-fit rounded-md px-1
+                            py-1 font-bold text-blue-900">
+                            Tamaño. </h3>
+                            <h3>{{$p->size}}cm</h3>
+                        </div>
+
+                        <div>
+                            <h3 class="w-fit rounded-md px-1
+                            py-1 font-bold text-blue-900">
+                            Peso. </h3>
+                            <h3>{{$p->weight}}lb</h3>
+                        </div>
+
+                        <div>
+                            <h3 class="w-fit rounded-md px-1
+                            py-1 font-bold text-blue-900">
+                            Frágil. </h3>
+                            <h3>
+                                {{ $p->fragile == 0 ? '-' : 'X' }}
+                            </h3>
+                        </div>
+
+                        <div>
+                            <h3 class="w-fit rounded-md px-1
+                            py-1 font-bold text-blue-900">
+                            Peligroso. </h3>
+                            <h3>
+                                {{ $p->dangerous == 0 ? '-' : 'X' }}
+                            </h3>
+                        </div>
+
+                        <div>
+                            <h3 class="w-fit rounded-md px-1
+                                py-1 font-bold text-blue-900">
+                                Peligroso. </h3>
+                            <h3>
+                                {{ $p->perishable == 0 ? '-' : 'X' }}
+                            </h3>
+                        </div>
                     </div>
                     @endforeach
                 @elseif($order->type == 2)
                     <h3 class="font-bold text-blue-900 text-center">Courier Miami</h3>
 
                     @foreach ($packages as $p)
-                    <div class="flex justify-evenly bg-gray-300 rounded-lg">
+                    <div class="flex justify-evenly  rounded-lg">
                         <div>
                             <h3 class="w-fit rounded-md px-2
                                 py-1 font-bold text-blue-900">Valor mercadería: </h3>

@@ -5,7 +5,7 @@
 
         <div data-modal-target="UpdatesModal"></div>
         <!-- Condiciones Modal -->
-        <div id="UpdatesModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="UpdatesModal" tabindex="-1" aria-hidden="true" class="fixe top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class=" relative w-full max-w-xl max-h-full mx-auto mt-[8%]">
                 <!-- Modal content -->
                 <div class="relative bg-gray-100 border-2 border-gray-300">
@@ -630,24 +630,24 @@
                 </div>
 
                 {{-- CN OSC -> Finish --}}
-                <div id="home_cn_osc" class="home_quoters_base hidden bg-white border
-                    mx-auto h-auto w-11/12 lg:h-96">
+                <div id="home_cn_osc" class="home_quoters_base hidde bg-white border
+                    mx-auto h-auto w-11/12 lg:h-auto">
                     <form id="home_cn_form_osc" action="/national-quoter-finish" method="POST" class="mx-auto">
                         @csrf
                         <div class="lg:flex">
                             <div class="bg-white p-1 lg:p-2 lg:w-2/3">
                                 {{-- Ver OSC --}}
-                                <div class="flex">
-                                    <a  href="/national-quoter-generate-osc" class="underline text-sm lg:text-base" target="_blank">Ver el OSC de mi Orden</a>
-                                    <span class="home_cn_osc_total block ml-auto">$0.00</span>
+                                <div class="p-2">
+                                    {{-- <a  href="/national-quoter-generate-osc" class="underline text-sm lg:text-base" target="_blank">Ver el OSC de mi Orden</a>
+                                    <span class="home_cn_osc_total block ml-auto">$0.00</span> --}}
                                 </div>
                                 <hr class="h-px my-2 bg-gray-300 border-0">
                                 {{-- Select --}}
                                 <div class="text-center mb-10">
-                                    <select id="home_cn_payment_type" name="payment" class="p-2 border-transparent rounded-lg text-gray-400">
+                                    <select id="home_cn_payment_type" name="payment_cn" class="p-2 border-transparent rounded-lg text-gray-400">
                                         <option value="0">Selecciona el Tipo de Pago</option>
-                                        <option value="1">Tarjeta de Credito/Debito</option>
-                                        <option value="2">Transferencia Bancaria</option>
+                                        <option value="1" disabled>(Próximamente) Tarjeta de Credito/Debito</option>
+                                        <option value="2" disabled>(Próximamente) Transferencia Bancaria</option>
                                         <option value="3">Pago en Agencia</option>
                                         <option value="4">Pago Contra Entrega</option>
                                     </select>
@@ -728,7 +728,7 @@
                                     <input class="rounded-lg h-10 border-gray-200"
                                         name="bill_nit" type="text" placeholder="NIT/DPI">
                                     <div class="flex items-center space-x-1">
-                                        <input class="rounded-md" name="bill_cf" type="checkbox">
+                                        <input class="invoice_cf rounded-md" name="bill_cf" type="checkbox">
                                         <span class="text-sm font-bold">CF</span>
                                     </div>
                                 </div>
@@ -737,7 +737,7 @@
 
                                 <h3 class="">Resumen de Orden</h3>
                                 <span class="home_cn_osc_total">Total:$0.00</span>
-                                <button id="home_cn_btn_osc" type="button" class="wait flex justify-center bg-blue-600 rounded-lg
+                                <button id="home_cn_btn_osc" type="button" class="flex justify-center bg-blue-600 rounded-lg
                                     py-3 w-11/12 text-white hover:bg-blue-900 my-3
                                     mx-auto text-sm font-bold">
                                     Pagar<span class="home_cn_osc_total mx-1">$0.00</span></button>
@@ -953,17 +953,17 @@
                                     <button id="home_mg_btn_quotation_order" type="button" class="flex mx-auto mt-5 bg-blue-950 px-4 py-2
                                         rounded-xl text-white cursor-pointer opacity-70" disabled>Realizar Orden</button>
                                 @else
-                                <div class="my-10 mx-auto w-fit text-blue-700">
-                                    <div class="flex">
-                                        <img class="max-w-[40px]" src="{{asset('images/main/logo.png')}}" alt="">
-                                        <div class="text-lg px-10 bg-white font-bold">
-                                            <h3 class="text-left">We Are </h3>
-                                            <h3>The Blue Wave</h3>
+                                    <div class="my-10 mx-auto w-fit text-blue-700">
+                                        <div class="flex">
+                                            <img class="max-w-[40px]" src="{{asset('images/main/logo.png')}}" alt="">
+                                            <div class="text-lg px-10 bg-white font-bold">
+                                                <h3 class="text-left">We Are </h3>
+                                                <h3>The Blue Wave</h3>
+                                            </div>
                                         </div>
+                                        <h3>Contáctanos</h3>
+                                        <h3 class="text-blue-800">customerservice@gruposgl.com</h3>
                                     </div>
-                                    <h3>Contáctanos</h3>
-                                    <h3 class="text-blue-800">customerservice@gruposgl.com</h3>
-                                </div>
                                     {{-- <a href="/login" class="block mx-auto w-fit mt-5 bg-blue-950 px-4 py-2
                                     rounded-xl text-white cursor-pointer">Iniciar Sesión</a> --}}
                                 @endauth
@@ -1079,25 +1079,25 @@
                 </div>
 
                 {{-- OSC -> Finish --}}
-                <div id="home_mg_osc" class="home_quoters_base hidden bg-white border
-                    mx-auto h-auto w-11/12 lg:h-96">
+                <div id="home_mg_osc" class="home_quoters_base hidde bg-white border
+                    mx-auto h-auto w-11/12 lg:h-auto">
 
                     <form id="home_mg_form_osc" action="/miami-quoter-finish" method="POST" class="mx-auto" enctype="multipart/form-data">
                         @csrf
                         <div class="lg:flex">
                             <div class="bg-white p-1 lg:p-2 lg:w-2/3">
                                 {{-- Ver OSC --}}
-                                <div class="flex">
-                                    <a href="/miami-quoter-generate-osc" class="underline text-sm lg:text-base" target="_blank">Ver el OSC de mi Orden</a>
-                                    <span class="home_mg_osc_total block ml-auto">$0.00</span>
+                                <div class="p-2">
+                                    {{-- <a href="/miami-quoter-generate-osc" class="underline text-sm lg:text-base" target="_blank">Ver el OSC de mi Orden</a>
+                                    <span class="home_mg_osc_total block ml-auto">$0.00</span> --}}
                                 </div>
                                 <hr class="h-px my-2 bg-gray-300 border-0">
                                 {{-- Select --}}
                                 <div class="text-center mb-10">
-                                    <select id="home_mg_payment_type" name="payment" class="p-2 border-transparent rounded-lg text-gray-400">
+                                    <select id="home_mg_payment_type" name="payment_mg" class="p-2 border-transparent rounded-lg text-gray-400">
                                         <option value="0">Selecciona el Tipo de Pago</option>
-                                        <option value="1">Tarjeta de Credito/Debito</option>
-                                        <option value="2">Transferencia Bancaria</option>
+                                        <option value="1" disabled>(Próximamente) Tarjeta de Credito/Debito</option>
+                                        <option value="2" disabled>(Próximamente) Transferencia Bancaria</option>
                                         <option value="3">Pago en Agencia</option>
                                         <option value="4">Pago Contra Entrega</option>
                                     </select>
@@ -1191,7 +1191,7 @@
                                     <input class="rounded-lg h-10 border-gray-200"
                                         name="bill_nit" type="text" placeholder="NIT/DPI">
                                     <div class="flex items-center space-x-1">
-                                        <input class="rounded-md" name="bill_cf" type="checkbox">
+                                        <input class="invoice_cf rounded-md" name="bill_cf" type="checkbox">
                                         <span class="text-sm font-bold">CF</span>
                                     </div>
                                 </div>
@@ -1200,7 +1200,7 @@
 
                                 <h3 class="">Resumen de Orden</h3>
                                 <h3 class="home_mg_osc_total">Total:$0.00</h3>
-                                <button id="home_mg_btn_osc" type="button" class="wait flex justify-center bg-blue-600 rounded-lg
+                                <button id="home_mg_btn_osc" type="button" class="flex justify-center bg-blue-600 rounded-lg
                                     py-3 w-11/12 text-white hover:bg-blue-900 my-3
                                     mx-auto text-sm font-bold">
                                     Pagar <span class="home_mg_osc_total mx-1">$0.00</span></button>
@@ -1538,25 +1538,25 @@
                 </div>
 
                 {{--  OSC -> Finish --}}
-                <div id="home_cg_osc" class="home_quoters_base hidden bg-white border
-                    mx-auto h-auto w-11/12 lg:h-96">
+                <div id="home_cg_osc" class="home_quoters_base hidde bg-white border
+                    mx-auto h-auto w-11/12 lg:h-auto">
 
                     <form id="home_cg_form_osc" action="/china-quoter-finish" method="POST" class="mx-auto" enctype="multipart/form-data">
                         @csrf
                         <div class="lg:flex">
                             <div class="bg-white p-1 lg:p-2 lg:w-2/3">
                                 {{-- Ver OSC --}}
-                                <div class="flex">
-                                    <a href="/china-quoter-generate-osc" class="underline text-sm lg:text-base" target="_blank">Ver el OSC de mi Orden</a>
-                                    <span class="home_cn_osc_total block ml-auto">$0.00</span>
+                                <div class="p-2">
+                                    {{-- <a href="/china-quoter-generate-osc" class="underline text-sm lg:text-base" target="_blank">Ver el OSC de mi Orden</a>
+                                    <span class="home_cn_osc_total block ml-auto">$0.00</span> --}}
                                 </div>
                                 <hr class="h-px my-2 bg-gray-300 border-0">
                                 {{-- Select --}}
                                 <div class="text-center mb-10">
-                                    <select id="home_cg_payment_type" name="payment" class="p-2 border-transparent rounded-lg text-gray-400">
+                                    <select id="home_cg_payment_type" name="payment_cg" class="p-2 border-transparent rounded-lg text-gray-400">
                                         <option value="0">Selecciona el Tipo de Pago</option>
-                                        <option value="1">Tarjeta de Credito/Debito</option>
-                                        <option value="2">Transferencia Bancaria</option>
+                                        <option value="1" disabled>(Próximamente) Tarjeta de Credito/Debito</option>
+                                        <option value="2" disabled>(Próximamente) Transferencia Bancaria</option>
                                         <option value="3">Pago en Agencia</option>
                                         <option value="4">Pago Contra Entrega</option>
                                     </select>
@@ -1611,7 +1611,7 @@
 
                                 {{-- Pago en agencia --}}
                                 <div id="home_cg_payment_agency" class="w-11/12 hidden
-                                    rounded-lg  bg-white mx-auto">fixed miami-china quoter style-total
+                                    rounded-lg  bg-white mx-auto">
                                     {{-- <img class="w-56 mx-auto" src="{{asset('images/baloo/baloo_pago_en_agencia.png')}}" alt=""> --}}
                                 </div>
 
@@ -1634,7 +1634,7 @@
                                     <input class="rounded-lg h-10 border-gray-200"
                                         name="bill_nit" type="text" placeholder="NIT/DPI">
                                     <div class="flex items-center space-x-1">
-                                        <input class="rounded-md" name="bill_cf" type="checkbox">
+                                        <input class="invoice_cf rounded-md" name="bill_cf" type="checkbox">
                                         <span class="text-sm font-bold">CF</span>
                                     </div>
                                 </div>
@@ -1643,7 +1643,7 @@
 
                                 <h3 class="">Resumen de Orden</h3>
                                 <h3 class="home_cg_osc_total">Total:$0.00</h3>
-                                <button id="home_cg_btn_osc" type="button" class="wait flex justify-center bg-blue-600 rounded-lg
+                                <button id="home_cg_btn_osc" type="button" class="flex justify-center bg-blue-600 rounded-lg
                                     py-3 w-11/12 text-white hover:bg-blue-900 my-3
                                     mx-auto text-sm font-bold">
                                     Pagar <span class="home_cg_osc_total mx-1">$0.00</span></button>
@@ -1686,11 +1686,11 @@
                     <div class="flex mx-auto w-fit mb-5">
                         <div>
                             <label for="rate_1">
-                                <svg class="star w-10 h-10 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <svg class="star w-10 h-10 text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                                     <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                                 </svg>
                             </label>
-                            <input id="rate_1" name="rate_1" type="checkbox" hidden>
+                            <input id="rate_1" name="rate_1" type="checkbox" checked hidden>
                         </div>
                         <div>
                             <label for="rate_2">
