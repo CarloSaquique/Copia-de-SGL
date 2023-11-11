@@ -14,6 +14,10 @@ class Billing extends Model
     protected $fillable = [
         'billing_number',
         'total',
+        'nit',
+        'dpi',
+        'name',
+        'address',
         'comments',
         'order_idorder',
         'promo_idpromo',

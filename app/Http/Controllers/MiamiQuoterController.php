@@ -61,7 +61,7 @@ class MiamiQuoterController extends Controller
         // Set request->type = 2 miami quoter, status 1 initial, order_number higher
         $request->request->add(['type'=>2]);
         $request->request->add(['status'=>1]);
-        $request->request->add(['order_number'=>Order::max('order_number') + 1]);
+        $request->request->add(['order_number'=>'SGLMG'.random_int(100000,999999)]);
         // Create new Order
         $order = globalnewOrder($request);
         // Set idorder
@@ -109,9 +109,33 @@ class MiamiQuoterController extends Controller
     public function finish(Request $request){
         $quotation = Quotation::findOrFail(Session::get('idquotation'));
 
-        // Realizar las operaciones de pago
+        foreach ($request->all() as $key => $value) {
+            $value == null ? $request->request->remove($key):false;
+        }
 
-        // Finalizar opereaciones de pago
+        $payment = Payment::where('quotation_idquotation',$quotation->idquotation)->first();
+
+        $request->request->add(['idpayment'=>$payment->idpayment]);
+        $request->request->add(['type'=>$request->payment_cn]);
+        $update_payment = globalnewPayment($request);
+        $request->request->remove('type');
+
+        $request->request->add(['idorder'=>$quotation->order_idorder]);
+        $request->request->add(['status'=>'2']);
+        $update_order = globalnewOrder($request);
+
+
+        $request->request->add(['order_idorder'=>$quotation->order_idorder]);
+        $request->request->add(['dpi'=>$request->bill_dpi]);
+        $request->request->add(['name'=>$request->bill_name]);
+
+        $request->bill_cf ? $request->request->add(['nit'=>'CF']):
+        $request->request->add(['nit'=>$request->bill_nit]);
+
+        $request->request->add(['address'=>$request->bill_address]);
+
+        $billing = globalnewBilling($request);
+
 
         session()->forget('idquotation');
 
@@ -135,7 +159,6 @@ class MiamiQuoterController extends Controller
 
     public function oscPdf($idquotation=null)
     {
-
         $idquotation?
         $quotation = Quotation::findOrFail($idquotation):
         $quotation = Quotation::findOrFail(Session::get('idquotation'));
@@ -203,7 +226,7 @@ class MiamiQuoterController extends Controller
         $sed = 75:
         $sed = 0;
 
-        $transport = $_weight * 3.7;
+        $transport = $_weight * 2.7;
         $desaduanaje = 4.25;
         $insurance = ($_price + $transport) * 0.022;
         $services = $transport + $desaduanaje;

@@ -59,7 +59,7 @@ class ChinaQuoterController extends Controller
         // Set request->type = 3 china quoter, status 1 initial, order_number higher
         $request->request->add(['type'=>3]);
         $request->request->add(['status'=>1]);
-        $request->request->add(['order_number'=>Order::max('order_number') + 1]);
+        $request->request->add(['order_number'=>'SGLCG'.random_int(100000,999999)]);
         // Create new Order
         $order = globalnewOrder($request);
         // Set idorder
@@ -106,6 +106,33 @@ class ChinaQuoterController extends Controller
 
     public function finish(Request $request){
         $quotation = Quotation::findOrFail(Session::get('idquotation'));
+
+        foreach ($request->all() as $key => $value) {
+            $value == null ? $request->request->remove($key):false;
+        }
+
+        $payment = Payment::where('quotation_idquotation',$quotation->idquotation)->first();
+
+        $request->request->add(['idpayment'=>$payment->idpayment]);
+        $request->request->add(['type'=>$request->payment_cn]);
+        $update_payment = globalnewPayment($request);
+        $request->request->remove('type');
+
+        $request->request->add(['idorder'=>$quotation->order_idorder]);
+        $request->request->add(['status'=>'2']);
+        $update_order = globalnewOrder($request);
+
+
+        $request->request->add(['order_idorder'=>$quotation->order_idorder]);
+        $request->request->add(['dpi'=>$request->bill_dpi]);
+        $request->request->add(['name'=>$request->bill_name]);
+
+        $request->bill_cf ? $request->request->add(['nit'=>'CF']):
+        $request->request->add(['nit'=>$request->bill_nit]);
+
+        $request->request->add(['address'=>$request->bill_address]);
+
+        $billing = globalnewBilling($request);
 
         session()->forget('idquotation');
 

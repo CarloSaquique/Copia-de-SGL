@@ -5,7 +5,7 @@
 
         <div data-modal-target="UpdatesModal"></div>
         <!-- Condiciones Modal -->
-        <div id="UpdatesModal" tabindex="-1" aria-hidden="true" class="fixe top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="UpdatesModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class=" relative w-full max-w-xl max-h-full mx-auto mt-[8%]">
                 <!-- Modal content -->
                 <div class="relative bg-gray-100 border-2 border-gray-300">
@@ -630,7 +630,7 @@
                 </div>
 
                 {{-- CN OSC -> Finish --}}
-                <div id="home_cn_osc" class="home_quoters_base hidde bg-white border
+                <div id="home_cn_osc" class="home_quoters_base hidden bg-white border
                     mx-auto h-auto w-11/12 lg:h-auto">
                     <form id="home_cn_form_osc" action="/national-quoter-finish" method="POST" class="mx-auto">
                         @csrf
@@ -644,7 +644,7 @@
                                 <hr class="h-px my-2 bg-gray-300 border-0">
                                 {{-- Select --}}
                                 <div class="text-center mb-10">
-                                    <select id="home_cn_payment_type" name="payment_cn" class="p-2 border-transparent rounded-lg text-gray-400">
+                                    <select id="home_cn_payment_type" name="payment_cn" class="w-full p-2 border-gray-300 rounded-lg text-gray-400 md:w-fit">
                                         <option value="0">Selecciona el Tipo de Pago</option>
                                         <option value="1" disabled>(Próximamente) Tarjeta de Credito/Debito</option>
                                         <option value="2" disabled>(Próximamente) Transferencia Bancaria</option>
@@ -726,12 +726,17 @@
                                     <input class="rounded-lg h-10 border-gray-200"
                                         name="bill_address" type="text" placeholder="Dirección">
                                     <input class="rounded-lg h-10 border-gray-200"
-                                        name="bill_nit" type="text" placeholder="NIT/DPI">
+                                        name="bill_nit" type="text" placeholder="NIT">
                                     <div class="flex items-center space-x-1">
                                         <input class="invoice_cf rounded-md" name="bill_cf" type="checkbox">
                                         <span class="text-sm font-bold">CF</span>
                                     </div>
                                 </div>
+
+                                <hr class="h-px my-5 bg-gray-300 border-0">
+
+                                <input class="rounded-lg w-full h-10 border-gray-200"
+                                    name="bill_dpi" type="text" placeholder="DPI">
 
                                 <hr class="h-px my-5 bg-gray-300 border-0">
 
@@ -805,7 +810,7 @@
                                         <select id="home_mg_service_select" name="service" class="py-1 px-2 rounded-2xl h-10 border-none bg-gray-200
                                             text-gray-500 text-sm">
                                             <option class="" value="1" selected>P.O. BOX</option>
-                                            <option class="" value="2">Todo Incluido</option>
+                                            <option class="" value="2" disabled>(Próximamente) Todo Incluido</option>
                                         </select>
                                     </div>
                                     <div class="text-center p-1 relative hidden">
@@ -1079,7 +1084,7 @@
                 </div>
 
                 {{-- OSC -> Finish --}}
-                <div id="home_mg_osc" class="home_quoters_base hidde bg-white border
+                <div id="home_mg_osc" class="home_quoters_base hidden bg-white border
                     mx-auto h-auto w-11/12 lg:h-auto">
 
                     <form id="home_mg_form_osc" action="/miami-quoter-finish" method="POST" class="mx-auto" enctype="multipart/form-data">
@@ -1094,7 +1099,7 @@
                                 <hr class="h-px my-2 bg-gray-300 border-0">
                                 {{-- Select --}}
                                 <div class="text-center mb-10">
-                                    <select id="home_mg_payment_type" name="payment_mg" class="p-2 border-transparent rounded-lg text-gray-400">
+                                    <select id="home_mg_payment_type" name="payment_mg" class="w-full p-2 border-gray-300 rounded-lg text-gray-400 md:w-fit">
                                         <option value="0">Selecciona el Tipo de Pago</option>
                                         <option value="1" disabled>(Próximamente) Tarjeta de Credito/Debito</option>
                                         <option value="2" disabled>(Próximamente) Transferencia Bancaria</option>
@@ -1198,6 +1203,11 @@
 
                                 <hr class="h-px my-5 bg-gray-300 border-0">
 
+                                <input class="rounded-lg w-full h-10 border-gray-200"
+                                    name="bill_dpi" type="text" placeholder="DPI">
+
+                                <hr class="h-px my-5 bg-gray-300 border-0">
+
                                 <h3 class="">Resumen de Orden</h3>
                                 <h3 class="home_mg_osc_total">Total:$0.00</h3>
                                 <button id="home_mg_btn_osc" type="button" class="flex justify-center bg-blue-600 rounded-lg
@@ -1268,7 +1278,7 @@
                                         <select id="home_cg_service_select" name="service" class="py-1 px-2 rounded-2xl h-10 border-none bg-gray-200
                                         text-gray-500 text-sm">
                                             <option class="font-bold" value="1" selected>P.O. BOX</option>
-                                            <option class="font-bold text-blue-500" value="2">Todo Incluido</option>
+                                            <option class="" value="2" disabled>(Próximamente) Todo Incluido</option>
                                         </select>
                                     </div>
                                     <div class="text-center p-1 hidden">
@@ -1538,7 +1548,7 @@
                 </div>
 
                 {{--  OSC -> Finish --}}
-                <div id="home_cg_osc" class="home_quoters_base hidde bg-white border
+                <div id="home_cg_osc" class="home_quoters_base hidden bg-white border
                     mx-auto h-auto w-11/12 lg:h-auto">
 
                     <form id="home_cg_form_osc" action="/china-quoter-finish" method="POST" class="mx-auto" enctype="multipart/form-data">
@@ -1553,7 +1563,7 @@
                                 <hr class="h-px my-2 bg-gray-300 border-0">
                                 {{-- Select --}}
                                 <div class="text-center mb-10">
-                                    <select id="home_cg_payment_type" name="payment_cg" class="p-2 border-transparent rounded-lg text-gray-400">
+                                    <select id="home_cg_payment_type" name="payment_cg" class="w-full p-2 border-gray-300 rounded-lg text-gray-400 md:w-fit">
                                         <option value="0">Selecciona el Tipo de Pago</option>
                                         <option value="1" disabled>(Próximamente) Tarjeta de Credito/Debito</option>
                                         <option value="2" disabled>(Próximamente) Transferencia Bancaria</option>
@@ -1641,6 +1651,11 @@
 
                                 <hr class="h-px my-5 bg-gray-300 border-0">
 
+                                <input class="rounded-lg w-full h-10 border-gray-200"
+                                    name="bill_dpi" type="text" placeholder="DPI">
+
+                                <hr class="h-px my-5 bg-gray-300 border-0">
+
                                 <h3 class="">Resumen de Orden</h3>
                                 <h3 class="home_cg_osc_total">Total:$0.00</h3>
                                 <button id="home_cg_btn_osc" type="button" class="flex justify-center bg-blue-600 rounded-lg
@@ -1666,8 +1681,6 @@
                 </div>
 
             </div>
-
-            {{--Costo envio Q.25 --}}
         </div>
 
         {{-- Banner Horizontal --}}

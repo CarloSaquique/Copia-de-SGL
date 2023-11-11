@@ -293,17 +293,17 @@ function addPackage() {
                                 '<div class="lg:flex">'+
                                     '<h3 class="lg:hidden">Fragil</h3>'+
                                     '<input name="fr_'+n+'" type="checkbox">'+
-                                    '<h3 class="hidden lg:grid lg:ml-4">Fragil</h3>'+
+                                    '<h3 class="hidden lg:grid lg:ml-4 whitespace-nowrap">Fragil</h3>'+
                                 '</div>'+
                                 '<div class="lg:flex">'+
                                     '<h3 class="lg:hidden">Contenido Peligroso</h3>'+
                                     '<input name="dg_'+n+'" type="checkbox">'+
-                                    '<h3 class="hidden lg:grid lg:ml-4">Contenido Peligroso</h3>'+
+                                    '<h3 class="hidden lg:grid lg:ml-4 whitespace-nowrap">Contenido Peligroso</h3>'+
                                 '</div>'+
                                 '<div class="lg:flex">'+
                                     '<h3 class="lg:hidden">Perecedero</h3>'+
                                     '<input name="ps_'+n+'" type="checkbox">'+
-                                    '<h3 class="hidden lg:grid lg:ml-4">Perecedero</h3>'+
+                                    '<h3 class="hidden lg:grid lg:ml-4 whitespace-nowrap">Perecedero</h3>'+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
@@ -497,6 +497,7 @@ $('#home_cn_btn_osc').click(function(){
         {'name':'bill_name','validation':['alpha','blank']},
         {'name':'bill_address','validation':['blank']},
         {'name':'bill_nit','validation':['blank']},
+        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_cn','validation':['isSelect']},
     ]
 
@@ -507,21 +508,22 @@ $('#home_cn_btn_osc').click(function(){
         {'name':'bill_name','validation':['']},
         {'name':'bill_address','validation':['']},
         {'name':'bill_nit','validation':['']},
+        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_cn','validation':['isSelect']},
     ]:
     false;
 
     let validator = Validation(form,fields);
-    console.log(validator);
+
     if(!validator.fail){
         LoadingAnimation(this,'loading');
         // $('#home_cn_form_osc').submit();
-        // $('#home_cn_form_osc').ajaxSubmit({
-        //     success: function(res, status, xhr, form) {
-        //         $('#home_cn_order_success').text('Orden procesada con exito')
-        //         QuoterDivVisibility('cn',[0,5]);
-        //     }
-        // });
+        $('#home_cn_form_osc').ajaxSubmit({
+            success: function(res, status, xhr, form) {
+                $('#home_cn_order_success').text('Orden procesada con exito')
+                QuoterDivVisibility('cn',[0,5]);
+            }
+        });
     }
 });
 
@@ -553,7 +555,7 @@ $("#home_mg_service_select").change(function(){
     $("#home_mg_service_select").val() == 1 ?
     $("#home_mg_link").parent().animate({height:"hide"}):
     $("#home_mg_link").parent().animate({height:"show"});
-    input_service =  parseInt(this.value);
+    input_service =  parseFloat(this.value);
 
     $("#home_mg_service_select").val() == 1 ?
     $("#home_mg_commission").parent().animate({height:"hide"}):
@@ -643,16 +645,16 @@ function cleanQuotationMg(){
 // volumen/5000 *2.2046
 // Price, Shipping , Weight Keyup Event
 $('.home_quotation_keyup').keyup(function() {
-    this.id == 'home_mg_price'? input_price =  parseInt(this.value):false;
-    this.id == 'home_mg_shipping'? input_shipping =  parseInt(this.value):false;
-    this.id == 'home_mg_weight'? input_weight =  parseInt(this.value):false;
+    this.id == 'home_mg_price'? input_price =  parseFloat(this.value):false;
+    this.id == 'home_mg_shipping'? input_shipping =  parseFloat(this.value):false;
+    this.id == 'home_mg_weight'? input_weight =  parseFloat(this.value):false;
     getQuotationMg();
 });
 
 
 // Description, Premier, Prepaid Change Event
 $('.home_quotation_change').change(function() {
-    this.id == 'home_mg_description'? input_description =  parseInt(this.value):false;
+    this.id == 'home_mg_description'? input_description =  parseFloat(this.value):false;
     this.id == 'home_mg_premier'? input_premier =  this.checked:false;
     this.id == 'home_mg_prepaid'? input_prepaid =  this.checked:false;
     getQuotationMg();
@@ -775,6 +777,7 @@ $('#home_mg_btn_osc').click(function(){
         {'name':'bill_name','validation':['alpha','blank']},
         {'name':'bill_address','validation':['blank']},
         {'name':'bill_nit','validation':['blank']},
+        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_mg','validation':['isSelect']},
     ]
 
@@ -785,6 +788,7 @@ $('#home_mg_btn_osc').click(function(){
         {'name':'bill_name','validation':['']},
         {'name':'bill_address','validation':['']},
         {'name':'bill_nit','validation':['']},
+        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_mg','validation':['isSelect']},
     ]:
     false;
@@ -794,12 +798,12 @@ $('#home_mg_btn_osc').click(function(){
     if(!validator.fail){
         LoadingAnimation(this,'loading');
         // $('#home_mg_form_osc').submit();
-        // $('#home_mg_form_osc').ajaxSubmit({
-        //     success: function(res, status, xhr, form) {
-        //         $('#home_mg_order_success').text('Orden procesada con exito')
-        //         QuoterDivVisibility('mg',[0,5]);
-        //     }
-        // });
+        $('#home_mg_form_osc').ajaxSubmit({
+            success: function(res, status, xhr, form) {
+                $('#home_mg_order_success').text('Orden procesada con exito')
+                QuoterDivVisibility('mg',[0,5]);
+            }
+        });
     }
 });
 
@@ -810,7 +814,7 @@ $("#home_cg_service_select").change(function(){
     $("#home_cg_service_select").val() == 1 ?
     $("#home_cg_link").parent().animate({height:"hide"}):
     $("#home_cg_link").parent().animate({height:"show"});
-    input_service = parseInt(this.value);
+    input_service = parseFloat(this.value);
 
     $("#home_cg_service_select").val() == 1 ?
     $("#home_cg_commission").parent().animate({height:"hide"}):
@@ -898,15 +902,15 @@ function cleanQuotationCg(){
 
 // Price, Shipping , Weight Keyup Event
 $('.home_quotation_keyup').keyup(function() {
-    this.id == 'home_cg_price'? input_price =  parseInt(this.value):false;
-    this.id == 'home_cg_shipping'? input_shipping =  parseInt(this.value):false;
-    this.id == 'home_cg_weight'? input_weight =  parseInt(this.value):false;
+    this.id == 'home_cg_price'? input_price =  parseFloat(this.value):false;
+    this.id == 'home_cg_shipping'? input_shipping =  parseFloat(this.value):false;
+    this.id == 'home_cg_weight'? input_weight =  parseFloat(this.value):false;
     getQuotationCg();
 });
 
 // Description, Premier, Prepaid Change Event
 $('.home_quotation_change').change(function() {
-    this.id == 'home_cg_description'? input_description =  parseInt(this.value):false;
+    this.id == 'home_cg_description'? input_description =  parseFloat(this.value):false;
     this.id == 'home_cg_premier'? input_premier =  this.checked:false;
     this.id == 'home_cg_prepaid'? input_prepaid =  this.checked:false;
     getQuotationCg();
@@ -989,6 +993,7 @@ $('#home_cg_btn_osc').click(function(){
         {'name':'bill_name','validation':['alpha','blank']},
         {'name':'bill_address','validation':['blank']},
         {'name':'bill_nit','validation':['blank']},
+        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_cg','validation':['isSelect']},
     ]
 
@@ -999,6 +1004,7 @@ $('#home_cg_btn_osc').click(function(){
         {'name':'bill_name','validation':['']},
         {'name':'bill_address','validation':['']},
         {'name':'bill_nit','validation':['']},
+        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_cg','validation':['isSelect']},
     ]:
     false;

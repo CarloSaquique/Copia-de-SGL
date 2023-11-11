@@ -21,7 +21,7 @@
                 </div>
             </a>
             <hr class="border-gray-300 w-5/6 mx-auto">
-            <a href="/membership">
+            <a href="/">
                 <div class="px-5 py-1 cursor-pointer whitespace-nowrap">
                     Membresia
                 </div>

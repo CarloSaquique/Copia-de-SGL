@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cotización No.{{ $order_idorder }}</title>
+    <title>OSC No.{{ $order_idorder }}</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -36,7 +36,7 @@
         <br>
         <p style="text-align: right;">
             Fecha: {{ $created_at }} <br>
-            Cotización No: {{ $order_idorder }}<br>
+            OSC No: {{ $order_idorder }}<br>
         </p>
     </div>
     <br><br><br>

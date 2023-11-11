@@ -4,6 +4,7 @@ use App\Models\OSC;
 use App\Models\Order;
 use App\Models\Invoice;
 use App\Models\Payment;
+use App\Models\Billing;
 use App\Models\Address;
 use App\Models\Package;
 use App\Models\Bitacora;
@@ -277,6 +278,40 @@ function globalNewInvoice($request){
                 'order_idorder' => $request->get('order_idorder',$old_invoice->order_idorder),
             ]);
             return $invoice;
+        }
+    }catch(\Exception $e){
+        DB::rollback();
+    }
+}
+
+function globalNewBilling($request){
+    try {
+        $validator = Validator::make($request->all(), [
+            'total' => 'sometimes|numeric',
+        ]);
+
+
+        if(!$validator->fails()) {
+            $request->idbilling?
+            $old_billing = Billing::findOrFail($request->idbilling):
+            $old_billing = new Billing();
+
+            $billing = Billing::updateOrCreate([
+                'idbilling' => $request->get('idbilling'),
+            ],[
+                'billing_number' => $request->get('billing_number',$old_billing->billing_number),
+                'total' => $request->get('total',$old_billing->total),
+                'nit' => $request->get('nit',$old_billing->nit),
+                'dpi' => $request->get('dpi',$old_billing->dpi),
+                'name' => $request->get('name',$old_billing->name),
+                'address' => $request->get('address',$old_billing->address),
+                'comments' => $request->get('comments',$old_billing->comments),
+                'status' => $request->get('status',$old_billing->status),
+                'order_idorder' => $request->get('order_idorder',$old_billing->order_idorder),
+                'promo_idpromo' => $request->get('promo_idpromo',$old_billing->promo_idpromo),
+            ]);
+
+            return $billing;
         }
     }catch(\Exception $e){
         DB::rollback();

@@ -108,7 +108,7 @@ class UsersController extends Controller
     }
 
     public function register(Request $request) {
-        dd('not');
+        // dd('not');
         try
         {
             $validator = Validator::make($request->all(), [
@@ -155,7 +155,7 @@ class UsersController extends Controller
                 $membership->status = 1;
                 $membership->finish_at = $datetime;
                 $membership->users_id = $user->id;
-                $membership->saveOrFail();
+                // $membership->saveOrFail();
 
                 event(new Registered($user));
                 Auth::login($user);
