@@ -343,6 +343,7 @@ function globalNewTracking($request){
                 'order_number' => $request->get('order_number',$old_tracking->order_number),
                 'order_idorder' => $request->get('order_idorder',$old_tracking->order_idorder),
                 'users_id' => $request->get('users_id',$old_tracking->users_id),
+                'status' => $request->get('status',$old_tracking->status),
             ]);
 
             return $tracking;

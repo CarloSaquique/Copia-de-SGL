@@ -1,258 +1,240 @@
 @extends('admin.base')
 
 @section('admin-content')
-    <section class="flex h-full text-black">
-        {{-- Lateral Nav --}}
-        <div class="border-2 border-gray-100 bg-gray-100 h-screen w-3/12 p-3 space-y-1">
-            {{-- <div class="px-5cursor-pointer border-l-2 p-2">
-                <a class="bg-blue-950 p-2 text-white rounded-xl" href="/national-quoter-admin-generate-pdf/{{$quotation->idquotation}}" target="_blank" >Ver OSC</a>
-            </div> --}}
-            <div class="px-5cursor-pointer border-l-2 p-2">
-                @if($order->type == "1")
-                    <a  href="/national-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
-                        <button class="bg-blue-900 p-2 text-white rounded-xl text-sm">
-                            Orden De Servicio Al Cliente
-                        </button>
-                    </a>
-                @elseif($order->type == "2")
-                    <a  href="/miami-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
-                        <button class="bg-blue-900 p-2 text-white rounded-xl text-sm">
-                            Orden De Servicio Al Cliente
-                        </button>
-                    </a>
-                @elseif($order->type == "3")
-                    <a  href="/china-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
-                        <button class="bg-blue-900 p-2 text-white rounded-xl text-sm">
-                            Orden De Servicio Al Cliente
-                        </button>
-                    </a>
-                @endif
+    <section class="p-10">
+        <div class="border rounded-lg p-10">
+            <h3 class="font-bold text-xl text-center">Resumen De Mi Orden</h3>
+            <div class="px-5 py-5 flex space-x-5">
+                <div class="mr-auto ">
+                    @php
+                        $order->type==1? $courier_name='Courier Nacional':false;
+                        $order->type==2? $courier_name='Courier Miami':false;
+                        $order->type==3? $courier_name='Courier China':false;
+                    @endphp
+                    <h3 class="font-bold">Pedido {{$courier_name}} {{$order->order_number}}</h3>
+                    <h3 class="">{{$order->created_at}}</h3>
+                    <h3 class="font-bold">Total a pagar: {{$payment->currency}}{{ number_format((float)$payment->total, 2, '.', '')}}</h3>
+                </div>
+                <div class="ml-auto ">
+                    {{-- <h3 class="bg-blue-950 rounded-md text-white px-3 py-2">En proceso</h3> --}}
+                </div>
             </div>
-            {{-- Link --}}
-            @if($quotation->service == 2)
-            <div class="px-5cursor-pointer border-l-2 p-2">
-                <a  href="{{$order->packages[0]->link}}" target="_blank" >
-                    <button class="bg-blue-900 p-2 text-white rounded-xl text-sm">
-                        Ver Link del producto
-                    </button>
-                </a>
-            </div>
-            @endif
-            {{-- Factura --}}
-            @if($quotation->service == 1)
-            <div class="px-5 p-2 items-center">
-                <form id="test_form" action="/test-factura/{{$order->idorder}}" method="GET">
-                    @csrf
-                    {{-- <button id="test_btn" type="button" class="bg-blue-950 text-white p-2 rounded-xl">Ver Factura</button> --}}
-                </form>
-                <form id="test_delete" action="/test-delete" method="POST">
-                    @csrf
-                    <input type="text" value="{{$order->idorder}}" name="idquotation" hidden>
-                </form>
-            </div>
-            @endif
-
-            {{-- <div class="px-5 cursor-pointer border-l-2 p-2">
-                <a class="bg-red-500 p-2 text-white rounded-xl"  href="#" onclick="window.print()">Imprimir Guia Operador</a>
-            </div>
-            <div class="px-5 cursor-pointer border-l-2 p-2">
-                <a class="bg-red-500 p-2 text-white rounded-xl" href="#" onclick="window.print()">Imprimir Guia Cliente</a>
-            </div> --}}
-        </div>
-
-        {{-- Orden --}}
-        <div class="p-5 w-full text-justify">
-            {{-- Order Data --}}
-            <h3 class="text-2xl font-bold">Orden#{{$order->idorder}}</h3>
-            <div class="flex">
-                <h3>{{$order->type}}</h3>
-                <h3 class="ml-auto">{{$order->created_at}}</h3>
-            </div>
-            <h3 class="font-bold">{{$payment->currency}}{{ number_format((float)$payment->total, 2, '.', '')}}</h3>
 
             {{-- Direcciones --}}
-            <div class="flex mt-5 border ">
-                {{-- Recolección --}}
-                <div class="mx-auto w-1/2 p-2">
-                    @if($order->type == 'Courier Nacional')
-                        <div class="flex">
-                            <h3 class="font-bold mx-auto">RECOLECTAR EN:</h3>
-                            {{-- <h3>{{$order->sender->agency}}</h3> --}}
-                        </div>
-                        <div class="flex space-x-1">
-                            <h3 class="font-bold">Dirección:</h3>
-                            @if(isset($order->sender->address))
-                                <h3>{{$order->sender->address}}</h3>
-                            @endif
-                        </div>
-                        <div class="flex space-x-1">
-                            <h3 class="font-bold">Nombre:</h3>
-                            @if(isset($order->sender->address))
-                            <h3>{{$order->sender->name}}</h3>
-                            @endif
-                        </div>
-                        <div class="flex space-x-1">
-                            <h3 class="font-bold">Telefono:</h3>
-                            @if(isset($order->sender->address))
-                            <h3>{{$order->sender->phone}}</h3>
-                            @endif
-                        </div>
-                        <div class="flex space-x-1">
-                            <h3 class="font-bold">Email:</h3>
-                            @if(isset($order->sender->address))
-                            <h3>{{$order->sender->email}}</h3>
-                            @endif
-                        </div>
-
-                    @elseif($order->type == 'Courier Miami' || $order->type == 'Courier China')
-                        @if($order->type == 'Courier Miami')
-                            <h3 class="font-bold">Miami</h3>
+            <div class="flex space-x-1">
+                @foreach ($address as $a)
+                    <div class="border-gray-300 border-2 rounded-xl w-1/2 p-2 space-x-5">
+                        @if($a->type == 1)
+                            <h3 class="font-bold">Dirección Recolección</h3>
                         @else
-                            <h3 class="font-bold">China</h3>
+                            <h3 class="font-bold">Dirección Entrega</h3>
                         @endif
-                        <div class="flex space-x-2">
-                            {{-- <h3 class="font-bold">Servicio:</h3> --}}
-                            <h3>{{$quotation->service == 1? 'POBOX':'Todo Incluido';}}</h3>
-                        </div>
-                        <div class="flex space-x-2">
-                            {{-- <h3 class="font-bold">Moneda:</h3> --}}
-                            <h3>({{$payment->currency == 1? 'Q':'$';}})</h3>
-                        </div>
-                    @endif
-                </div>
-                {{-- Entrega --}}
-                <div class="mx-auto w-1/2 p-2">
-                    <div class="flex">
-                        <h3 class="font-bold mx-auto">ENTREGAR EN:</h3>
-                        {{-- <h3>{{$order->destination->agency}}</h3> --}}
-                    </div>
-                    <div class="flex space-x-1">
-                        <h3 class="font-bold">Dirección:</h3>
-                        <h3>{{$order->destination->address}}</h3>
-                    </div>
-                    <div class="flex space-x-1">
-                        <h3 class="font-bold">Nombre:</h3>
-                        <h3>{{$order->destination->name}}</h3>
-                    </div>
-                    <div class="flex space-x-1">
-                        <h3 class="font-bold">Telefono:</h3>
-                        <h3>{{$order->destination->phone}}</h3>
-                    </div>
-                    <div class="flex space-x-1">
-                        <h3 class="font-bold">Email:</h3>
-                        <h3>{{$order->destination->email}}</h3>
-                    </div>
-                </div>
-            </div>
+                        <div>
+                            <h3>Fecha de Recolección</h3>
+                            <h3>{{$a->date}}</h3>
+                            <h3 class="font-bold">{{$a->name}}</h3>
+                            <h3>{{$a->municipio}} {{$a->departamento}}{{$a->address}}</h3>
+                            <h3 class="font-bold">{{$a->phone}}</h3>
+                            <h3>{{$a->email}}</h3>
 
-            {{-- Paquetes --}}
-            <div class="h-36 p-2 text-sm w-fit mx-auto overflow-y-auto mt-10">
-                <table>
-                    @if($order->type == 'Courier Nacional')
-                        <tr class="uppercase bg-blue-950 text-white">
-                            <th class="px-6 py-3">no.</th>
-                            <th class="px-6 py-3">tamaño</th>
-                            <th class="px-6 py-3">peso</th>
-                            <th class="px-6 py-3">fragil</th>
-                            <th class="px-6 py-3">peligroso</th>
-                            <th class="px-6 py-3">perecedero</th>
-                        </tr>
-                        @foreach ($order->packages as $key => $p)
-                            <tr class="">
-                                <th>{{$key}}</th>
-                                <th>{{$p->size}}</th>
-                                <th>{{$p->weight}}</th>
-                                <th>{{$p->fragile}}</th>
-                                <th>{{$p->dangerous}}</th>
-                                <th>{{$p->perishable}}</th>
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr class="uppercase bg-blue-900 text-white">
-                            <th class="px-6 py-3">no.</th>
-                            <th class="px-6 py-3">precio</th>
-                            <th class="px-6 py-3">peso</th>
-                            <th class="px-6 py-3">shipping</th>
-                        </tr>
-                        @foreach ($order->packages as $key => $p)
-                        <tr class="text-center">
-                            <th>{{$key+1}}</th>
-                            <th>{{$payment->currency == 1? 'Q':'$';}}{{$p->price}}</th>
-                            <th>{{$p->weight}}lb</th>
-                            <th>{{$payment->currency == 1? 'Q':'$';}}{{$p->shipping}}</th>
-                        @endforeach
-                        </tr>
-                    @endif
-                </table>
-            </div>
+                        </div>
+                    </div>
+                @endforeach
 
-            {{-- Tracking --}}
-            <div>
-                @if(isset($order->tracking->tracking_number))
-                    <div class="flex mb-5">
-                        <h3 class="w-fit mr-auto px-44">No.Tracking: {{$order->tracking->tracking_number}}</h3>
-                        {{-- <button class="w-fit ml-auto mr-40 p-2 bg-red-600 rounded-xl text-white" onclick="window.print()">Imprimir Guia</button> --}}
+
+                @if($order->type && $quotation->service == 1)
+                    {{-- Invoice --}}
+                    <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-5">
+                        @if($quotation->service==1)
+                            @if($invoice==null)
+                                <h3 class="font-bold text-xl text-center">Factura pendiente</h3>
+                            @else
+                                <h3 class="font-bold text-xl text-center">Factura Recibida</h3>
+
+                                <div class="mx-auto">
+                                    <form id="user_order_show_invoice_form" action="/show-invoice/{{$order->idorder}}" method="GET">
+                                        @csrf
+                                        <button id="user_order_show_invoice_btn" type="button" class="flex mx-auto mt-5 bg-blue-800 px-4 py-2
+                                            rounded-md text-white cursor-pointer" >Ver Factura
+                                        </button>
+                                    </form>
+
+                                    <form id="user_order_delete_invoice_form" action="/delete-invoice" method="POST">
+                                        @csrf
+                                        <input type="text" value="{{$order->idorder}}" name="idorder" hidden>
+                                    </form>
+                                </div>
+                            @endif
+                        @endif
                     </div>
                 @endif
-                <div class="w-fit mx-auto flex items-center my-10 space-x-2">
-                    @if(isset($order->tracking))
-                    @foreach ($order->tracking_states as $key=>$status)
-                    @if($status)
-                        <div class="text-center text-xs">
 
-                            <div class="bg-{{$order->tracking->$key == null ? 'gray-400':'blue-800';}} mx-auto rounded-full w-fit px-2 h-10 relative
-                            text-white flex items-center">
-                                <svg class="w-6 h-6 mx-1 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                    <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                                </svg>
-                                {{$status}}
+                <div class="border-gray-300 border-2 rounded-xl w-1/2 p-2 space-x-5">
+                    <div>
+                        <h3>Datos de Facturación</h3>
+                        <h3>Nombre: {{$billing->name}}</h3>
+                        <h3 >Dirección:  {{$billing->address}}</h3>
+                        <h3>Nit: {{$billing->nit}}</h3>
+                        <h3 >DPI: {{$billing->dpi}}</h3>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Package --}}
+            {{-- {{$packages}} --}}
+            <h3 class="font-bold text-lg">Datos Paquete(s)</h3>
+            <div class="flex space-x-1">
+                <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-">
+                    @if($order->type == 1)
+                        <h3 class="font-bold">Courier Nacional</h3>
+
+                        @foreach ($packages as $p)
+                        <div class="flex justify-evenly text-sm text-center">
+                            <div>
+                            <h3 class="w-fit rounded-md px-1
+                            py-1 font-bold text-blue-900">
+                            No. </h3>
+                            <h3>Paquete #1</h3>
                             </div>
-                            <h3>{{$order->tracking->$key == null ? '-':$order->tracking->$key;}}</h3>
+
+                            <div>
+                                <h3 class="w-fit rounded-md px-1
+                                py-1 font-bold text-blue-900">
+                                Tamaño. </h3>
+                                <h3>{{$p->size}}cm</h3>
+                            </div>
+
+                            <div>
+                                <h3 class="w-fit rounded-md px-1
+                                py-1 font-bold text-blue-900">
+                                Peso. </h3>
+                                <h3>{{$p->weight}}lb</h3>
+                            </div>
+
+                            <div>
+                                <h3 class="w-fit rounded-md px-1
+                                py-1 font-bold text-blue-900">
+                                Frágil. </h3>
+                                <h3>
+                                    {{ $p->fragile == 0 ? '-' : 'X' }}
+                                </h3>
+                            </div>
+
+                            <div>
+                                <h3 class="w-fit rounded-md px-1
+                                py-1 font-bold text-blue-900">
+                                Peligroso. </h3>
+                                <h3>
+                                    {{ $p->dangerous == 0 ? '-' : 'X' }}
+                                </h3>
+                            </div>
+
+                            <div>
+                                <h3 class="w-fit rounded-md px-1
+                                    py-1 font-bold text-blue-900">
+                                    Peligroso. </h3>
+                                <h3>
+                                    {{ $p->perishable == 0 ? '-' : 'X' }}
+                                </h3>
+                            </div>
                         </div>
+                        @endforeach
+                    @elseif($order->type == 2)
+                        <h3 class="font-bold text-blue-900 text-center">Courier Miami</h3>
+
+                        @foreach ($packages as $p)
+                        <div class="flex justify-evenly  rounded-lg">
+                            <div>
+                                <h3 class="w-fit rounded-md px-2
+                                    py-1 font-bold text-blue-900">Valor mercadería: </h3>
+                                <h3 class=" w-fit rounded-md px-2
+                                py-1 font-bold text-black">${{number_format((float)$p->price, 2, '.', '')}}</h3>
+                            </div>
+                            <div>
+                                <h3 class="w-fit rounded-md px-2
+                                    py-1 font-bold text-blue-900">
+                                    Peso: </h3>
+                                <h3 class=" w-fit rounded-md px-2
+                                py-1 font-bold text-black">{{$p->weight}}lb</h3>
+                            </div>
+                            <div>
+                                <h3 class="w-fit rounded-md px-2
+                                    py-1 font-bold text-blue-900">Shipping: </h3>
+                                <h3 class=" w-fit rounded-md px-2
+                                py-1 font-bold text-black">${{number_format((float)$p->shipping, 2, '.', '')}}</h3>
+                            </div>
+
+                            {{-- {{$quotation->currency == 'Q'? 'Q':'$'}} --}}
+                        </div>
+                        @endforeach
+                    @elseif($order->type == 3)
+                        <h3 class="font-bold">Courier China</h3>
+                        @foreach ($packages as $p)
+                        <div class="">
+                            <div>
+                                <span class="w-fit rounded-md px-2
+                                    py-1 font-bold text-blue-900">Valor mercadería: </span>
+                                <span class=" w-fit rounded-md px-2
+                                py-1 font-bold text-black">${{number_format((float)$p->price, 2, '.', '')}}</span>
+                            </div>
+                            <div>
+                                <span class="w-fit rounded-md px-2
+                                    py-1 font-bold text-blue-900">
+                                    Peso: </span>
+                                <span class=" w-fit rounded-md px-2
+                                py-1 font-bold text-black">{{$p->weight}}lb</span>
+                            </div>
+                            <div>
+                                <span class="w-fit rounded-md px-2
+                                    py-1 font-bold text-blue-900">Shipping: </span>
+                                <span class=" w-fit rounded-md px-2
+                                py-1 font-bold text-black">${{number_format((float)$p->shipping, 2, '.', '')}}</span>
+                            </div>
+                        </div>
+                        @endforeach
                     @endif
-                    @endforeach
-                    @endif
+
                 </div>
 
-                @if(isset($order->tracking->status_1) && !isset($order->tracking->$last_status))
-                <form action="/tracking-update" method="POST">
-                    @csrf
-                    <input type="text" name="idtracking" value="{{$order->tracking->idtracking}}" hidden>
-                    <Button type="submit" class="text-white bg-blue-950 p-2
-                        rounded-xl block mx-auto my-5">
-                        Actualizar Tracking
-                    </Button>
-                </form>
-                @endif
+                <div class="border-gray-300 border-2 rounded-xl w-1/2 p-5 space-x-5">
+                    @php
+                        $order->type == 1? $quoter ='national':false;
+                        $order->type == 2? $quoter ='miami':false;
+                        $order->type == 3? $quoter ='china':false;
+                    @endphp
+                    <a  href="/{{$quoter}}-quoter-generate-osc/{{$quotation->idquotation}}" target="_blank" >
+                        <h3 class="font-bold text-xl text-center">Orden De Servicio Al Cliente</h3>
+                        <p class="text-sm text-center">
+                            Si deseas ver la orden de servicio al cliente
+                            has click en el boton de abajo
+                        </p>
+                        <button  type="button" class="flex mx-auto mt-5 bg-blue-800 px-4 py-2
+                            rounded-md text-white cursor-pointer" >Ver
+                        </button>
+                    </a>
+                </div>
+
+                <div class="border-gray-300 border-2 rounded-xl w-1/2 p-2 space-x-5">
+                    <div>
+                        <h3>Datos de Pago</h3>
+                        <h3>Tipo: {{$payment->type}}</h3>
+                        <h3>Moneda:  {{$payment->currency}}</h3>
+                        <h3>Total: {{$payment->total}}</h3>
+                    </div>
+                </div>
             </div>
         </div>
-
     </section>
-
-    {{-- <script>
-        $('#Guide').click(function(){
-            var divToPrint= $('#Guide').parent().html();
-
-            newWin= window.open("");
-            newWin.document.write("<link rel='stylesheet' href='http://127.0.0.1:8000/css/app.css' type='text/css' media='print'/>" );
-            // newWin.document.write('<link href="http://127.0.0.1:8000/css/app.css" rel="stylesheet">');
-            newWin.document.write(divToPrint);
-            newWin.document.close();
-            newWin.print();
-            // newWin.close();
-        });
-    </script> --}}
-
 @endsection
+
 
 
 @push('child-scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
     <script>
-        $('#test_btn').click(function(){
-            $('#test_form').ajaxSubmit({
+        $('#user_order_show_invoice_btn').click(function(){
+            $('#user_order_show_invoice_form').ajaxSubmit({
                 success: function(res, status, xhr, form) {
-                    console.log(res);
                     var a = document.createElement('a');
                     a.href = res;
                     a.target = '_blank';
@@ -266,14 +248,12 @@
             console.log('calling');
             const result = await resolveAfter2Seconds();
             console.log(result);
-            $('#test_delete').ajaxSubmit({
+            $('#user_order_delete_invoice_form').ajaxSubmit({
                 success: function(res, status, xhr, form) {
                     console.log(res);
                 }
             });
-
         }
-
         function resolveAfter2Seconds() {
             return new Promise((resolve) => {
                 setTimeout(() => {

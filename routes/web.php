@@ -74,8 +74,11 @@ Route::post('/tracking-update', [App\Http\Controllers\TrackingController::class,
 Route::get('/tracking-index', [App\Http\Controllers\TrackingController::class, 'index']);
 Route::get('/tracking-add', function() {return view('tracking.add');});
 Route::post('/tracking-add', [App\Http\Controllers\TrackingController::class, 'add']);
+Route::get('/tracking-add/{id}', [App\Http\Controllers\TrackingController::class, 'addToOrder']);
 Route::get('/tracking-update/{id}', [App\Http\Controllers\TrackingController::class, 'updateView']);
-Route::post('/tracking-update', [App\Http\Controllers\TrackingController::class, 'update']);
+Route::post('/tracking-update-tracking', [App\Http\Controllers\TrackingController::class, 'updateTracking']);
+Route::post('/tracking-update-status', [App\Http\Controllers\TrackingController::class, 'updateStatus']);
+Route::post('/tracking-delete', [App\Http\Controllers\TrackingController::class, 'delete']);
 
 // Billing
 Route::get('/upload-invoice', [App\Http\Controllers\BillingController::class, 'index']);
@@ -134,10 +137,13 @@ Route::get('/refund-politics', function() {return view('footer.refundPolitics');
 Route::get('/deposit-politics', function() {return view('footer.depositPolitics');});
 Route::get('/payment-instructive', function() {return view('footer.paymentInstructive');});
 
+
 // MailForms
 Route::post('/refund-form', [App\Http\Controllers\MailController::class, 'refundForm']);
 Route::post('/claim-form', [App\Http\Controllers\MailController::class, 'claimForm']);
 Route::post('/deposit-form', [App\Http\Controllers\MailController::class, 'depositForm']);
+
+
 
 Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting|storer|deliver|client'])->group(function () {
     //Promo
@@ -160,7 +166,6 @@ Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting
     Route::get('/user-order/{id}', [App\Http\Controllers\UsersController::class, 'order']);
 
     Route::post('/rate-us', [App\Http\Controllers\HomeController::class, 'rateUs']);
-    // Route::get('/claim-form', function() {return view('footer.claimForm');});
 });
 
 

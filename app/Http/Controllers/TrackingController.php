@@ -15,24 +15,41 @@ use Illuminate\Support\Facades\Redirect;
 class TrackingController extends Controller
 {
     public function index(){
-        $tracking = Tracking::all();
+        $tracking = Tracking::Where('status',1)->get();
 
         return view('tracking.index')->with(['tracking'=>$tracking]);
     }
 
-    public function add(Request $request){
-
+    public function addToOrder(Request $request){
+        dd($request);
+        $request->request->add(['status'=>'1']);
         $tracking = globalnewTracking($request);
         $service = $tracking->service;
 
         $tracking_states = TrackingStates::where('service',$service)->first();
 
-        $request->request->add(['status'=>'status_1']);
+        $request->merge(['status' =>'status_1']);
         $request->request->add(['state'=>$tracking_states->status_1]);
         $request->request->add(['tracking_idtracking'=>$tracking->idtracking]);
         $tracking_status = globalnewTrackingStatus($request);
 
-        return Redirect::to('/tracking-add');
+        return Redirect::to('/tracking-index');
+    }
+
+    public function add(Request $request){
+
+        $request->request->add(['status'=>'1']);
+        $tracking = globalnewTracking($request);
+        $service = $tracking->service;
+
+        $tracking_states = TrackingStates::where('service',$service)->first();
+
+        $request->merge(['status' =>'status_1']);
+        $request->request->add(['state'=>$tracking_states->status_1]);
+        $request->request->add(['tracking_idtracking'=>$tracking->idtracking]);
+        $tracking_status = globalnewTrackingStatus($request);
+
+        return Redirect::to('/tracking-index');
     }
 
     public function updateView($idtracking){
@@ -52,9 +69,15 @@ class TrackingController extends Controller
         return view('tracking.update')->with(['tracking'=>$tracking,'tracking_states'=>$tracking_states,'tracking_status'=>$tracking_status]);
     }
 
-    public function update(Request $request){
+    public function updateTracking(Request $request){
         $request->request->add(['idtracking'=>$request->tracking_id]);
         $tracking = globalnewTracking($request);
+
+        return Redirect::to('/tracking-update/'.$request->tracking_id);
+    }
+
+    public function updateStatus(Request $request){
+        $tracking = Tracking::Where('idtracking',$request->tracking_id)->first();
 
         $service = $tracking->service;
 
@@ -65,7 +88,15 @@ class TrackingController extends Controller
         $request->request->add(['tracking_idtracking'=>$tracking->idtracking]);
         $tracking_status = globalnewTrackingStatus($request);
 
-        return Redirect::to('/tracking-update/'.$request->tracking_id);
+        return Redirect::to('/tracking-update/'.$tracking->idtracking);
+    }
+
+    public function delete(Request $request){
+        $request->request->add(['idtracking'=>$request->tracking_id]);
+        $request->request->add(['status'=>0]);
+        $tracking = globalnewTracking($request);
+
+        return Redirect::to('/tracking-index');
     }
 
     public function track(Request $request){

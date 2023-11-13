@@ -187,13 +187,15 @@ class AdminController extends Controller
 
         $invoice = Invoice::where('order_idorder',$order->idorder)->first();
 
+        $billing = Billing::where('order_idorder',$order->idorder)->first();
 
-        return view('user.order')->with([
+        return view('admin.orderCourier')->with([
             'order'=>$order,
             'quotation'=>$quotation,
             'packages'=>$packages,
             'address'=>$address,
             'payment'=>$payment,
+            'billing'=>$billing,
             'invoice'=>$invoice,
         ]);
 

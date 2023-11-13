@@ -20,5 +20,6 @@ class Tracking extends Model
         'order_number',
         'order_idorder',
         'users_id',
+        'status'
     ];
 }
