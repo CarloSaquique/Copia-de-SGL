@@ -2,6 +2,10 @@
 
 @section('content')
     <section >
+        <div class="ml-10 my-5">
+            <a href="/tracking-index" class="underline">Inicio Tracking</a>
+        </div>
+
         <div class="flex justify-evenly">
             <form action="/tracking-update-tracking" method="POST" autocomplete="off" >
                 @csrf

@@ -11,9 +11,14 @@
                     <a href="/admin-index-courier" class="hover:text-blue-300">Ordenes</a>
                 </li>
                 <li>
+                    <a href="/tracking-index" class="hover:text-blue-300">Tracking</a>
+                </li>
+                <li>
                     {{-- <a href="/admin-payment-index" class="hover:text-blue-300">Pagos</a> --}}
                 </li>
             </ul>
+
+
 
             {{-- Button Responsive Navbar --}}
             <div class="ml-auto items-center flex md:hidden">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="px-96 py-10 min-h-screen">
+    <section class="px-32 py-10 min-h-screen">
         <h3 class="font-bold text-xl text-center">Tracking</h3>
         <a href="/tracking-add">
             <button type="button" class=" bg-blue-700 text-white
@@ -11,8 +11,7 @@
         </a>
         <div class="p-3 border rounded-lg my-10">
         @foreach ($tracking as $t)
-            <div class="flex ">
-
+            <div class="flex py-3">
                 <h3 class="font-bold mx-5">{{$t->service == 1? 'Courier Nacional':false}}</h3>
                 <h3 class="font-bold mx-5">{{$t->service == 2? 'Courier Miami':false}}</h3>
                 <h3 class="font-bold mx-5">{{$t->service == 3? 'Courier China':false}}</h3>
@@ -27,6 +26,7 @@
                     </a>
                 </div>
             </div>
+            <hr class="bg-gray-200">
         @endforeach
     </section>
 @endsection
