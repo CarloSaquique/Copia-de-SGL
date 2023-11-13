@@ -71,6 +71,11 @@ Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting
 //Tracking
 Route::post('/track', [App\Http\Controllers\TrackingController::class, 'track']);
 Route::post('/tracking-update', [App\Http\Controllers\TrackingController::class, 'update']);
+Route::get('/tracking-index', [App\Http\Controllers\TrackingController::class, 'index']);
+Route::get('/tracking-add', function() {return view('tracking.add');});
+Route::post('/tracking-add', [App\Http\Controllers\TrackingController::class, 'add']);
+Route::get('/tracking-update/{id}', [App\Http\Controllers\TrackingController::class, 'updateView']);
+Route::post('/tracking-update', [App\Http\Controllers\TrackingController::class, 'update']);
 
 // Billing
 Route::get('/upload-invoice', [App\Http\Controllers\BillingController::class, 'index']);

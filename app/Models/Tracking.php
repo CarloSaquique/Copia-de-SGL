@@ -12,14 +12,12 @@ class Tracking extends Model
     protected $primaryKey = 'idtracking';
 
     protected $fillable = [
+        'service',
         'tracking_number',
-        'status_1',
-        'status_2',
-        'status_3',
-        'status_4',
-        'status_5',
-        'status_6',
-        'status_7',
+        'hbl',
+        'mbl',
+        'awb',
+        'order_number',
         'order_idorder',
         'users_id',
     ];

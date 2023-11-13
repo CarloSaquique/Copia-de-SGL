@@ -7,9 +7,11 @@ use App\Models\Payment;
 use App\Models\Billing;
 use App\Models\Address;
 use App\Models\Package;
+use App\Models\Tracking;
 use App\Models\Bitacora;
 use App\Models\Quotation;
 use App\Models\PackageTable;
+use App\Models\TrackingStatus;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -312,6 +314,65 @@ function globalNewBilling($request){
             ]);
 
             return $billing;
+        }
+    }catch(\Exception $e){
+        DB::rollback();
+    }
+}
+
+function globalNewTracking($request){
+    try {
+        $validator = Validator::make($request->all(), [
+            // 'total' => 'sometimes|numeric',
+        ]);
+
+
+        if(!$validator->fails()) {
+            $request->idtracking?
+            $old_tracking = Tracking::findOrFail($request->idtracking):
+            $old_tracking = new Tracking();
+
+            $tracking = Tracking::updateOrCreate([
+                'idtracking' => $request->get('idtracking'),
+            ],[
+                'service' => $request->get('service',$old_tracking->service),
+                'tracking_number' => $request->get('tracking_number',$old_tracking->tracking_number),
+                'hbl' => $request->get('hbl',$old_tracking->hbl),
+                'mbl' => $request->get('mbl',$old_tracking->mbl),
+                'awb' => $request->get('awb',$old_tracking->awb),
+                'order_number' => $request->get('order_number',$old_tracking->order_number),
+                'order_idorder' => $request->get('order_idorder',$old_tracking->order_idorder),
+                'users_id' => $request->get('users_id',$old_tracking->users_id),
+            ]);
+
+            return $tracking;
+        }
+    }catch(\Exception $e){
+        DB::rollback();
+    }
+}
+
+function globalNewTrackingStatus($request){
+    try {
+        $validator = Validator::make($request->all(), [
+            // 'total' => 'sometimes|numeric',
+        ]);
+
+
+        if(!$validator->fails()) {
+            $request->idtracking_status?
+            $old_tracking_status = TrackingStatus::findOrFail($request->idtracking_status):
+            $old_tracking_status = new TrackingStatus();
+
+            $tracking_status = TrackingStatus::updateOrCreate([
+                'idtracking_status' => $request->get('idtracking_status'),
+            ],[
+                'state' => $request->get('state',$old_tracking_status->state),
+                'status' => $request->get('status',$old_tracking_status->status),
+                'tracking_idtracking' => $request->get('tracking_idtracking',$old_tracking_status->tracking_idtracking),
+            ]);
+
+            return $tracking_status;
         }
     }catch(\Exception $e){
         DB::rollback();
