@@ -22,10 +22,10 @@ $('#register_btn').click(function(){
 
     let form = '#'+$(this).closest("form").attr('id');
     let $validator = Validation(form,fields);
-    $(form).submit();
-    // if(!$validator.fail){
-    //     $(form).submit();
-    // }
+
+    if(!$validator.fail){
+        $(form).submit();
+    }
 });
 
 $('#home_register_btn').click(function(){
