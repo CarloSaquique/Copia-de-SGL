@@ -65,7 +65,6 @@
 
 
             let position = {!! json_encode($last_status, JSON_HEX_TAG) !!};
-            position = 'status_10';
 
             let map_data = table[position];
 
