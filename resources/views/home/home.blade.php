@@ -595,7 +595,7 @@
                             <!-- Modal header -->
                             <div class="flex items-start justify-between p-4 border-b rounded-t ">
                                 <h3 class="text-xl font-semibold text-gray-900 ">
-                                    Condiciones de Servicio POBOX
+                                    Condiciones de Servicio Courier Nacional
                                 </h3>
                                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center " data-modal-hide="defaultModalCn">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -607,21 +607,7 @@
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
                                 <p class="text-base leading-relaxed text-gray-500 px-3">
-                                    a) Todas nuestras tarifas incluyen IVA. <br>
-                                    b) El embalaje y empaque es responsabilidad de cliente y proveedor. <br>
-                                    c)Las entregas se realizan en oficinas de destino únicamente. <br>
-                                    d) GRUPO SGL (y su corporativo) no se responsabilizan por daños ocurridos en el transito debido a mal empaque o embalaje de la misma. <br>
-                                    e) En caso de extravió de mercadería el cliente deberá de ingresar un reclamo por medio de FORMULARIO DE RECLAMOS COURIER, en un tiempo máximo de 3 días hábiles, después de notificado el mismo por servicio al cliente. <br>
-                                    f) La cobertura por reclamos únicamente aplican a un valor máximo del 70% de la mercadería declarada al momento de despacho con soporte de factura contable y documentos requeridos en FORMULARIO DE RECLAMOS COURIER. <br>
-                                    g) Los productos con baterías están sujetos a restricción de vuelo por normas internacionales. <br>
-                                    g.1) Los paquetes están sujetos a aceptación de aerolínea, por lo que de no cumplir con las normas de vuelo pueden ser retenidos o retornados a nuestras oficinas de origen. <br>
-                                    h) Los tiempos de tránsito ofertados pueden variar por disposición de vuelo de aerolínea en las cuales GRUPO SGL, no es responsable de las mismas. <br>
-                                    i)GRUPO SGL, no se responsabiliza por el mal funcionamiento o calidad de los productos transportados. <br>
-                                    i.1) GRUPO SGL, podrá notificar los daños visuales de paquetes que presenten daños, sin embargo, no se revisar ni abren los paquetes previos a vuelos. <br>
-                                    i.2) Los paquetes con contrabando o mercaderías no declaradas podrán ser confiscados por las autoridades. <br>
-                                    j) GRUPO SGL, no se responsabiliza por las demoras ocasionadas por huelgas, disposiciones gubernamentales y autoridades de aduana en origen y destino. <br>
-                                    k) El cliente acepta las condiciones al momento de requerir el servicio. <br>
-                                    l)Tarifa valida por 8 días. <br>
+
                                 </p>
                             </div>
 
