@@ -18,12 +18,20 @@
     /* font-weight: 300; */
 }
 
+.animate-pulse{
+    animation-name: animate-color;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+
 
 @keyframes animate-color {
     0% {
         color: rgb(195, 195, 195);
     }
     100% {
-    color: #2bf802;
+    color: rgb(255, 226, 3);
     }
 }

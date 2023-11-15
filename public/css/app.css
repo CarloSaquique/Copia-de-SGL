@@ -925,6 +925,9 @@ video {
 .max-h-56 {
   max-height: 14rem;
 }
+.max-h-\[600px\] {
+  max-height: 600px;
+}
 .max-h-full {
   max-height: 100%;
 }
@@ -991,6 +994,9 @@ video {
 .w-4 {
   width: 1rem;
 }
+.w-4\/12 {
+  width: 33.333333%;
+}
 .w-4\/6 {
   width: 66.666667%;
 }
@@ -1023,6 +1029,9 @@ video {
 }
 .w-8\/12 {
   width: 66.666667%;
+}
+.w-9\/12 {
+  width: 75%;
 }
 .w-96 {
   width: 24rem;
@@ -1070,6 +1079,15 @@ video {
 .rotate-90 {
   --tw-rotate: 90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@keyframes pulse {
+
+  50% {
+    opacity: .5;
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 @keyframes spin {
 
@@ -1139,6 +1157,13 @@ video {
 }
 .gap-5 {
   gap: 1.25rem;
+}
+.gap-x-5 {
+  -moz-column-gap: 1.25rem;
+       column-gap: 1.25rem;
+}
+.gap-y-3 {
+  row-gap: 0.75rem;
 }
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1517,17 +1542,9 @@ video {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
-.px-32 {
-  padding-left: 8rem;
-  padding-right: 8rem;
-}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-.px-44 {
-  padding-left: 11rem;
-  padding-right: 11rem;
 }
 .px-5 {
   padding-left: 1.25rem;
@@ -1596,6 +1613,9 @@ video {
 }
 .align-middle {
   vertical-align: middle;
+}
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 .text-2xl {
   font-size: 1.5rem;
@@ -1958,13 +1978,13 @@ video {
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-700\/50:hover {
-  background-color: rgb(29 78 216 / 0.5);
+.hover\:bg-blue-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-800:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+.hover\:bg-blue-700\/50:hover {
+  background-color: rgb(29 78 216 / 0.5);
 }
 
 .hover\:bg-blue-900:hover {
@@ -2407,6 +2427,10 @@ video {
     height: 1.25rem;
   }
 
+  .md\:w-10\/12 {
+    width: 83.333333%;
+  }
+
   .md\:w-4\/6 {
     width: 66.666667%;
   }
@@ -2442,6 +2466,10 @@ video {
 
   .md\:gap-8 {
     gap: 2rem;
+  }
+
+  .md\:gap-y-5 {
+    row-gap: 1.25rem;
   }
 
   .md\:p-10 {
@@ -2567,6 +2595,10 @@ video {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -2581,6 +2613,10 @@ video {
 
   .lg\:gap-7 {
     gap: 1.75rem;
+  }
+
+  .lg\:gap-y-10 {
+    row-gap: 2.5rem;
   }
 
   .lg\:space-x-1 > :not([hidden]) ~ :not([hidden]) {
@@ -2683,6 +2719,10 @@ video {
 
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .xl\:gap-0 {

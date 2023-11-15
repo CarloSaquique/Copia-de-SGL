@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Redirect;
 class TrackingController extends Controller
 {
     public function index(){
-        $tracking = Tracking::Where('status',1)->get();
+        $tracking = Tracking::Where('status',1)->get()->all();
+
+        $tracking = array_reverse($tracking);
 
         return view('tracking.index')->with(['tracking'=>$tracking]);
     }
@@ -99,16 +101,51 @@ class TrackingController extends Controller
         return Redirect::to('/tracking-index');
     }
 
+    public function search(Request $request){
+        // dd($request->tracking_number);
+        try {
+            if($request->tracking_number){
+                $tracking = Tracking::where(function ($query) use ($request) {
+                    $query->where('tracking_number', '=', $request->tracking_number)
+                        ->orWhere('hbl', '=', $request->tracking_number)
+                        ->orWhere('mbl', '=', $request->tracking_number)
+                        ->orWhere('awb', '=', $request->tracking_number)
+                        ->orWhere('order_number', '=', $request->tracking_number);
+                })->first();
+
+
+            }else{
+                trigger_error("Undefined Tracking Number", E_USER_ERROR);
+            }
+
+
+        } catch (\Throwable $th) {
+            return Redirect::to('/tracking-index');
+        }
+        return Redirect::to('/tracking-update/'.$tracking->idtracking);
+    }
+
     public function track(Request $request){
-        $tracking = Tracking::where(function ($query) use ($request) {
-            $query->where('tracking_number', '=', $request->tracking_number)
-                  ->orWhere('awb', '=', $request->tracking_number);
-        })->first();
+        try {
+            if($request->tracking_number){
+                $tracking = Tracking::where(function ($query) use ($request) {
+                    $query->where('tracking_number', '=', $request->tracking_number)
+                        ->orWhere('hbl', '=', $request->tracking_number)
+                        ->orWhere('mbl', '=', $request->tracking_number)
+                        ->orWhere('awb', '=', $request->tracking_number)
+                        ->orWhere('order_number', '=', $request->tracking_number);
+                })->first();
 
+                $tracking_status = TrackingStatus::Where('tracking_idtracking',$tracking->idtracking)->get();
+                $last_status = $tracking_status->last()->status;
+            }else{
+                trigger_error("Undefined Tracking Number", E_USER_ERROR);
+            }
 
-        $tracking_status = TrackingStatus::Where('tracking_idtracking',$tracking->idtracking)->get();
-
-        return view('tracking.status')->with(['tracking'=>$tracking,'tracking_status'=>$tracking_status]);
+        } catch (\Throwable $th) {
+            return Redirect::to('/');
+        }
+        return view('tracking.status')->with(['tracking'=>$tracking,'tracking_status'=>$tracking_status,'last_status'=>$last_status]);
     }
 
     // public function update(Request $request){
