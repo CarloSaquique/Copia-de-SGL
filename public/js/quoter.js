@@ -546,7 +546,8 @@ $(inputs).click(function() {
 //Miami Script
 
 let input_price, input_shipping , input_weight, input_description,
-input_premier, input_prepaid;
+input_premier, input_prepaid, input_volumetric_height, input_volumetric_width
+, input_volumetric_depth;
 let input_service = 1;
 let US = 8.01;
 
@@ -642,7 +643,7 @@ function cleanQuotationMg(){
     $('#home_mg_total_include').text('0.00');
 }
 
-// volumen/5000 *2.2046
+
 // Price, Shipping , Weight Keyup Event
 $('.home_quotation_keyup').keyup(function() {
     this.id == 'home_mg_price'? input_price =  parseFloat(this.value):false;
@@ -832,7 +833,9 @@ $("#home_cg_service_select").change(function(){
 
 // China Quoter JS
 function getQuotationCg(){
-    if((!isNaN(input_price)) && (!isNaN(input_shipping)) && (!isNaN(input_weight)) && (!isNaN(input_description))){
+    if((!isNaN(input_price)) && (!isNaN(input_shipping)) && (!isNaN(input_weight)) &&
+        (!isNaN(input_description)) && (!isNaN(input_volumetric_height)) &&
+        (!isNaN(input_volumetric_width)) && (!isNaN(input_volumetric_depth))){
         let commission = 0;
 
         input_service == 2 ?
@@ -857,7 +860,15 @@ function getQuotationCg(){
         input_premier ?  premier = (1.9)*input_premier:premier = 0;
         input_prepaid ?  prepaid = (0.75 * input_weight)*input_prepaid:prepaid = 0;
 
-        let transport = (input_weight *10.5);
+        let volumetric_weight = input_volumetric_height*input_volumetric_width*input_volumetric_depth;
+
+        volumetric_weight = volumetric_weight/5000 *2.2046;
+
+        input_weight > volumetric_weight?
+        weight = input_weight:
+        weight = volumetric_weight;
+
+        let transport = (weight *10.5);
         let desaduanaje = (4.25);
         let insurance = ((input_price + transport) * 0.022);
         let services = (transport + desaduanaje);
@@ -905,6 +916,9 @@ $('.home_quotation_keyup').keyup(function() {
     this.id == 'home_cg_price'? input_price =  parseFloat(this.value):false;
     this.id == 'home_cg_shipping'? input_shipping =  parseFloat(this.value):false;
     this.id == 'home_cg_weight'? input_weight =  parseFloat(this.value):false;
+    this.id == 'home_cg_volumetric_height'? input_volumetric_height =  parseFloat(this.value):false;
+    this.id == 'home_cg_volumetric_width'? input_volumetric_width =  parseFloat(this.value):false;
+    this.id == 'home_cg_volumetric_depth'? input_volumetric_depth =  parseFloat(this.value):false;
     getQuotationCg();
 });
 
@@ -929,7 +943,6 @@ $('#home_cg_chk_terms').change(function(){
 
 // China-quoter-quotation
 $('#home_cg_btn_quotation_order').click(function(){
-    // $('#home_cg_form_packages').submit();
     let fields = [
         {'name':'link','validation':['blank']},
     ]
@@ -939,6 +952,7 @@ $('#home_cg_btn_quotation_order').click(function(){
 
     if(!validator.fail || input_service == 1){
         LoadingAnimation(this,'loading');
+        // $('#home_cg_form_packages').submit();
         $('#home_cg_form_packages').ajaxSubmit({
             success: function(res, status, xhr, form) {
                 QuoterDivVisibility('cg',[0,3]);

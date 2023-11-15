@@ -1297,6 +1297,13 @@
                                         <div class="text-center">
                                             <h3 class="font-bold text-sm">Peso en libras: </h3>
                                             <input id="home_cg_weight" name="weight" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Peso">
+                                            <h3 class="font-bold text-sm">Peso Volumétrico: </h3>
+                                            <div class="flex mx-auto w-fit">
+                                                <input id="home_cg_volumetric_height" name="volumetric_height" class="home_quotation_keyup mx-1 w-3/12  rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
+                                                <input id="home_cg_volumetric_width" name="volumetric_width" class="home_quotation_keyup mx-1 w-3/12  rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
+                                                <input id="home_cg_volumetric_depth" name="volumetric_depth" class="home_quotation_keyup mx-1 w-3/12 rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
+                                            </div>
+                                            <h3 class="font-bold text-2xs">(ancho-alto-profundidad)</h3>
                                         </div>
                                         <div class="text-center ">
                                             <h3 class="font-bold text-sm">Descripción:</h3>
@@ -1382,14 +1389,14 @@
                                     </div>
 
                                     <div class="mt-2 flex text-center w-fit mx-auto">
-                                        <div class="mx-2 font-bold">
+                                        {{-- <div class="mx-2 font-bold">
                                             <h3>Premier Club</h3>
                                             <input id="home_cg_premier" name="premier" class="home_quotation_change" type="checkbox">
                                         </div>
                                         <div class="mx-2 font-bold">
                                             <h3>Prepago</h3>
                                             <input id="home_cg_prepaid" name="prepaid" class="home_quotation_change" type="checkbox" name="">
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 

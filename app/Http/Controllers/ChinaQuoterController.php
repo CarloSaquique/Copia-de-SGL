@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use PDF;
 use Session;
+use App\Models\OSC;
 use App\Models\Order;
 use App\Models\Package;
 use App\Models\Address;
@@ -37,14 +38,19 @@ class ChinaQuoterController extends Controller
         $request->prepaid ? $request->request->add(['prepaid'=>1]):false;
         $request->currency ? $request->request->add(['currency' => '$']):$request->request->add(['currency' => 'Q']);
         $request->terms ? $request->request->add(['terms'=>1]):false;
+        $request->request->add(['width'=>$request->volumetric_width]);
+        $request->request->add(['height'=>$request->volumetric_height]);
+        $request->request->add(['depth'=>$request->volumetric_depth]);
         // New Quotation
         $quotation = globalNewQuotation($request);
+
 
         $request->request->add(['quotation_idquotation'=>$quotation->idquotation]);
         // New Package
         $package = globalNewPackage($request);
 
         $total = $this->total($quotation->idquotation,false);
+
         $request->request->add(['total'=>$total]);
         $payment = globalNewPayment($request);
 
@@ -189,14 +195,22 @@ class ChinaQuoterController extends Controller
         return $pdf->stream('File.pdf');
     }
 
-    public function total($idquotation){
+    public function total($idquotation,$osc){
         $quotation = Quotation::findOrFail($idquotation);
 
         $package = Package::where('quotation_idquotation',$quotation->idquotation)
         ->first();
 
         $_dai = (int)($package->detail);
-        $_weight = $package->weight;
+
+        // Peso volumetrico
+        $volumetric_weight = $package->height*$package->width*$package->depth;
+        $volumetric_weight = $volumetric_weight/5000 *2.2046;
+
+        $package->weight > $volumetric_weight?
+        $_weight = $package->weight:
+        $_weight = $volumetric_weight;
+
         $_price = $package->price;
 
         $currency = $quotation->currency;
