@@ -36,6 +36,13 @@
                     </div>
                     <hr class=" border-2 border-gray-300 border-dotted">
                 @endforeach
+                <div class="my-1 mx-auto w-fit">
+                    @for ($i = 1; $i <= $last_page; $i++)
+                        <a href="http://127.0.0.1:8000/tracking-paginate/{{$i}}?page={{$i}}">
+                            <span class="underline cursor-pointer">{{$i}}</span>
+                        </a>
+                    @endfor
+                </div>
             </div>
         </div>
 

@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Redirect;
 class TrackingController extends Controller
 {
     public function index(){
-        $tracking = Tracking::Where('status',1)->get()->all();
+        $tracking = Tracking::Where('status',1)->paginate(10);
 
-        $tracking = array_reverse($tracking);
+        $tracking_reverse = array_reverse($tracking->all());
 
-        return view('tracking.index')->with(['tracking'=>$tracking]);
+        return view('tracking.index')->with(['tracking'=>$tracking_reverse,'last_page'=>$tracking->lastPage()]);
     }
 
     public function addToOrder(Request $request){
@@ -148,17 +148,10 @@ class TrackingController extends Controller
         return view('tracking.status')->with(['tracking'=>$tracking,'tracking_status'=>$tracking_status,'last_status'=>$last_status]);
     }
 
-    // public function update(Request $request){
-    //     $tracking = Tracking::findOrFail($request->idtracking);
+    public function paginate($id){
+        $tracking = Tracking::Where('status',1)->paginate(10);
 
-    //     foreach ($tracking->getAttributes() as $key => $t) {
-    //         if($t == null && $key != 'users_id'){
-    //             $tracking->$key = Carbon::now()->toDateTimeString();
-    //             break;
-    //         }
-    //     }
-    //     $tracking->saveOrFail();
-
-    //     return Redirect::to('/admin-order-courier/'.$tracking->order_idorder);
-    // }
+        $tracking_reverse = array_reverse($tracking->all());
+        return view('tracking.index')->with(['tracking'=>$tracking_reverse,'last_page'=>$tracking->lastPage()]);
+    }
 }

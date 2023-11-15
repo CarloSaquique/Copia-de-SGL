@@ -80,6 +80,8 @@ Route::post('/tracking-update-tracking', [App\Http\Controllers\TrackingControlle
 Route::post('/tracking-update-status', [App\Http\Controllers\TrackingController::class, 'updateStatus']);
 Route::post('/tracking-delete', [App\Http\Controllers\TrackingController::class, 'delete']);
 Route::post('/tracking-search', [App\Http\Controllers\TrackingController::class, 'search']);
+Route::get('/tracking-paginate/{id}', [App\Http\Controllers\TrackingController::class, 'paginate']);
+
 
 // Billing
 Route::get('/upload-invoice', [App\Http\Controllers\BillingController::class, 'index']);
