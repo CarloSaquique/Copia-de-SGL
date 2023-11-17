@@ -39,9 +39,8 @@
         </div>
 
         {{-- Rastrea tu producto --}}
-        @if(!Session::has('tracking'))
         <div>
-            <form action="/track" method="POST" class="flex items-center text-center w-fit mx-auto p-2 rounded-lg mt-3">
+            <form action="/track/" method="POST" class="flex items-center text-center w-fit mx-auto p-2 rounded-lg mt-3">
                 @csrf
                 <span class="hidden ml-auto text-sm text-blue-950/90 font-bold md:text-base
                     sm:block">Rastrea tu servicio:</span>
@@ -51,156 +50,6 @@
                 <button type="submit" class="bg-blue-950/90 rounded-full text-xs px-2
                 text-white py-2 mr-auto md:text-base md:py-2 align-middle flex">Rastrear</button>
             </form>
-        </div>
-        @endif
-        {{-- Rastreo --}}
-        <div>
-            @if(Session::has('tracking'))
-            <div class="mt-8 mb-5 w-fit mx-auto grid grid-cols-5 gap-10 items-center">
-                <div class="text-center text-xs">
-                    @if(isset(Session::get('tracking')->status_1))
-                        <div class="bg-blue-950 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white flex items-center">
-                            <svg class="w-6 h-6 mx-1 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            Orden en Proceso
-
-                            <hr class="border-blue-950 border-4 absolute top-1/2" style="width:30%; left:95%">
-                        </div>
-                        <h3>{{Session::get('tracking')->status_1}}</h3>
-                    @else
-                        <div class="bg-gray-400 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white flex items-center">
-                            <svg class="w-6 h-6 mx-1 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            Orden en Proceso
-
-                            <hr class="border-gray-400 border-4 absolute top-1/2" style="width:30%; left:95%">
-                        </div>
-                        <h3>-</h3>
-                    @endif
-                </div>
-
-                <div class="text-center text-xs">
-                    @if(isset(Session::get('tracking')->status_2))
-                        <div class="bg-blue-950 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white  flex items-center">
-                            <svg class="w-6 h-6 mx-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            En Ruta De Recolección
-                            <hr class=" border-blue-950 border-4 absolute top-1/2" style="width:30%; right:95%">
-
-                            <hr class=" border-blue-950 border-4 absolute top-1/2" style="width:30%; left:95%">
-                        </div>
-                        <h3>{{Session::get('tracking')->status_2}}</h3>
-                    @else
-                        <div class="bg-gray-400 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white  flex items-center">
-                            <svg class="w-6 h-6 mx-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            En Ruta De Recolección
-                            <hr class=" border-gray-400 border-4 absolute top-1/2" style="width:30%; right:95%">
-
-                            <hr class=" border-gray-400 border-4 absolute top-1/2" style="width:30%; left:95%">
-                        </div>
-                        <h3>-</h3>
-                    @endif
-                </div>
-
-                <div class="text-center text-xs">
-                    @if(isset(Session::get('tracking')->status_3))
-                        <div class="bg-blue-950 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white  flex items-center">
-                            <svg class="w-6 h-6 mx-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            Paquete Recolectado
-                            <hr class=" border-blue-950 border-4 absolute top-1/2" style="width:30%; right:95%">
-
-                            <hr class=" border-blue-950 border-4 absolute top-1/2" style="width:30%; left:95%">
-                        </div>
-
-                        <h3>{{Session::get('tracking')->status_3}}</h3>
-                    @else
-                        <div class="bg-gray-400 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white  flex items-center">
-                            <svg class="w-6 h-6 mx-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            Paquete Recolectado
-                            <hr class=" border-gray-400 border-4 absolute top-1/2" style="width:30%; right:95%">
-
-                            <hr class=" border-gray-400 border-4 absolute top-1/2" style="width:30%; left:95%">
-                        </div>
-
-                        <h3>-</h3>
-                    @endif
-                </div>
-
-                <div class="text-center text-xs">
-                    @if(isset(Session::get('tracking')->status_4))
-                        <div class="bg-blue-950 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white  flex items-center">
-                            <svg class="w-6 h-6 mx-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            En Ruta De Entrega
-                            <hr class=" border-blue-950 border-4 absolute top-1/2" style="width:40%; right:95%">
-
-                            <hr class=" border-blue-950 border-4 absolute top-1/2" style="width:55%; left:95%">
-                        </div>
-
-                        <h3>{{Session::get('tracking')->status_4}}</h3>
-                    @else
-                        <div class="bg-gray-400 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white  flex items-center">
-                            <svg class="w-6 h-6 mx-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            En Ruta De Entrega
-                            <hr class=" border-gray-400 border-4 absolute top-1/2" style="width:40%; right:95%">
-
-                            <hr class=" border-gray-400 border-4 absolute top-1/2" style="width:55%; left:95%">
-                        </div>
-
-                        <h3>-</h3>
-                    @endif
-                </div>
-
-                <div class="text-center text-xs">
-                    @if(isset(Session::get('tracking')->status_5))
-                        <div class="bg-blue-950 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white  flex items-center">
-                            <svg class="w-6 h-6 mx-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            Paquete Entregado
-                            <hr class=" border-blue-950 border-4 absolute top-1/2" style="width:25%; right:95%">
-                        </div>
-
-                        <h3>{{Session::get('tracking')->status_5}}</h3>
-                    @else
-                        <div class="bg-gray-400 mx-auto rounded-full w-fit px-2 h-10 relative
-                        text-white  flex items-center">
-                            <svg class="w-6 h-6 mx-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                            </svg>
-                            Paquete Entregado
-                            <hr class=" border-gray-400 border-4 absolute top-1/2" style="width:25%; right:95%">
-                        </div>
-
-                        <h3>-</h3>
-                    @endif
-                </div>
-            </div>
-            <div class="mx-auto w-fit my-5">
-                <a href="/" class="bg-blue-950 text-white p-2 rounded-xl">Rastrear Otro Paquete</a>
-            </div>
-            @endif
         </div>
 
         {{-- Imagen 1--}}
@@ -595,7 +444,7 @@
                             <!-- Modal header -->
                             <div class="flex items-start justify-between p-4 border-b rounded-t ">
                                 <h3 class="text-xl font-semibold text-gray-900 ">
-                                    Condiciones de Servicio Courier Nacional
+                                    Condiciones de Courier Nacional
                                 </h3>
                                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center " data-modal-hide="defaultModalCn">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

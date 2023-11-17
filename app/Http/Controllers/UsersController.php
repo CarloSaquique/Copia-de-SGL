@@ -13,9 +13,11 @@ use App\Models\Payment;
 use App\Models\Address;
 use App\Models\Package;
 use App\Models\Invoice;
+use App\Models\Tracking;
 use App\Models\Quotation;
 use App\Models\Membership;
 use Illuminate\Http\Request;
+use App\Models\TrackingStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Redirect;
@@ -84,6 +86,7 @@ class UsersController extends Controller
             }
         }
 
+
         $address = DB::table('address')
         ->where('quotation_idquotation',$quotation->idquotation)
         ->get();
@@ -91,6 +94,15 @@ class UsersController extends Controller
         $payment = Payment::where('quotation_idquotation',$quotation->idquotation)->first();
 
         $invoice = Invoice::where('order_idorder',$order->idorder)->first();
+
+        $tracking_exists = Tracking::where('order_idorder',$order->idorder)->exists();
+
+        $tracking = null;
+        $tracking_status = null;
+        if($tracking_exists){
+            $tracking = Tracking::where('order_idorder',$order->idorder)->first();
+            $tracking_status = TrackingStatus::where('tracking_idtracking',$tracking->idtracking)->latest()->first();
+        }
 
         $user_id = Auth::user()->id;
         if($order->users_id = $user_id){
@@ -101,6 +113,8 @@ class UsersController extends Controller
                 'address'=>$address,
                 'payment'=>$payment,
                 'invoice'=>$invoice,
+                'tracking'=>$tracking,
+                'tracking_status'=>$tracking_status,
             ]);
         }else{
             return Redirect::to('/');
@@ -108,7 +122,6 @@ class UsersController extends Controller
     }
 
     public function register(Request $request) {
-        // dd('not');
         try
         {
             $validator = Validator::make($request->all(), [
@@ -132,7 +145,7 @@ class UsersController extends Controller
             }else{
                 $user = new User($request->except('password'));
                 $user->password = bcrypt($request->get('password'));
-                $user->role = 'SGL';
+                $user->role = 'client';
                 $user->status = '1';
                 $user->assignRole('client');
                 $user->saveOrFail();

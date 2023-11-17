@@ -15,8 +15,19 @@
             <h3 class="">{{$order->created_at}}</h3>
             <h3 class="font-bold">Total a pagar: {{$payment->currency}}{{ number_format((float)$payment->total, 2, '.', '')}}</h3>
         </div>
-        <div class="ml-auto ">
-            {{-- <h3 class="bg-blue-950 rounded-md text-white px-3 py-2">En proceso</h3> --}}
+        <div class="ml-auto">
+            @if (isset($tracking))
+                <div class="text-center">
+                    <h3>No.Tracking: {{$tracking->tracking_number}}</h3>
+                </div>
+                <form action="/track/" method="POST" class="flex items-center text-center w-fit mx-auto p-2 rounded-lg">
+                    @csrf
+                    <input name="tracking_number" type="text" value="{{$tracking->tracking_number}}" hidden>
+                    <button type="submit" class="bg-blue-500 rounded-lg text-xs px-2
+                    text-white py-2 mr-auto md:text-base md:py-2 align-middle flex
+                    hover:bg-blue-400">{{$tracking_status->state}}</button>
+                </form>
+            @endif
         </div>
     </div>
 
@@ -37,7 +48,7 @@
                     <h3 class="font-bold">{{$a->phone}}</h3>
                     <h3>{{$a->email}}</h3>
                     @if($a->type == 2)
-                        <input type="date">
+                        {{-- <input type="date"> --}}
                     @endif
                 </div>
             </div>

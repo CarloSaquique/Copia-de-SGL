@@ -215,10 +215,11 @@ class NationalQuoterController extends Controller
         )
         {
             $osc = OSC::where('order_idorder',$quotation->order_idorder)
-            ->first()
-            ->getAttributes();
+            ->first();
         }
 
+        $osc->order_number = $order->order_number;
+        $osc = $osc->getAttributes();
 
         $pdf = PDF::loadView('quoters.oscNationalPdf', $osc);
 

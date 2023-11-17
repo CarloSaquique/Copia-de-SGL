@@ -3,7 +3,7 @@
 @section('admin-content')
     <section class="p-10">
         <div class="border rounded-lg p-10">
-            <h3 class="font-bold text-xl text-center">Resumen De Mi Orden</h3>
+            <h3 class="font-bold text-xl text-center">Resumen Orden</h3>
             <div class="px-5 py-5 flex space-x-5">
                 <div class="mr-auto ">
                     @php
@@ -11,12 +11,21 @@
                         $order->type==2? $courier_name='Courier Miami':false;
                         $order->type==3? $courier_name='Courier China':false;
                     @endphp
-                    <h3 class="font-bold">Pedido {{$courier_name}} {{$order->order_number}}</h3>
+                    <h3>{{$courier_name}}</h3>
+                    <h3 class="font-bold">Orden: {{$order->order_number}}</h3>
                     <h3 class="">{{$order->created_at}}</h3>
                     <h3 class="font-bold">Total a pagar: {{$payment->currency}}{{ number_format((float)$payment->total, 2, '.', '')}}</h3>
                 </div>
-                <div class="ml-auto ">
-                    {{-- <h3 class="bg-blue-950 rounded-md text-white px-3 py-2">En proceso</h3> --}}
+                <div class="ml-auto">
+                    @if (isset($tracking))
+                        <div class="text-center">
+                            <h3>No.Tracking: {{$tracking->tracking_number}}</h3>
+                            <h3 class="bg-blue-500 rounded-md text-white px-3 py-2">{{$tracking_status->state}}</h3>
+                        </div>
+                        <a href="/tracking-update/{{$tracking->idtracking}}" target="_blank">
+                            <button class="px-2 py-2 rounded-lg underline">Ver</button>
+                        </a>
+                    @endif
                 </div>
             </div>
 
