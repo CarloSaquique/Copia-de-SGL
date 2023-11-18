@@ -73,7 +73,7 @@ function Validation(_form,_fields,_name_id){
             }else if (!validation.indexOf('@')){
                 !(/^\w.+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/).test(field_value) ? error_messages[field.name] = ('Coloca un email valido.'):false;
             }else if (!validation.indexOf('password')){
-                !(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-,.]).{6,}$/).test(field_value) ? error_messages[field.name] = ('La contraseña debe tener al menos 6 caracteres, una letra mayuscula, una letra minuscula, un numero y un caracter especial #?!@$%^&*-,.'):false;
+                !(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-,.]).{6,}$/).test(field_value) ? error_messages[field.name] = ('La contraseña debe tener al menos 6 caracteres, una letra minúscula, una letra minúscula, un número y un carácter especial #?!@$%^&*-,.'):false;
             }else if (!validation.indexOf('same')){
                 let comparison_field  = validation.split(':')[1];
                 let field_comparison_value = $(_form + ' input[name=' + comparison_field + _name_id +']').val();

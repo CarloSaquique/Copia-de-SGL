@@ -27,6 +27,10 @@
                     text-white py-2 mr-auto md:text-base md:py-2 align-middle flex
                     hover:bg-blue-400">{{$tracking_status->state}}</button>
                 </form>
+            @else
+                <button type="button" class="bg-blue-500 rounded-lg text-xs px-2
+                text-white py-2 mr-auto md:text-base md:py-2 align-middle flex
+                hover:bg-blue-400">Pendiente de Confirmar</button>
             @endif
         </div>
     </div>

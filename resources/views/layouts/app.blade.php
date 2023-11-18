@@ -46,11 +46,13 @@
 
                 {{-- Tabs --}}
                 <div class="hidden mx-auto sm:flex">
-                    <ul class="flex font-bold text-blue-950/90 items-center">
-
+                    <ul class="flex font-bold text-blue-600 items-center">
+                        <li>
+                            <a href="/store-index" class="block py-2 ml-4 hover:text-black">Home</a>
+                        </li>
                         @role('super-admin|admin|operator|accounting|storer|deliver')
                         <li>
-                            <a href="/admin-index-courier" class="block py-2 ml-4">{{Auth::user()->role}}</a>
+                            <a href="/admin-index-courier" class="block py-2 ml-4 hover:text-black">{{Auth::user()->role}}</a>
                         </li>
                         @endrole
                         {{-- <li>
@@ -67,7 +69,7 @@
                 </div>
 
                 {{-- Button Responsive Navbar --}}
-                <div class="ml-auto items-center flex md:hidden">
+                <div class="ml-auto items-center hidden md:hidden">
                     {{-- <h3 class="items-center">
                         <svg class="w-6 h-6 text-blue-950" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -101,7 +103,7 @@
                         @endif
                     </div>
                 @else
-                    <div class="hidden mr-5 items-center md:flex ml-auto">
+                    <div class="flex mr-5 items-center md:flex ml-auto">
                         <a href="/profile">
                             <div class="flex w-fit space-x-1 hover:bg-blue-200 rounded-lg cursor-pointer">
                                     <img class="w-11 h-11 rounded-xl" src="{{asset('images/user/profile.jpg')}}" alt="">
