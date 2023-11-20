@@ -48,7 +48,7 @@
                 <div class="hidden mx-auto sm:flex">
                     <ul class="flex font-bold text-blue-600 items-center">
                         <li>
-                            <a href="/store-index" class="block py-2 ml-4 hover:text-black">Home</a>
+                            <a href="/" class="block py-2 ml-4 hover:text-black">Home</a>
                         </li>
                         @role('super-admin|admin|operator|accounting|storer|deliver')
                         <li>
