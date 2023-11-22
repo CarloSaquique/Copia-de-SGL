@@ -148,7 +148,7 @@ class TrackingController extends Controller
         return view('tracking.status')->with(['tracking'=>$tracking,'tracking_status'=>$tracking_status,'last_status'=>$last_status]);
     }
 
-    public function paginate($id){
+    public function paginate(){
         $tracking = Tracking::Where('status',1)->paginate(10);
 
         $tracking_reverse = array_reverse($tracking->all());

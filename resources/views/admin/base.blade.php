@@ -8,7 +8,7 @@
             {{-- Tabs --}}
             <ul class="px-5 flex font-bold items-center space-x-10">
                 <li>
-                    <a href="/admin-index-courier" class="hover:text-blue-300">Ordenes</a>
+                    <a href="/admin-index" class="hover:text-blue-300">Ordenes</a>
                 </li>
                 <li>
                     <a href="/tracking-index" class="hover:text-blue-300">Tracking</a>

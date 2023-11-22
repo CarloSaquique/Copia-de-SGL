@@ -52,7 +52,7 @@
                         </li>
                         @role('super-admin|admin|operator|accounting|storer|deliver')
                         <li>
-                            <a href="/admin-index-courier" class="block py-2 ml-4 hover:text-black">{{Auth::user()->role}}</a>
+                            <a href="/admin-index" class="block py-2 ml-4 hover:text-black">{{Auth::user()->role}}</a>
                         </li>
                         @endrole
                         {{-- <li>

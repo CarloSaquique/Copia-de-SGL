@@ -54,8 +54,9 @@ Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting
     Route::get('/admin-index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
     Route::get('/admin-orders-store', [App\Http\Controllers\AdminController::class, 'ordersStore']);
     Route::post('/admin-role-asign', [App\Http\Controllers\AdminController::class, 'roleAsign']);
-    Route::get('/admin-index-courier', [App\Http\Controllers\AdminController::class, 'indexCourier']);
-    Route::get('/admin-order-courier/{id}', [App\Http\Controllers\AdminController::class, 'orderCourier']);
+    Route::get('/admin-index', [App\Http\Controllers\AdminController::class, 'orders']);
+    Route::get('/admin-order/{id}', [App\Http\Controllers\AdminController::class, 'order']);
+    Route::get('/admin-orders-paginate/{courier}/{filter}/{page}', [App\Http\Controllers\AdminController::class, 'ordersPaginate']);
     Route::post('/admin-order-confirm', [App\Http\Controllers\AdminController::class, 'orderConfirm']);
     Route::get('/admin-tracking-index', [App\Http\Controllers\AdminController::class, 'trackingIndex']);
     Route::post('/admin-tracking-asign', [App\Http\Controllers\AdminController::class, 'trackingAsign']);

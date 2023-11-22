@@ -20,48 +20,25 @@ use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
-    public function index(){
-        try {
-            $promo = DB::table('promo')->get();
-            count($promo) == 0 ? $promo = []:true;
+    public function orders(){
+        $orders = DB::table('order')
+        ->where('status','2')
+        ->orWhere('status','3')
+        ->orderBy('created_at', 'desc')
+        ->get();
 
-            $users = DB::table('users')->get();
-            count($users) == 0 ? $users = []:true;
+        foreach ($orders as $key => $order) {
+            $tracking = DB::table('tracking')
+            ->where('order_idorder',$order->idorder)->get()->all();
 
-            return view('admin.index')->with(['promo'=>$promo,'users'=>$users]);
-        } catch (\Throwable $th) {}
-
-        return view('admin.index')->with(['promo'=>[],'users'=>[]]);
-    }
-
-    public function indexCourier(){
-        try {
-            $orders = DB::table('order')
-            ->where('status','2')
-            ->get()->all();
-
-            foreach ($orders as $key => $order) {
-                $order->type == 1 ? $order->type ='Courier Nacional':false;
-                $order->type == 2 ? $order->type ='Courier Miami':false;
-                $order->type == 3 ? $order->type ='Courier China':false;
-
-                $tracking = DB::table('tracking')
-                ->where('order_idorder',$order->idorder)->get()->all();
-
-                $tracking ? $order->tracking = $tracking:false;
-            }
-
-            $orders = array_reverse($orders);
-            $today = Carbon::now();
-
-        return view('admin.indexCourier')->with(['orders'=>$orders,'today'=>$today]);
-        } catch (\Throwable $th) {
-
+            $tracking ? $order->tracking = $tracking:false;
         }
-
+        $today = Carbon::now();
+        // dd($today->diff($order->created_at));
+        return view('admin.orders')->with(['orders'=>$orders,'today'=>$today]);
     }
 
-    public function orderCourier($id){
+    public function order($id){
         $order = DB::table('order')
         ->where('idorder',$id)
         ->get()[0];
@@ -106,7 +83,7 @@ class AdminController extends Controller
             $tracking_status = TrackingStatus::where('tracking_idtracking',$tracking->idtracking)->latest()->first();
         }
 
-        return view('admin.orderCourier')->with([
+        return view('admin.order')->with([
             'order'=>$order,
             'quotation'=>$quotation,
             'packages'=>$packages,
@@ -121,8 +98,9 @@ class AdminController extends Controller
     }
 
     public function orderConfirm(Request $request){
-        // Str::random(8);
         $order = Order::findOrFail($request->idorder);
+        $order->status = 3;
+        $order->saveOrFail();
 
         $tracking_number = 'SGL_'.random_int(100000,999999);
 
@@ -142,7 +120,58 @@ class AdminController extends Controller
         $request->request->add(['tracking_idtracking'=>$tracking->idtracking]);
         $tracking_status = globalnewTrackingStatus($request);
 
-        return Redirect::to('/admin-index-courier');
+        return back();
+    }
+
+    public function ordersPaginate($courier, $filter){
+
+        $filter == 'canceled'? $status = '0':false;
+        $filter == 'pending'? $status = '2':false;
+        $filter == 'confirmed'? $status = '3':false;
+        $filter == 'completed'? $status = '4':false;
+
+        // $orders = DB::table('order')
+        // ->orderBy('created_at', 'desc');
+
+        $orders = Order::paginate(10)->sortDesc();
+
+
+        $orders_count = Order::all()->sortDesc();
+
+        isset($status) ?
+        $orders = $orders->where('status',$status):
+        $orders = $orders->where('status','>','0');
+
+        $courier != 'all' ?
+        $orders = $orders->where('type',$courier):
+        false;
+
+        $courier != 'all' ?
+        $orders_count = $orders_count->where('type',$courier):
+        false;
+
+        $today = Carbon::now();
+
+        return view('admin.orders')->with([
+            'orders'=>$orders,
+            'today'=>$today,
+            'courier'=>$courier,
+            'orders_count'=>$orders_count,
+        ]);
+    }
+
+    public function index(){
+        try {
+            $promo = DB::table('promo')->get();
+            count($promo) == 0 ? $promo = []:true;
+
+            $users = DB::table('users')->get();
+            count($users) == 0 ? $users = []:true;
+
+            return view('admin.index')->with(['promo'=>$promo,'users'=>$users]);
+        } catch (\Throwable $th) {}
+
+        return view('admin.index')->with(['promo'=>[],'users'=>[]]);
     }
 
     public function paymentIndex(){
