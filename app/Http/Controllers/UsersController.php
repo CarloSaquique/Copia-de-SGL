@@ -51,7 +51,7 @@ class UsersController extends Controller
 
         foreach ($orders as $key => $order) {
             $quotation = Quotation::where('order_idorder',$order->idorder)->first();
-            print_r($quotation->idquotation);
+
             $payment = Payment::where('quotation_idquotation',$quotation->idquotation)->first();
             $order->total = $payment->total;
             $order->currency = $payment->currency;
