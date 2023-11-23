@@ -48,7 +48,8 @@ class UsersController extends Controller
 
     public function orders(){
         $orders = Order::where('users_id',Auth::user()->id)
-        ->where('status',3)
+        ->where('status',2)
+        ->orWhere('status',3)
         ->orderBy('created_at', 'desc')
         ->get();
 
