@@ -570,11 +570,6 @@
 
                                 <hr class="h-px my-5 bg-gray-300 border-0">
 
-                                <input class="rounded-lg w-full h-10 border-gray-200"
-                                    name="bill_dpi" type="text" placeholder="DPI">
-
-                                <hr class="h-px my-5 bg-gray-300 border-0">
-
                                 <h3 class="">Resumen de Orden</h3>
                                 <span class="home_cn_osc_total">Total:$0.00</span>
                                 <button id="home_cn_btn_osc" type="button" class="flex justify-center bg-blue-600 rounded-lg
@@ -590,11 +585,15 @@
                 {{-- Success --}}
                 <div id="home_cn_success" class="home_quoters_base hidden bg-white border-2 rounded-xl
                     w-11/12 mx-auto p-5">
-                    <div class="bg-white w-11/12 mx-auto rounded-xl p-10 font-bold text-center">
-                        <h3 id="home_cn_order_success" class="text-lg"></h3>
-                        <h3 class="text-lg mt-5">Revisa tus ordenes</h3>
+                    <div class="bg-white w-11/12 mx-auto rounded-xl p-10  text-center">
+                        <svg class="w-10 h-10 text-green-500 my-5 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        <h3 id="home_cn_order_success" class="text-xl"></h3>
+                        <h3 class="text-base mt-5">Revisa tus órdenes</h3>
+                        <h3 class="text-sm">Haz clic en el botón  de abajo para revisar tus órdenes</h3>
                         <a href="/user-orders">
-                            <button class="text-white bg-blue-600
+                            <button class="text-white bg-green-700
                             px-3 py-2 rounded-lg my-2">Mis Ordenes</button>
                         </a>
                     </div>
@@ -1038,11 +1037,6 @@
 
                                 <hr class="h-px my-5 bg-gray-300 border-0">
 
-                                <input class="rounded-lg w-full h-10 border-gray-200"
-                                    name="bill_dpi" type="text" placeholder="DPI">
-
-                                <hr class="h-px my-5 bg-gray-300 border-0">
-
                                 <h3 class="">Resumen de Orden</h3>
                                 <h3 class="home_mg_osc_total">Total:$0.00</h3>
                                 <button id="home_mg_btn_osc" type="button" class="flex justify-center bg-blue-600 rounded-lg
@@ -1057,11 +1051,15 @@
                 {{-- Success --}}
                 <div id="home_mg_success" class="home_quoters_base hidden bg-white border-2 rounded-xl
                     w-11/12 mx-auto p-5">
-                    <div class="bg-white w-11/12 mx-auto rounded-xl p-10 font-bold text-center">
-                        <h3 id="home_mg_order_success" class="text-lg"></h3>
-                        <h3 class="text-lg mt-5">Revisa tus ordenes</h3>
+                    <div class="bg-white w-11/12 mx-auto rounded-xl p-10  text-center">
+                        <svg class="w-10 h-10 text-green-500 my-5 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        <h3 id="home_mg_order_success" class="text-xl"></h3>
+                        <h3 class="text-base mt-5">Revisa tus órdenes</h3>
+                        <h3 class="text-sm">Haz clic en el botón  de abajo para revisar tus órdenes</h3>
                         <a href="/user-orders">
-                            <button class="text-white bg-blue-600
+                            <button class="text-white bg-green-700
                             px-3 py-2 rounded-lg my-2">Mis Ordenes</button>
                         </a>
                     </div>
@@ -1493,11 +1491,6 @@
 
                                 <hr class="h-px my-5 bg-gray-300 border-0">
 
-                                <input class="rounded-lg w-full h-10 border-gray-200"
-                                    name="bill_dpi" type="text" placeholder="DPI">
-
-                                <hr class="h-px my-5 bg-gray-300 border-0">
-
                                 <h3 class="">Resumen de Orden</h3>
                                 <h3 class="home_cg_osc_total">Total:$0.00</h3>
                                 <button id="home_cg_btn_osc" type="button" class="flex justify-center bg-blue-600 rounded-lg
@@ -1512,11 +1505,15 @@
                 {{-- Success --}}
                 <div id="home_cg_success" class="home_quoters_base hidden bg-white border-2 rounded-xl
                     w-11/12 mx-auto p-5">
-                    <div class="bg-white w-11/12 mx-auto rounded-xl p-10 font-bold text-center">
-                        <h3 id="home_cg_order_success" class="text-lg"></h3>
-                        <h3 class="text-lg mt-5">Revisa tus ordenes</h3>
+                    <div class="bg-white w-11/12 mx-auto rounded-xl p-10  text-center">
+                        <svg class="w-10 h-10 text-green-500 my-5 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        <h3 id="home_cg_order_success" class="text-xl"></h3>
+                        <h3 class="text-base mt-5">Revisa tus órdenes</h3>
+                        <h3 class="text-sm">Haz clic en el botón  de abajo para revisar tus órdenes</h3>
                         <a href="/user-orders">
-                            <button class="text-white bg-blue-600
+                            <button class="text-white bg-green-700
                             px-3 py-2 rounded-lg my-2">Mis Ordenes</button>
                         </a>
                     </div>

@@ -14,7 +14,7 @@
                 </button>
             </form>
 
-            <div class="my-10 border rounded-xl px-2 max-h-[600px] overflow-y-auto">
+            <div class="my-10 border rounded-xl px-2">
                 @foreach ($tracking as $t)
                     <div class="flex py-3 text-center">
                         <h3 class="font-bold w-3/12 ">

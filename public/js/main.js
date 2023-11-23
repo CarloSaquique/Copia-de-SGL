@@ -15,14 +15,15 @@ $('#register_btn').click(function(){
         {'name':'name','validation':['alpha','blank']},
         {'name':'last_name','validation':['alpha','blank']},
         {'name':'email','validation':['@','blank']},
-        {'name':'country','validation':[]},
+        {'name':'country','validation':['isSelect']},
+        {'name':'cui','validation':['number:1','blank']},
         {'name':'password','validation':['password','blank']},
         {'name':'password_confirmation','validation':['same:password','blank']},
     ]
 
     let form = '#'+$(this).closest("form").attr('id');
     let $validator = Validation(form,fields);
-
+    // $(form).submit();
     if(!$validator.fail){
         $(form).submit();
     }
@@ -46,7 +47,9 @@ function Validation(_form,_fields,_name_id){
     // Fields Foerch Validation
 
     $.each(_fields, function(index,field){
+
         let field_value = $(_form + ' input[name=' + field.name + _name_id +']').val();
+
         $.each(field.validation, function(index,validation){
             // Regex Validations
             if(!validation.indexOf('blank')){
@@ -62,8 +65,8 @@ function Validation(_form,_fields,_name_id){
                         let regex = new RegExp("^[0-9]{"+min+","+max+"}$");
                         !regex.test(field_value) ? error_messages[field.name] = ('El campo '+field.name+' solo admite numeros con ('+min+'-'+max+') digitos.'):false;
                     }else{
-                        let regex = new RegExp("^[0-9]{"+min+"}$");
-                        !regex.test(field_value) ? error_messages[field.name] = ('El campo '+field.name+' solo admite numeros con ('+min+') digitos.'):false;
+                        let regex = new RegExp("^[0-9]{"+min+",}$");
+                        !regex.test(field_value) ? error_messages[field.name] = ('El campo '+field.name+' solo admite numeros.'):false;
                     }
 
                 }else{

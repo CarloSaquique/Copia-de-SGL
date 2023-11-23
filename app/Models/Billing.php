@@ -15,7 +15,7 @@ class Billing extends Model
         'billing_number',
         'total',
         'nit',
-        'dpi',
+        'cui',
         'name',
         'address',
         'comments',

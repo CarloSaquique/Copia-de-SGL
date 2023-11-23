@@ -10,6 +10,7 @@
                 <input class="border-gray-200 rounded-lg w-full" type="text" value="{{ $user->last_name }}">
             </div>
             <input class="border-gray-200 rounded-lg w-full" type="text" value="{{ $user->email }}">
+            <input class="border-gray-200 rounded-lg w-full" type="text" value="{{ $user->cui }}">
         </div>
         <button class="bg-blue-950 text-white px-3 py-2 rounded-xl mt-5 ml-auto block">
             Guardar Cambios

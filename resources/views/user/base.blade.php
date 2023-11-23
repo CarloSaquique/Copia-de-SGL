@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="flex p-5">
-        <div class="border-2 w-96 border-gray-100 bg-white h-screen rounded-xl py-5">
+    <section class="bg-white flex p-5">
+        <div class=" w-96 border-gray-100 bg-white min-h-screen h-full rounded-xl py-5">
             <a href="/profile">
                 <div class="px-5 py-1 cursor-pointer whitespace-nowrap">
                     Mis Datos

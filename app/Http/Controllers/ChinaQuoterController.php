@@ -100,6 +100,7 @@ class ChinaQuoterController extends Controller
         $request->request->add(['name' => $request->get('name'.$_suffix)]);
         $request->request->add(['phone' => $request->get('phone'.$_suffix)]);
         $request->request->add(['email' => $request->get('email'.$_suffix)]);
+        $request->request->add(['cui' => $request->get('cui'.$_suffix)]);
         $request->request->add(['comments' => $request->get('comments'.$_suffix)]);
         $request->request->add(['users_id' => Auth::user()->id]);
         $request->request->add(['quotation_idquotation' => $quotation->idquotation]);
@@ -130,7 +131,6 @@ class ChinaQuoterController extends Controller
 
 
         $request->request->add(['order_idorder'=>$quotation->order_idorder]);
-        $request->request->add(['dpi'=>$request->bill_dpi]);
         $request->request->add(['name'=>$request->bill_name]);
 
         $request->bill_cf ? $request->request->add(['nit'=>'CF']):

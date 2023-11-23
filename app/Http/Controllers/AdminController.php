@@ -133,14 +133,14 @@ class AdminController extends Controller
         // $orders = DB::table('order')
         // ->orderBy('created_at', 'desc');
 
-        $orders = Order::paginate(10)->sortDesc();
+        $orders = Order::paginate(10);
 
+        $orders_count = Order::all();
 
-        $orders_count = Order::all()->sortDesc();
 
         isset($status) ?
         $orders = $orders->where('status',$status):
-        $orders = $orders->where('status','>','0');
+        $orders = $orders->where('status','>','1');
 
         $courier != 'all' ?
         $orders = $orders->where('type',$courier):
@@ -152,10 +152,12 @@ class AdminController extends Controller
 
         $today = Carbon::now();
 
+        isset($status) ? true:$status='all';
         return view('admin.orders')->with([
             'orders'=>$orders,
             'today'=>$today,
             'courier'=>$courier,
+            'status'=>$status,
             'orders_count'=>$orders_count,
         ]);
     }

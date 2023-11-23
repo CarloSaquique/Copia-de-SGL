@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Locker;
 use App\Models\Payment;
+use App\Models\Billing;
 use App\Models\Address;
 use App\Models\Package;
 use App\Models\Invoice;
@@ -46,7 +47,10 @@ class UsersController extends Controller
     }
 
     public function orders(){
-        $orders = Order::where('users_id',Auth::user()->id)->get();
+        $orders = Order::where('users_id',Auth::user()->id)
+        ->where('status',3)
+        ->orderBy('created_at', 'desc')
+        ->get();
 
 
         foreach ($orders as $key => $order) {
@@ -95,6 +99,8 @@ class UsersController extends Controller
 
         $invoice = Invoice::where('order_idorder',$order->idorder)->first();
 
+        $billing = Billing::where('order_idorder',$order->idorder)->first();
+
         $tracking_exists = Tracking::where('order_idorder',$order->idorder)->exists();
 
         $tracking = null;
@@ -112,6 +118,7 @@ class UsersController extends Controller
                 'packages'=>$packages,
                 'address'=>$address,
                 'payment'=>$payment,
+                'billing'=>$billing,
                 'invoice'=>$invoice,
                 'tracking'=>$tracking,
                 'tracking_status'=>$tracking_status,
@@ -128,9 +135,9 @@ class UsersController extends Controller
                 'name' => 'required|alpha|max:15',
                 'last_name' => 'required|alpha|max:15',
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'cui' => 'required|numeric',
                 'country' => 'required|numeric|min:1|max:14',
                 'password' => ['required', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-,.]).{6,}$/', 'min:6', 'confirmed'],
-
             ],[
                 'name.required' => 'Debes colocar tu nombre',
                 'last_name.required' => 'Debes colocar tu apellido',
@@ -145,7 +152,7 @@ class UsersController extends Controller
             }else{
                 $user = new User($request->except('password'));
                 $user->password = bcrypt($request->get('password'));
-                $user->role = 'client';
+                $user->role = 'SGL';
                 $user->status = '1';
                 $user->assignRole('client');
                 $user->saveOrFail();
@@ -162,7 +169,7 @@ class UsersController extends Controller
                 // Fecha de expiración promocion
                 $datetime = Carbon::createFromFormat('Y-m-d H:i:s', '2023-01-31 23:59:59')->toDateTimeString();
 
-                // type = 1 promoción temporal
+                // type = 1 promoción temporal 1 mes gratis
                 $membership = new Membership();
                 $membership->type = 1;
                 $membership->status = 1;

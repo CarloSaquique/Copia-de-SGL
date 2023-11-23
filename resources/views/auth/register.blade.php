@@ -19,7 +19,7 @@
                 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-400
                 focus:border-blue-400" type="text" name="last_name" placeholder="Apellido"/>
 
-                <select class="w-10/12 mt-5 p-2 text-sm text-gray-900 border
+                <select class="w-10/12 mt-5 p-2 text-sm text-gray-600 border
                 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-400
                 focus:border-blue-400" name="country">
                     <option value="0">Seleccionar mi país</option>
@@ -38,6 +38,10 @@
                     <option value="13">India</option>
                     <option value="14">China</option>
                 </select>
+
+                <input class="w-10/12 mt-5 p-2 text-sm text-gray-900 border
+                border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-400
+                focus:border-blue-400" type="text" name="cui" placeholder="Codigo unico de identificación">
 
                 <input class="w-10/12 mt-5 p-2 text-sm text-gray-900 border
                 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-400

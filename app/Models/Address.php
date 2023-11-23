@@ -19,6 +19,7 @@ class Address extends Model
         'name',
         'phone',
         'email',
+        'cui',
         'date',
         'time',
         'comments',

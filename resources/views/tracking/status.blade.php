@@ -11,26 +11,17 @@
         @endif
 
         {{-- Status --}}
-        <div class="w-fit mx-auto grid grid-cols-1 items-center my-10 gap-y-3 gap-x-5  md:grid-cols-2 md:gap-y-5 lg:grid-cols-3 lg:gap-y-10 xl:grid-cols-5">
+        <div class="w-fit mx-auto my-10">
             @if(isset($tracking))
-            @foreach ($tracking_status as $key=>$status)
-            @if($status)
-                <div class="text-center text-xs">
-                    <div class="bg-blue-600 mx-auto rounded-full w-full px-2 h-10 relative
-                    text-white flex items-center">
-                        <svg class="w-6 h-6 mx-1 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                            <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
-                        </svg>
-                        {{$status->state}}
-
-                        <svg class="animate-pulse w-6 h-6 text-green-100 ml-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
-                        </svg>
-                    </div>
-                    <h3>{{$status->created_at}}</h3>
-                </div>
-            @endif
-            @endforeach
+                <h3 class="text-center">Estados</h3>
+                <div class="mx-auto text-center text-xs flex sm:text-base">
+                @foreach ($tracking_status as $key=>$status)
+                    @if($status)
+                        <h3 class="border border-gray-400 p-3">{{$status->state}}</h3>
+                        <h3 class="border border-gray-400 p-3">{{$status->created_at}}</h3>
+                    @endif
+                @endforeach
+            </div>
             @endif
         </div>
 

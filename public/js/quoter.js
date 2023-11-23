@@ -336,7 +336,10 @@ function addForm(_type,_location,_address,_departamento,_municipio,_quoter){
             '<input name="email_'+_location+'" class="rounded-lg h-10 w-full border-gray-200" type="text" placeholder="Email">'+
         '</div>'+
         '<div class="lg:space-x-1">'+
-            '<textarea name="comments_'+_location+'" class="rounded-lg w-full p-1 border-gray-200" placeholder="Comentarios"></textarea>'+
+            '<input name="cui_'+_location+'" class="rounded-lg h-10 w-full border-gray-200" type="text" placeholder="CUI">'+
+        '</div>'+
+        '<div class="lg:space-x-1">'+
+            '<textarea name="comments_'+_location+'" class="rounded-lg w-full p-1 border-gray-200" placeholder="Declara tu Mercadería"></textarea>'+
         '</div>';
         _location == 'sender' ?
             add_form_blank +=
@@ -367,6 +370,9 @@ function addForm(_type,_location,_address,_departamento,_municipio,_quoter){
         '</div>'+
         '<div class="my-2 space-x-1">'+
             '<input name="email_'+_location+'" class="rounded-lg h-10 mx-auto w-full border-gray-200" type="text"  placeholder="Email">'+
+        '</div>'+
+        '<div class="lg:space-x-1">'+
+            '<input name="cui_'+_location+'" class="rounded-lg h-10 w-full border-gray-200" type="text" placeholder="CUI">'+
         '</div>';
 
 
@@ -438,6 +444,7 @@ $('#home_cn_btn_order').click(function(){
         {'name':'name','validation':['alpha','blank']},
         {'name':'phone','validation':['number:8-13','blank']},
         {'name':'email','validation':['@','blank']},
+        {'name':'cui','validation':['number:1','blank']},
         {'name':'comments','validation':['blank']},
         {'name':'date','validation':['date:>=','blank']},
     ]
@@ -497,7 +504,6 @@ $('#home_cn_btn_osc').click(function(){
         {'name':'bill_name','validation':['alpha','blank']},
         {'name':'bill_address','validation':['blank']},
         {'name':'bill_nit','validation':['blank']},
-        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_cn','validation':['isSelect']},
     ]
 
@@ -719,9 +725,12 @@ function addFormDestination(_quoter,_agency){
             '<div>'+
                 '<input name="email_destination" class="rounded-lg border-gray-200 mx-auto w-full" type="email" placeholder="Email">'+
             '</div>'+
+            '<div>'+
+                '<input name="cui_destination" class="rounded-lg border-gray-200 mx-auto w-full" type="text" placeholder="Cui">'+
+            '</div>'+
         '</div>'+
         '<div class="my-2">'+
-            '<textarea name="comments_destination" class="rounded-lg border-gray-200 w-full p-1" placeholder="Comentarios"></textarea>'+
+            '<textarea name="comments_destination" class="rounded-lg border-gray-200 w-full p-1" placeholder="Comentarios Adicionales (opcional)"></textarea>'+
         '</div>'+
         '<button id="home_'+_quoter+'_btn_order" type="button" class="flex bg-blue-950 px-4 py-2 ml-auto rounded-xl text-white">Continuar</button>';
 
@@ -746,6 +755,7 @@ $('body').on('click','#home_mg_btn_order',function(){
         {'name':'name','validation':['alpha','blank']},
         {'name':'phone','validation':['number:8-13','blank']},
         {'name':'email','validation':['@','blank']},
+        {'name':'cui','validation':['number:1','blank']},
         {'name':'comments','validation':['blank']},
     ]
 
@@ -778,7 +788,6 @@ $('#home_mg_btn_osc').click(function(){
         {'name':'bill_name','validation':['alpha','blank']},
         {'name':'bill_address','validation':['blank']},
         {'name':'bill_nit','validation':['blank']},
-        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_mg','validation':['isSelect']},
     ]
 
@@ -969,12 +978,12 @@ $('#home_cg_destination_select').change(function() {
 
 // china-quoter-osc
 $('body').on('click','#home_cg_btn_order',function(){
-
     let fields = [
         {'name':'address','validation':['blank']},
         {'name':'name','validation':['alpha','blank']},
         {'name':'phone','validation':['number:8-13','blank']},
         {'name':'email','validation':['@','blank']},
+        {'name':'cui','validation':['number:1','blank']},
         {'name':'comments','validation':['blank']},
     ]
 
@@ -1007,7 +1016,6 @@ $('#home_cg_btn_osc').click(function(){
         {'name':'bill_name','validation':['alpha','blank']},
         {'name':'bill_address','validation':['blank']},
         {'name':'bill_nit','validation':['blank']},
-        {'name':'bill_dpi','validation':['blank']},
         {'name':'payment_cg','validation':['isSelect']},
     ]
 
