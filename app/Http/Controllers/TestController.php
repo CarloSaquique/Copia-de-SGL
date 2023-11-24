@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Session;
+use App\Models\OSC;
 use App\Models\User;
 use App\Models\Promo;
 use App\Models\Order;
+use App\Models\Invoice;
 use App\Models\Package;
 use App\Models\Payment;
 use App\Models\Address;
 use App\Models\Product;
 use App\Models\Products;
 use App\Models\Tracking;
+use App\Models\TrackingStatus;
 use App\Models\Billing;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
@@ -36,10 +39,13 @@ class TestController extends Controller
         Product::query()->truncate();
         Products::query()->truncate();
         Quotation::query()->truncate();
+        OSC::query()->truncate();
         Package::query()->truncate();
         Payment::query()->truncate();
         Promo::query()->truncate();
         Tracking::query()->truncate();
+        Invoice::query()->truncate();
+        TrackingStatus::query()->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         return Redirect::to('/');
