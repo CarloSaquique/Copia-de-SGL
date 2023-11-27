@@ -29,6 +29,11 @@ class UsersController extends Controller
 {
     public function profile() {
         $user = Auth::user();
+
+        $address = Address::where('users_id',$user->id)
+        ->where('type', 3)->first();
+        !is_null($address) ? $user->address = $address:$user->address = null;
+
         return view('user.profile')->with(['user'=>$user]);
     }
 
@@ -49,7 +54,7 @@ class UsersController extends Controller
     public function orders(){
         $orders = Order::where('users_id',Auth::user()->id)
         ->where('status',2)
-        ->orWhere('status',3)
+        ->Orwhere('status',3)
         ->orderBy('created_at', 'desc')
         ->get();
 
@@ -138,13 +143,13 @@ class UsersController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'cui' => 'required|numeric',
                 'country' => 'required|numeric|min:1|max:14',
-                'password' => ['required', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-,.]).{6,}$/', 'min:6', 'confirmed'],
+                // 'password' => ['required', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-,.]).{6,}$/', 'min:6', 'confirmed'],
             ],[
                 'name.required' => 'Debes colocar tu nombre',
                 'last_name.required' => 'Debes colocar tu apellido',
                 'email.required' => 'Debes colocar tu email',
                 'country.min' => 'Debes seleccionar tu país',
-                'password.required' => 'Debes colocar tu password',
+                // 'password.required' => 'Debes colocar tu password',
             ]);
 
             if($validator->fails()) {
@@ -215,4 +220,44 @@ class UsersController extends Controller
         return Redirect::to('/store-cart-index');
     }
 
+    public function profileUpdate(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|alpha|max:15',
+                'last_name' => 'required|alpha|max:15',
+                'phone' => 'nullable|numeric|digits_between:8,10',
+                'cui' => 'nullable|numeric|digits:13',
+                'nit' => 'nullable|numeric|digits:8',
+            ]);
+
+            if($validator->fails()) {
+                Session::flash('error', $validator->messages()->all());
+                return Redirect::to('/profile');
+            }else{
+                $request->request->add(['users_id'=>Auth::user()->id]);
+                $user = User::findOrfail(Auth::user()->id);
+                $user->name = $request->name;
+                $user->last_name = $request->last_name;
+                $user->phone = $request->phone;
+                $user->cui = $request->cui;
+                $user->nit = $request->nit;
+                $user->saveOrFail();
+
+                $request->request->add(['status' => 1]);
+                $request->request->add(['type' => 3]);
+
+                is_null($request->address) ? $request->merge(['address' => '']):false;
+
+                $address = Address::where('users_id',$user->id)
+                ->where('type', 3)->first();
+                !is_null($address) ? $request->request->add(['idaddress' => $address->idaddress]):false;
+
+                $address = globalNewAddress($request);
+            }
+
+        } catch (\Throwable $th) {
+            return Redirect::to('/profile');
+        }
+        return Redirect::to('/profile');
+    }
 }

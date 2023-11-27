@@ -45,14 +45,14 @@
                 </a>
 
                 {{-- Tabs --}}
-                <div class="hidden mx-auto sm:flex">
+                <div class="mx-auto sm:flex">
                     <ul class="flex font-bold text-blue-800 items-center">
                         <li>
-                            <a href="/" class="block py-2 ml-4 hover:text-black">Home</a>
+                            {{-- <a href="/" class="block py-2 ml-4 hover:text-black">Home</a> --}}
                         </li>
                         @role('super-admin|admin|operator|accounting|storer|deliver')
                         <li>
-                            <a href="/admin-index" class="block py-2 ml-4 hover:text-black">{{Auth::user()->role}}</a>
+                            {{-- <a href="/admin-index" class="block py-2 ml-4 hover:text-black">{{Auth::user()->role}}</a> --}}
                         </li>
                         @endrole
                         {{-- <li>
@@ -68,28 +68,8 @@
                     </ul>
                 </div>
 
-                {{-- Button Responsive Navbar --}}
-                <div class="ml-auto items-center hidden md:hidden">
-                    {{-- <h3 class="items-center">
-                        <svg class="w-6 h-6 text-blue-950" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                        </svg>
-                    </h3> --}}
-                    @if (Route::has('login'))
-                            <a class="text-blue-950 font-bold mx-1 " href="{{ route('login') }}">
-                                {{ __('Login') }}
-                            </a>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <a class="text-blue-950 font-bold mx-1" href="{{ route('register') }}">
-                            {{ __('Register') }}
-                        </a>
-                    @endif
-                </div>
-
                 @guest
-                    <div class="items-center hidden md:flex ml-auto" >
+                    <div class="items-center  ml-auto flex" >
                         @if (Route::has('login'))
                             <a class="text-blue-950 font-bold mx-1 " href="{{ route('login') }}">
                                 {{ __('Login') }}
@@ -105,7 +85,8 @@
                 @else
                     <div class="flex mr-5 items-center md:flex ml-auto">
                         <a href="/profile">
-                            <div class="flex w-fit space-x-1 hover:bg-blue-200 rounded-lg cursor-pointer">
+                            <div class="hidden w-fit space-x-1 hover:bg-blue-200
+                                rounded-lg cursor-pointer md:flex">
                                     <img class="w-11 h-11 rounded-xl" src="{{asset('images/user/profile.jpg')}}" alt="">
                                 <div>
                                     <div class="text-xs text-black rounded-lg h-fit ">
@@ -117,6 +98,13 @@
                                 </div>
                             </div>
                         </a>
+                        <button id="home_movil_menu_btn" class="md:hidden">
+                            <svg class="w-6 h-6 text-blue-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                              </svg>
+                        </button>
+
+
                         {{-- <svg class="w-6 h-6 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
                         </svg> --}}
@@ -135,17 +123,57 @@
         </nav>
 
         {{-- Info Ban --}}
-        <div id="home_install_app_div" class="w-full text-white text-center text-sm items-center
-        bg-blue-950 h-10 py-2.5 md:text-base md:py-2 flex" hidden>
-            <span class="ml-auto mr-1">Instalar La App</span>
-            <button id="home_install_app_btn" class="px-3 py-2 rounded-lg text-white bg-blue-600
-            text-xs mr-auto ml-1">Instalar</button>
+        <div class="w-full text-white text-center text-sm items-center
+        bg-blue-950 h-10 py-2.5 md:text-base md:py-2">
+            <span>Envios Gratis hasta el 30 de Julio</span>
         </div>
 
         {{-- Content --}}
-        <main class="">
+        <main class="relative">
             @yield('content')
+            <div id="home_movil_menu_div" class="fixed top-0 z-50 w-full h-screen bg-white " style="display: none">
+                <button id="home_movil_menu_close_btn" class="ml-auto block mx-5 mt-5">
+                    <svg class="w-5 h-5 text-blue-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                </button>
+                <div class="border-gray-100 bg-white min-h-screen h-full rounded-xl py-5 ">
+                    <a href="/profile">
+                        <div class="px-5 py-5 cursor-pointer whitespace-nowrap">
+                            Mis Datos
+                        </div>
+                    </a>
+                    <hr class="border-gray-300 w-5/6 mx-auto">
+                    <a href="/user-orders">
+                        <div class="px-5 py-3 cursor-pointer whitespace-nowrap">
+                            Mis Ordenes
+                        </div>
+                    </a>
+                    <hr class="border-gray-300 w-5/6 mx-auto">
+                    <a href="/locker">
+                        <div class="px-5 py-3 cursor-pointer whitespace-nowrap">
+                            Mi Casillero
+                        </div>
+                    </a>
+                    <hr class="border-gray-300 w-5/6 mx-auto">
+                    <a href="/">
+                        <div class="px-5 py-3 cursor-pointer whitespace-nowrap">
+                            Membresia
+                        </div>
+                    </a>
+                    <hr class="border-gray-300 w-5/6 mx-auto">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        <div class="p-2 text-center font-bold">
+                            {{ __('Cerrar Sesión') }}
+                        </div>
+                    </a>
+                    <hr class="border-gray-300 w-5/6 mx-auto">
+                </div>
+            </div>
         </main>
+
 
         {{-- News --}}
         {{-- <div class="w-full text-white text-center text-sm items-center
@@ -174,12 +202,13 @@
                     <div class="grid whitespace-nowrap h-fit space-y-1">
                         <a href="/payment-instructive">Instrucciones de pagos</a>
                         <a href="/refund-politics">Politicas de devoluciones</a>
-                        {{-- <a href="/">Noticias</a> --}}
-                        {{-- <a href="/">Preguntas frecuentes</a> --}}
-                        {{-- <a href="/">Conocimiento de fraudes</a> --}}
-                        {{-- <a href="/">Aviso legal</a> --}}
-                        {{-- <a href="/">Condiciones de uso</a> --}}
-                        {{-- <a href="/">Resolución de disputas</a> --}}
+                        {{-- <a href="/deposit-politics">Politicas de reintegros</a> --}}
+                        {{-- <a href="/">Noticias</a>
+                        <a href="/">Preguntas frecuentes</a>
+                        <a href="/">Conocimiento de fraudes</a>
+                        <a href="/">Aviso legal</a>
+                        <a href="/">Condiciones de uso</a>
+                        <a href="/">Resolución de disputas</a> --}}
                     </div>
                     {{-- Third --}}
                     {{-- <div class="grid whitespace-nowrap h-fit space-y-1">
@@ -204,7 +233,7 @@
                     </div> --}}
                 </div>
 
-                {{-- Contact - Social --}}
+                {{-- Contact --}}
                 <div class="space-y-5 ml-auto">
                     <div class="text-base text-justify space-y-4">
                         <div class="flex space-x-2">
@@ -226,7 +255,6 @@
                             <h3 class="text-xs lg:text-sm">customerservice@gruposgl.com</h3>
                         </div>
                     </div>
-
                     {{-- Social Media --}}
                     <div class="flex mx-aut w-fit space-x-2 items-center">
                         <a class=" p-1 rounded-lg" href="https://www.youtube.com/channel/UCWhqCd3O0L41LLWddQr4EiA"  target="_blank">
@@ -256,7 +284,7 @@
             </div>
             <div class="mt-10 text-center">
                 <span>
-                    © 2023 Grupo SGL. All rights reserved
+                    © 2023  GRUPO SGL INTERNATIONAL. All rights reserved
                 </span>
             </div>
         </footer>
@@ -272,10 +300,16 @@
         <!-- Scripts -->
         <script src="{{ asset('js/jquery.min.js') }}" ></script>
         <script src="{{ asset('js/main.js') }}" ></script>
-        <script src="{{ asset('js/pwa.js') }}" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.js"></script>
         @stack('child-scripts')
+
+        <script>
+            $('#home_movil_menu_btn').click(function(){
+                $('#home_movil_menu_div').slideDown();
+            })
+            $('#home_movil_menu_close_btn').click(function(){
+                $('#home_movil_menu_div').slideUp('fast');
+            })
+        </script>
     </body>
 </html>
-
-

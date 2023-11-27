@@ -50,12 +50,13 @@
 
             <div class="overflow-y-auto">
                 @if(isset($orders))
+                {{-- NO. de identificación personal --}}
                     @foreach ($orders as $order)
                         <div class="border-b-2 flex py-5">
                                 @if($order->status == 2)
-                                    <div class="py-3 px-5 text-red-800 bg-red-400 rounded-xl text-center">P</div>
+                                    <div class="py-3 px-3 text-blue-800 bg-blue-500 rounded-xl text-center">SGL</div>
                                 @else
-                                    <div class="py-3 px-5 text-yellow-800 bg-yellow-400 rounded-xl text-center">T</div>
+                                    <div class="py-3 px-3 text-blue-800 bg-blue-500 rounded-xl text-center">SGL</div>
                                 @endif
                                 <div class="items-center flex space-x-3 ml-3">
                                     <h3 class="hover:text-blue-400 font-bold cursor-pointer">Orden#{{$order->order_number}}</h3>

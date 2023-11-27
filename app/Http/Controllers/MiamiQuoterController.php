@@ -8,6 +8,7 @@ use Session;
 use App\Models\OSC;
 use App\Models\Order;
 use App\Models\Package;
+use App\Models\Billing;
 use App\Models\Address;
 use App\Models\Payment;
 use App\Models\Tracking;
@@ -34,9 +35,8 @@ class MiamiQuoterController extends Controller
 
     // Cambiar button Q $ inverso not checked means Q
     public function quotation(Request $request){
+
         $request->request->add(['sender'=>'Miami']);
-        $request->premier ? $request->request->add(['premier'=>1]):false;
-        $request->prepaid ? $request->request->add(['prepaid'=>1]):false;
         $request->currency ? $request->request->add(['currency' => '$']):$request->request->add(['currency' => 'Q']);
         $request->terms ? $request->request->add(['terms'=>1]):false;
         // New Quotation
@@ -46,7 +46,8 @@ class MiamiQuoterController extends Controller
         // New Package
         $package = globalNewPackage($request);
 
-        $total = $this->total($quotation->idquotation,false);
+        $total = $this->total($quotation->idquotation,$request->currency,false);
+
         $request->request->add(['total'=>$total]);
         $payment = globalNewPayment($request);
 
@@ -76,7 +77,7 @@ class MiamiQuoterController extends Controller
         $payment = Payment::where('quotation_idquotation',$idquotation)->first();
         $total = $payment->total;
 
-        $request = $this->newOsc($quotation,$request);
+        $request = $this->newOsc($quotation,$payment->currency,$request);
         $osc = globalNewOsc($request);
         return \Response::json(['total'=>$total,'service'=>$quotation->service,'currency'=>$payment->currency]);
     }
@@ -142,8 +143,8 @@ class MiamiQuoterController extends Controller
         return \Response::json(['order'=>$quotation->order_idorder]);
     }
 
-    public function newOsc($quotation,$request){
-        $total = $this->total($quotation->idquotation,true);
+    public function newOsc($quotation,$currency,$request){
+        $total = $this->total($quotation->idquotation,$currency,true);
         $request->request->add(['transport'=>$total['transport']]);
         $request->request->add(['clearance'=>$total['clearance']]);
         $request->request->add(['insurance'=>$total['insurance']]);
@@ -176,12 +177,14 @@ class MiamiQuoterController extends Controller
         )
         {
             $package = Package::where('quotation_idquotation',$quotation->idquotation)->first();
+            $billing = Billing::where('order_idorder',$quotation->order_idorder)->first();
 
             $osc = OSC::where('order_idorder',$quotation->order_idorder)
             ->first()
             ->getAttributes();
             $osc['weight'] = $package->weight;
             $osc['currency'] = $payment->currency;
+            $osc['billing'] = $billing;
         }
 
         // dd($osc);
@@ -191,7 +194,7 @@ class MiamiQuoterController extends Controller
         return $pdf->stream('File.pdf');
     }
 
-    public function total($idquotation,$osc){
+    public function total($idquotation,$currency,$osc){
         $quotation = Quotation::findOrFail($idquotation);
 
         $package = Package::where('quotation_idquotation',$quotation->idquotation)
@@ -201,7 +204,6 @@ class MiamiQuoterController extends Controller
         $_weight = $package->weight;
         $_price = $package->price;
 
-        $currency = $quotation->currency;
         $service = $quotation->service;
 
         $US = DB::table('exchange')
@@ -226,8 +228,8 @@ class MiamiQuoterController extends Controller
         $sed = 75:
         $sed = 0;
 
-        $transport = $_weight * 2.7;
-        $desaduanaje = 4.25;
+        $transport = $_weight * 3.7;
+        $desaduanaje = 4.5;
         $insurance = ($_price + $transport) * 0.022;
         $services = $transport + $desaduanaje;
         $dai = ($_price + $transport + $insurance) * ($_dai/100);

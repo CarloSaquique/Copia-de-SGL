@@ -41,7 +41,7 @@
     </div>
     <br><br><br>
     <div>
-        <div>Global Logistics Guatemala</div>
+        <div>Grupo SGL</div>
         <div>5ª Avenida 15-45 Zona 10 Centro Empresarial torre 1 oficina 102</div>
         <div>Cda Guatemala, Guatemala</div>
         {{-- <div>email: sales11@gruposgl.com</div> --}}
@@ -51,9 +51,9 @@
     <div style="height: 150px;">
         <p style="float: left;">
             Facturar a: <br>
-            GRUPO SGL <br>
-            5ta. Avenida 15-45 Zona 10 <br>
-            Edificio Centro Empresarial <br>
+            NIT: {{$billing->nit}} <br>
+            {{$billing->name}} <br>
+            {{$billing->address}} <br>
         </p>
 
     </div>
@@ -165,30 +165,6 @@
         </tr>
     </table>
 
-
-    <p>
-        CONDICIONES DE SERVICIO TODO INCLUIDO: <br>
-        a) La mercadería cuenta con una protección valorada hasta USD.500.00 cubierta por seguro incluido
-        en esta cotización. <br>
-        b) Si desea cobertura extendida el valor de la misma será de 2.2% sobre el valor de su factura.
-        c) Garantía 20 días calendario sujeta a disposición del proveedor. <br>
-        d) Cotización sujeta a variaciones por re-pesaje. <br>
-        e) El empaque o embalaje es responsabilidad del proveedor, INTERNATIONAL DEVELOPING
-        LOGISTICS, S.A. no abre ni revisa la paquetería previa a su embarque en líneas aéreas. <br>
-        f) Entrega gratuita en el perímetro de la capital (sujeto a aéreas de cobertura por parte de la empresa).<br>
-        g) El cliente puede solicitar su paquete en puerta de entrega, bajo un costo adicional, que debe de ser
-        consultado con su asesor comercial.<br>
-        h) Si la factura de productos excede el monto de USD.1,000.01 aplica factura mayor y realización de
-        DUCA.<br>
-        i) INTERNATIONAL DEVELOPING LOGISTICS, S.A. no se responsabiliza por las demoras, en vuelos
-        ocasionadas por instrucciones gubernamentales, huelgas, desastres naturales, congestiones en
-        aduanas de origen y tránsitos aéreos tardíos por aerolíneas.<br>
-        j) Cliente acepta las condiciones de servicio al momento de hacer el requerimiento.<br>
-        k) Tarifa valida por 48 horas, sujeta a variaciones por parte del proveedor.<br>
-
-        Póngase en contacto con nosotros para más información sobre las opciones de pago.<br>
-        Gracias por su preferencia.
-    </p>
 </body>
 </html>
 

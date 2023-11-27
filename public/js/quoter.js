@@ -555,8 +555,8 @@ let input_price, input_shipping , input_weight, input_description,
 input_premier, input_prepaid, input_volumetric_height, input_volumetric_width
 , input_volumetric_depth;
 let input_service = 1;
-let US = 8.01;
-
+let US = 8.13;
+// US = 8.01;
 // Select Service(POBOX, Todo Incluido)
 $("#home_mg_service_select").change(function(){
     $("#home_mg_service_select").val() == 1 ?
@@ -605,8 +605,8 @@ function getQuotationMg(){
         input_premier ?  premier = (0.5 * input_weight)*input_premier:premier = 0;
         input_prepaid ?  prepaid = (0.5 * input_weight)*input_prepaid:prepaid = 0;
 
-        let transport = (input_weight *2.7);
-        let desaduanaje = (4.25);
+        let transport = (input_weight *3.7);
+        let desaduanaje = (4.5);
         let insurance = ((input_price + transport) * 0.022);
         let services = (transport + desaduanaje);
         let dai = ((input_price + transport + insurance) * (input_description/100));

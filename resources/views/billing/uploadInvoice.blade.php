@@ -1,9 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="bg-white ">
-        <div class="p-1"></div>
-
+    <section class="bg-white">
+        @if(isset($order))
+            <a href="{{ url()->previous() }}">
+                <button class="bg-blue-100 mt-5 ml-5 px-3 py-2 rounded-lg">
+                    <svg class="w-6 h-6 text-blue-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                    </svg>
+                </button>
+            </a>
+        @endif
         <div class="lg:flex">
 
             <div class="w-11/12 mx-auto p-5 my-10 rounded-md border text-sm overflow-auto sm:w-10/12 xl:w-4/12">

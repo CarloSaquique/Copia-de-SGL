@@ -164,6 +164,7 @@ Route::middleware(['auth','verified','role:super-admin|admin|operator|accounting
 
 
     Route::get('/profile', [App\Http\Controllers\UsersController::class, 'profile']);
+    Route::post('/profile-update', [App\Http\Controllers\UsersController::class, 'profileUpdate']);
     Route::get('/locker', [App\Http\Controllers\UsersController::class, 'locker']);
     Route::get('/membership', [App\Http\Controllers\UsersController::class, 'membership']);
     Route::get('/user-orders', [App\Http\Controllers\UsersController::class, 'orders']);

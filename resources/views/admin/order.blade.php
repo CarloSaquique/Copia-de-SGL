@@ -227,6 +227,7 @@
                     <div>
                         <h3>Datos de Pago</h3>
                         <h3>Tipo: {{$payment->type}}</h3>
+
                         <h3>Moneda:  {{$payment->currency}}</h3>
                         <h3>Total: {{$payment->total}}</h3>
                     </div>

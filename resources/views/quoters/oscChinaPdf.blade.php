@@ -41,7 +41,7 @@
     </div>
     <br><br><br>
     <div>
-        <div>Global Logistics Guatemala</div>
+        <div>Grupo SGL</div>
         <div>5ª Avenida 15-45 Zona 10 Centro Empresarial torre 1 oficina 102</div>
         <div>Cda Guatemala, Guatemala</div>
         {{-- <div>email: sales11@gruposgl.com</div> --}}
@@ -51,9 +51,9 @@
     <div style="height: 150px;">
         <p style="float: left;">
             Facturar a: <br>
-            GRUPO SGL <br>
-            5ta. Avenida 15-45 Zona 10 <br>
-            Edificio Centro Empresarial <br>
+            NIT: {{$billing->nit}} <br>
+            {{$billing->name}} <br>
+            {{$billing->address}} <br>
         </p>
 
     </div>

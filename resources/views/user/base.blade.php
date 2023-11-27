@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="bg-white flex p-5">
-        <div class=" w-96 border-gray-100 bg-white min-h-screen h-full rounded-xl py-5">
+        <div class="w-96 border-gray-100 bg-white min-h-screen h-full rounded-xl py-5 hidden md:block">
             <a href="/profile">
                 <div class="px-5 py-1 cursor-pointer whitespace-nowrap">
                     Mis Datos
@@ -36,7 +36,7 @@
             </a>
             <hr class="border-gray-300 w-5/6 mx-auto">
         </div>
-        <div class="bg-white w-full p-5 rounded-xl">
+        <div class="bg-white w-full">
             @yield('user-content')
         </div>
     </section>

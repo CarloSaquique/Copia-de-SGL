@@ -31,6 +31,11 @@ class HomeController extends Controller
     public function index()
     {
         session()->forget('idquotation');
+        // $user = Auth::user();
+
+        // $address = Address::where('users_id',$user->id)
+        // ->where('type', 3)->first();
+        // !is_null($address) ? $user->address = $address:$user->address = null;
         return view('home.home');
     }
 
