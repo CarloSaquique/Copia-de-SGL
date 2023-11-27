@@ -606,7 +606,7 @@ function getQuotationMg(){
         input_prepaid ?  prepaid = (0.5 * input_weight)*input_prepaid:prepaid = 0;
 
         let transport = (input_weight *3.7);
-        let desaduanaje = (4.5);
+        let desaduanaje = (4.749);
         let insurance = ((input_price + transport) * 0.022);
         let services = (transport + desaduanaje);
         let dai = ((input_price + transport + insurance) * (input_description/100));
