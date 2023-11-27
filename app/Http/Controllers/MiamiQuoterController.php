@@ -229,7 +229,7 @@ class MiamiQuoterController extends Controller
         $sed = 0;
 
         $transport = $_weight * 3.7;
-        $desaduanaje = 4.5;
+        $desaduanaje = 4.749;
         $insurance = ($_price + $transport) * 0.022;
         $services = $transport + $desaduanaje;
         $dai = ($_price + $transport + $insurance) * ($_dai/100);
