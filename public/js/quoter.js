@@ -1,3 +1,4 @@
+
 //Variables
 let agency_table = {
     '1':{
@@ -578,6 +579,8 @@ $("#home_mg_service_select").change(function(){
     getQuotationMg();
 });
 
+
+// Testing
 // Miami Quoter JS
 function getQuotationMg(){
     if((!isNaN(input_price)) && (!isNaN(input_shipping)) && (!isNaN(input_weight)) && (!isNaN(input_description))){
@@ -606,7 +609,7 @@ function getQuotationMg(){
         input_prepaid ?  prepaid = (0.5 * input_weight)*input_prepaid:prepaid = 0;
 
         let transport = (input_weight *3.7);
-        let desaduanaje = (4.749);
+        let desaduanaje = (4.7490);
         let insurance = ((input_price + transport) * 0.022);
         let services = (transport + desaduanaje);
         let dai = ((input_price + transport + insurance) * (input_description/100));
@@ -619,7 +622,7 @@ function getQuotationMg(){
         exchange_btn ? currency = 'Q':currency = '$';
 
         $('#home_mg_transport').text(currency+(transport*exchange).toFixed(2));
-        $('#home_mg_desaduanaje').text(currency+(4.749*exchange).toFixed(2));
+        $('#home_mg_desaduanaje').text(currency+(4.7490*exchange).toFixed(2));
         $('#home_mg_services').text(currency+(services*exchange).toFixed(2));
         $('#home_mg_dai').text(currency+(dai*exchange).toFixed(2));
         $('#home_mg_iva').text(currency+(iva*exchange).toFixed(2));
@@ -1072,3 +1075,10 @@ $('#home_cg_btn_osc').click(function(){
 // }
 
 
+// $( window ).on( "load", function() {
+//     console.log('Loaded');
+// });
+
+$( window ).on( "load", function() {
+    console.log('Loaded');
+})
