@@ -619,7 +619,7 @@ function getQuotationMg(){
         exchange_btn ? currency = 'Q':currency = '$';
 
         $('#home_mg_transport').text(currency+(transport*exchange).toFixed(2));
-        $('#home_mg_desaduanaje').text(currency+(4.25*exchange).toFixed(2));
+        $('#home_mg_desaduanaje').text(currency+(4.749*exchange).toFixed(2));
         $('#home_mg_services').text(currency+(services*exchange).toFixed(2));
         $('#home_mg_dai').text(currency+(dai*exchange).toFixed(2));
         $('#home_mg_iva').text(currency+(iva*exchange).toFixed(2));
