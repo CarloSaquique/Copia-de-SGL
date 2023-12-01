@@ -641,7 +641,7 @@
                                 <div>
                                     <div class="text-center p-3">
                                         <span>Seleccione el Servicio:</span>
-                                        <select id="home_mg_service_select" name="service" class="py-1 px-2 rounded-2xl h-10 border-none bg-gray-200
+                                        <select id="home_mg_service_select" name="service" class="py-auto px-auto rounded-2xl h-10 border-none bg-gray-200
                                             text-gray-500 text-sm">
                                             <option class="" value="1" selected>P.O. BOX</option>
                                             <option class="" value="2" disabled>(Próximamente) Todo Incluido</option>
@@ -1108,7 +1108,7 @@
                                 <div>
                                     <div class="text-center p-5">
                                         <span>Seleccione el Servicio: </span>
-                                        <select id="home_cg_service_select" name="service" class="py-1 px-2 rounded-2xl h-10 border-none bg-gray-200
+                                        <select id="home_cg_service_select" name="service" class="py-auto px-auto rounded-2xl h-10 border-none bg-gray-200
                                         text-gray-500 text-sm">
                                             <option class="font-bold" value="1" selected>P.O. BOX</option>
                                             <option class="" value="2" disabled>(Próximamente) Todo Incluido</option>
