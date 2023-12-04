@@ -635,13 +635,13 @@
                     <form id="home_mg_form_packages" action="/miami-quoter-quotation" method="POST" autocomplete="off">
                         @csrf
                         {{-- Packages Miami  Guatemala--}}
-                        <div id="home_mg_package_div" class="home_quoters_base hidden bg-white border rounded-b-lg w-11/12 mx-auto h-fit shadow-xl
-                            p-5">
+                        <div id="home_mg_package_div" class="home_quoters_base bg-white border rounded-b-lg w-11/12 mx-auto h-fit shadow-xl
+                            p-5 flex">
                             <div class="md:grid md:gap-8 md:grid-cols-2">
                                 <div>
                                     <div class="text-center p-3">
                                         <span>Seleccione el Servicio:</span>
-                                        <select id="home_mg_service_select" name="service" class="py-auto px-auto rounded-2xl h-10 border-none bg-gray-200
+                                        <select id="home_mg_service_select" name="service" class="py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200
                                             text-gray-500 text-sm">
                                             <option class="" value="1" selected>P.O. BOX</option>
                                             <option class="" value="2" disabled>(Próximamente) Todo Incluido</option>
@@ -650,23 +650,21 @@
                                     <div class="text-center p-1 relative hidden">
                                         <input id="home_mg_link" name="link" class=" left-28 bottom-7 home_quotation_keyup h-10 rounded-2xl border-none bg-gray-200" type="text" placeholder="Pasame Tu Link">
                                     </div>
-
-                                    <div class="grid grid-cols-1 lg:grid-cols-2">
-                                        <div class="text-center">
+                                        <div class="text-center mb-1">
                                             <h3 class="text-sm">Valor de mercadería en US$:</h3>
-                                            <input id="home_mg_price" name="price" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Precio">
+                                            <input id="home_mg_price" name="price" class="home_quotation_keyup py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Precio">
                                         </div>
-                                        <div class="text-center">
+                                        <div class="text-center mb-1">
                                             <h3 class="text-sm">Shipping en US$:</h3>
-                                            <input id="home_mg_shipping" name="shipping" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Shipping">
+                                            <input id="home_mg_shipping" name="shipping" class="home_quotation_keyup py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Shipping">
                                         </div>
-                                        <div class="text-center">
+                                        <div class="text-center mb-1">
                                             <h3 class="text-sm">Peso en libras: </h3>
-                                            <input id="home_mg_weight" name="weight" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Peso">
+                                            <input id="home_mg_weight" name="weight" class="home_quotation_keyup py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Peso">
                                         </div>
                                         <div class="text-center ">
                                             <h3 class="text-sm">Descripción:</h3>
-                                            <select id="home_mg_description" name="description" class="home_quotation_change max-w-[226px] lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200  text-center text-sm text-gray-500">
+                                            <select id="home_mg_description" name="description" class="home_quotation_change py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200  text-center text-sm text-gray-500">
                                                 <option value="-" selected="selected">Selecciona Descripción</option>
                                                 <option value="15">Accesorio de Aseo Personal: 15%</option>
                                                 <option value="15">Accesorio de Cámara: 15%</option>
@@ -1108,7 +1106,7 @@
                                 <div>
                                     <div class="text-center p-5">
                                         <span>Seleccione el Servicio: </span>
-                                        <select id="home_cg_service_select" name="service" class="py-auto px-auto rounded-2xl h-10 border-none bg-gray-200
+                                        <select id="home_cg_service_select" name="service" class="py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200
                                         text-gray-500 text-sm">
                                             <option class="font-bold" value="1" selected>P.O. BOX</option>
                                             <option class="" value="2" disabled>(Próximamente) Todo Incluido</option>
@@ -1121,26 +1119,26 @@
                                     <div class="grid grid-cols-1 lg:grid-cols-2">
                                         <div class="text-center">
                                             <h3 class="text-sm">Valor de mercadería en US$:</h3>
-                                            <input id="home_cg_price" name="price" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Precio">
+                                            <input id="home_cg_price" name="price" class="home_quotation_keyup py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Precio">
                                         </div>
                                         <div class="text-center">
                                             <h3 class="text-sm">Shipping en US$:</h3>
-                                            <input id="home_cg_shipping" name="shipping" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Shipping">
+                                            <input id="home_cg_shipping" name="shipping" class="home_quotation_keyup py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Shipping">
                                         </div>
                                         <div class="text-center">
                                             <h3 class="font-bold text-sm">Peso en libras: </h3>
-                                            <input id="home_cg_weight" name="weight" class="home_quotation_keyup lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Peso">
+                                            <input id="home_cg_weight" name="weight" class="home_quotation_keyup py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200" type="text" placeholder="Peso">
                                             <h3 class="font-bold text-sm">Peso Volumétrico: </h3>
                                             <div class="flex mx-auto w-fit">
-                                                <input id="home_cg_volumetric_height" name="volumetric_height" class="home_quotation_keyup mx-1 w-3/12  rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
-                                                <input id="home_cg_volumetric_width" name="volumetric_width" class="home_quotation_keyup mx-1 w-3/12  rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
-                                                <input id="home_cg_volumetric_depth" name="volumetric_depth" class="home_quotation_keyup mx-1 w-3/12 rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
+                                                <input id="home_cg_volumetric_height" name="volumetric_height" class="home_quotation_keyup mx-auto w-3/12  rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
+                                                <input id="home_cg_volumetric_width" name="volumetric_width" class="home_quotation_keyup mx-auto w-3/12  rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
+                                                <input id="home_cg_volumetric_depth" name="volumetric_depth" class="home_quotation_keyup mx-auto w-3/12 rounded-2xl h-10 border-none bg-gray-200 mt-1" type="text" placeholder="10cm">
                                             </div>
                                             <h3 class="font-bold text-2xs">(ancho-alto-profundidad)</h3>
                                         </div>
                                         <div class="text-center ">
                                             <h3 class="font-bold text-sm">Descripción:</h3>
-                                            <select id="home_cg_description" name="description" class="home_quotation_change max-w-[226px] lg:w-11/12 xl:w-auto rounded-2xl h-10 border-none bg-gray-200 text-center text-sm text-gray-500">
+                                            <select id="home_cg_description" name="description" class="home_quotation_change py-2 px-4 mt-2 block w-1/2 mx-auto rounded-2xl h-10 border-none bg-gray-200 text-center text-sm text-gray-500">
                                                 <option value="-" selected="selected">Seleccione Descripción</option>
                                                 <option value="15">Accesorio de Aseo Personal: 15%</option>
                                                 <option value="15">Accesorio de Cámara: 15%</option>
