@@ -51,7 +51,29 @@
                 text-white py-2 mr-auto md:text-base md:py-2 align-middle flex">Rastrear</button>
             </form>
         </div>
+        
+      <!--  {{-- Imagen insertada simplemente --}}
+        
+      <div class="flex relative p-5">
+            <img src="{{ asset('images/1.jpg') }}" alt="">
+        </div> -->
 
+        {{-- imagen --}}
+        <div class="relative flex-1 flex justify-center items-center container mx-auto p-20">
+        <div class="text-blue-700 text-6xl font-bold">
+            <h3 class="p-4">Tienda
+                <span class="text-blue-200">en </span> 
+                <br>
+                <span class="text-blue-200">línea</span>
+                próximamente!</h3>
+        </div>
+       
+            <div class="w-auto h-auto">
+            <img src="{{ asset('images/1.jpg') }}" alt="" class=" rounded-lg">
+            </div>
+
+            
+            </div>
         {{-- Imagen 1--}}
         <div class="flex relative p-5 ">
             <img class="rounded-xl" src="{{ asset('images/home/home-1.jpg') }}" alt="">

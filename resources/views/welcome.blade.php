@@ -232,10 +232,6 @@
         @csrf
     </form>
 
-    <script>
-        products = {!! json_encode($products,JSON_HEX_TAG) !!};
-        promo =  {!! json_encode($promo,JSON_HEX_TAG) !!};
-    </script>
     <script src="{{ asset('js/jquery.min.js') }}" ></script>
     <script src="{{ asset('js/main.js') }}" ></script>
 </body>
