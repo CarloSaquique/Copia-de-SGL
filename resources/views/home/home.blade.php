@@ -52,12 +52,6 @@
             </form>
         </div>
         
-      <!--  {{-- Imagen insertada simplemente --}}
-        
-      <div class="flex relative p-5">
-            <img src="{{ asset('images/1.jpg') }}" alt="">
-        </div> -->
-
         {{-- imagen --}}
         <div class="relative flex-1 flex justify-center items-center container mx-auto p-20">
         <div class="text-blue-700 text-6xl font-bold">
