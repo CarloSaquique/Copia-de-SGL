@@ -52,8 +52,8 @@
             </form>
         </div>
         
-        {{-- imagen --}}
-        <div class="relative flex-1 flex justify-center items-center container mx-auto p-20">
+        {{-- imagen tienda proximamente --}}
+        <div class="relative flex justify-center items-center container mx-auto p-20 sm:text-4xl md:text-5xl lg:text-6xl sm:p-8 lg:p-20">
         <div class="text-blue-700 text-6xl font-bold">
             <h3 class="p-4">Tienda
                 <span class="text-blue-200">en </span> 
@@ -65,9 +65,25 @@
             <div class="w-auto h-auto">
             <img src="{{ asset('images/1.jpg') }}" alt="" class=" rounded-lg">
             </div>
-
             
             </div>
+            {{-- imagen tienda proximamente 2 --}}
+            <div class="md:flex justify-between py-5 md:py-20 px-10">
+                <div class="content-center md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-center sm:text-base md:text-5xl lg:text-6xl text-blue-700 mb-3 font-bold"> Tienda 
+                    <span class="text-blue-400">en línea</span> 
+                         próximamente!</h2>
+
+                </div>
+
+                <div class="md:w-1/2">
+                <img src="{{ asset('images/1.jpg') }}" alt="" class=" rounded-lg">
+                </div>
+            </div>
+
+            {{-- imagen tienda proximamente 3 --}}
+
+            
         {{-- Imagen 1--}}
         <div class="flex relative p-5 ">
             <img class="rounded-xl" src="{{ asset('images/home/home-1.jpg') }}" alt="">
